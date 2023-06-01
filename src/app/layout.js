@@ -11,9 +11,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return(
     <html lang="en">
-      <Head>
-        <link rel="shortcut icon" href="/img.jpg" type="image/x-icon" />
-      </Head>
+      <head>
+        <link rel="icon" href="/img.jpg" sizes="any" />
+      </head>
       <body>
               <Analytics />
         {children}
