@@ -101,7 +101,7 @@ const Content = () => {
         >
           I'm a Full-Stack Web Developer. I'm focused on building custom and responsive websites with a backend. I learn something new every time.
         </motion.p>
-        <Link target="_blank" href="">
+        <Link target="_blank" href="/resume.pdf">
           <motion.button
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -115,9 +115,9 @@ const Content = () => {
     </div>
     <section id='about' className="bg-slate-900 py-10">
             <h2 className="text-center abel text-gray-400 text-2xl">About Me</h2>
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-center">
-          <div className="md:w-1/2 bg-slate-800 p-3">
+      <div className="px-4">
+        <div className="flex flex-col md:flex-row justify-center items-center">
+          <div className="md:w-1/2 bg-slate-800 p-3 rounded-lg shadow-sm">
             <motion.p initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.2 , delay: 0.4 }} className="text-lg text-gray-100 mb-4">

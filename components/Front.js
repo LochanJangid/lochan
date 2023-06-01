@@ -45,16 +45,16 @@ const Front = () => {
         </ul>
       </div>
         <motion.a  drag dragConstraints={{
-          top: -100,
-      left: -100,
-      right: 100,
-      bottom: 100,
+          top: -300,
+      left: -300,
+      right: 300,
+      bottom: 300,
     }} href="mailto:lochanjangidcoder@gmail.com" className='text-cyan-300 rotate-90 z-50 hidden sm:block fixed -right-20 bottom-60 hover:bottom-64'>lochanjangidcoder@gmail.com</motion.a>
        <motion.span  drag dragConstraints={{
-          top: -50,
-      left: -50,
-      right: 50,
-      bottom: 50,
+          top: -300,
+      left: -300,
+      right: 300,
+      bottom: 300,
     }} className='fixed right-7 -bottom-7 w-[2px] h-40 bg-gray-400 hover:bottom-0 z-50 hidden sm:block'></motion.span>
       </>
   )

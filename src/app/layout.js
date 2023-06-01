@@ -6,12 +6,13 @@ import { Analytics } from '@vercel/analytics/react';
 export const metadata = {
   title: 'Lochan Jangid',
   description: 'Full-Stack Web Developer',
+  favicon: '/img.jpg',
 };
 export default function RootLayout({ children }) {
   return(
     <html lang="en">
       <Head>
-        <title>Lochan Jangid | Full-Stack Web Developer</title>
+        <link rel="shortcut icon" href="/img.jpg" type="image/x-icon" />
       </Head>
       <body>
               <Analytics />
