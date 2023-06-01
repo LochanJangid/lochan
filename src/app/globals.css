@@ -1,0 +1,42 @@
+/* Google Fonts Linking */
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');  
+
+/* Google Fonts 
+ */
+.abel{
+  font-family: 'Abel', sans-serif;
+}
+.space_grotesk {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html, body{
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar{
+  background: #191919;
+  box-shadow: 0em 0em 0.4em #191919;
+  width: 10px;
+  color: #000;
+}
+::-webkit-scrollbar-track{
+  background: #000;
+  color: #000;
+}
+::-webkit-scrollbar-thumb{
+  background: #67e8f9;
+  box-shadow: 0em 0em 1em #67e8f9;
+  border-radius: 10em;
+}
+::-webkit-scrollbar-button{
+  background: #171717;
+}
