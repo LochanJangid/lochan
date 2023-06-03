@@ -7,8 +7,6 @@ import { motion } from 'framer-motion';
 
 export default function Home() {
   useEffect(() => {
-    const cursor = document.querySelector('.cursor');
-    const background = document.querySelector('.background');
 
     const handleMouseMove = (e) => {
       const { clientX, clientY } = e;
@@ -66,12 +64,6 @@ export default function Home() {
   } else {
     return (
       <div>
-        <div className="background">
-          <div className="background__layer"></div>
-        </div>
-        <div className="cursor">
-          <div className="cursor__inner"></div>
-        </div>
         <Content />
       </div>
     );
