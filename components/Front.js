@@ -33,7 +33,7 @@ const Front = () => {
 
       {/* Sidebar menu */}
       <div
-        className={`bg-slate-800 fixed top-0 left-0 h-full w-[100vw] flex flex-col justify-center z-40 p-4 transition duration-300 ease-in-out transform ${
+        className={`bg-slate-800 fixed top-0 left-0 w-[100vw] flex flex-col justify-center z-40 p-4 transition duration-300 ease-in-out transform ${
           isMenuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >

@@ -6,21 +6,6 @@ import Content from './Content';
 import { motion } from 'framer-motion';
 
 export default function Home() {
-  useEffect(() => {
-
-    const handleMouseMove = (e) => {
-      const { clientX, clientY } = e;
-      cursor.style.left = `${clientX}px`;
-      cursor.style.top = `${clientY}px`;
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
   const [progress, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
