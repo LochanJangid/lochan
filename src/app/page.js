@@ -11,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (progress < 100) {
+      if (progress < 400) {
         setProgress(prevProgress => prevProgress + 1);
       } else {
         setIsLoading(false);
@@ -25,7 +25,7 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <div className='w-[100vw] h-[100vh] bg-slate-900 flex flex-col justify-center items-center'>
+      <div className='w-[100vw] h-[100vh] bg-[#1d384d] flex flex-col justify-center items-center'>
         <motion.div
           className='animate-bounce'
           initial={{ scale: 0 }}
@@ -39,10 +39,11 @@ export default function Home() {
           <h1 className='text-5xl font-bold space_grotesk text-cyan-300 animate-pulse'>LJ</h1>
         </motion.div>
         <div className='w-64 h-4 mt-8 bg-slate-600 rounded-md'>
-          <div
+          {/* <div
             className='h-full bg-cyan-300 rounded-md'
             style={{ width: `${progress}%` }}
-          ></div>
+          ></div> */}
+       <Image width={300} height={100} src="/load.gif" alt="" />
         </div>
       </div>
     );
