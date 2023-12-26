@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Content from './Content';
 import { motion } from 'framer-motion';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function Home() {
   const [progress, setProgress] = useState(0);
@@ -51,6 +52,7 @@ export default function Home() {
     return (
       <div>
         <Content />
+        <SpeedInsights />
       </div>
     );
   }
