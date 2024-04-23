@@ -63,6 +63,13 @@ const Content = () => {
           github: 'https://github.com/LochanJangid/portfolio-ketan',
         }
       ];
+      const education = [
+        {
+          photo : '',
+          Name : 'education time',
+          
+        }
+      ]
   return (
     <div>
       <Front />
@@ -140,16 +147,29 @@ const Content = () => {
           </div>
           <motion.div initial={{ opacity: 0, x: -100}}
   whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.2 , delay: 0.4 }}  className="md:w-1/2  transition-all hover:blur-0 grayscale hover:grayscale-0 hover:brightness-90">
-            <Image
+            {/* <Image
               src="/img.jpg"
               alt="About Me"
               width={500}
               height={500}
-            />
+            /> */}
+      <iframe
+        src="https://www.linkedin.com/embed/feed/update/urn:li:share:7124223602178031616"
+        height="560" // Set the desired height
+        width="450"
+        frameBorder="0"
+        allowFullScreen=""
+        title="Embedded post"
+        className="customScrollbar"
+      ></iframe>
           </motion.div>
         </div>
       </div>
     </section>
+    <div>
+      <header className='text-center abel text-gray-400 text-2xl'>EDUCATION</header>
+
+    </div>
     <div>
   <header className='text-center abel text-gray-400 text-2xl ' id='experience'>
     EXPERIENCE

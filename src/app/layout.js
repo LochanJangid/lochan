@@ -13,6 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="icon" href="/img.jpg" sizes="any" />
+        
       </head>
       <body>
               <Analytics />
