@@ -24,6 +24,7 @@ html{
 body {
   perspective: 1000px;
   overflow: hidden;
+  cursor: none;
 }
 
 
@@ -54,4 +55,57 @@ body {
 }
 .works:hover span{
   color: #e8eaef;
+}
+
+
+.cur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cur-dot {
+  width: 8px;
+  height: 8px;
+  background: #00e5a0;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.cur-ring {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(0,229,160,0.4);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.cur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cur-dot {
+  width: 8px;
+  height: 8px;
+  background: #00e5a0;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.cur-ring {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(0,229,160,0.4);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
 }
