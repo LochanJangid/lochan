@@ -1,18 +1,17 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 px-10 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-      
-      <div className="font-bold text-white">
-        L<span className="text-green-400">J</span>
+    <footer className="footer">
+      <div className="container">
+        <p className="footer-big display">Build the model.<br />Understand the system.</p>
+        <div className="footer-bottom mono">
+          <span>© 2026 Lochan Jangid</span>
+          <div className="footer-links">
+            <a href="https://github.com/LochanJangid" target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/lochan-jangid/" target="_blank" rel="noreferrer">Linkedin ↗</a>
+            <a href="mailto:lochanjangid@gmail.com">Email ↗</a>
+          </div>
+        </div>
       </div>
-
-      <div>
-        © {new Date().getFullYear()} Lochan Jangid. All rights reserved.
-      </div>
-
-      <div className="text-gray-500 hover:text-green-400 transition">
-  Made with ♥ in Jaipur
-</div>
     </footer>
   );
 }

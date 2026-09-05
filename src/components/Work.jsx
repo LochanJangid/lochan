@@ -1,87 +1,57 @@
-"use client";
-
-import { motion } from "framer-motion";
-
-const works = [
-  {
-    name: "MOOVE — Movie Recommendation System",
-    desc: "Flask-based movie recommendation web application that suggests movies based on user preferences. Demonstrates backend development, data handling, and recommendation logic.",
-    tech: ["Python", "Flask", "HTML", "Recommendation System"],
-    github: "https://github.com/LochanJangid/MOOVE---Movie-Finds-You",
-    highlight: true,
-  },
-  {
-    name: "CS50 Problem Solving Repository",
-    desc: "Collection of solutions to CS50 problems covering algorithms, C, Python, and SQL. Focused on logic building and computational thinking.",
-    tech: ["C", "Python", "Algorithms", "SQL"],
-    github: "https://github.com/LochanJangid/CS50-Problems-Solutions",
-    highlight: true,
-  },
-  {
-    name: "Python Projects Collection",
-    desc: "Set of Python-based mini projects exploring problem solving, scripting, and basic data handling concepts.",
-    tech: ["Python"],
-    github: "https://github.com/LochanJangid/Py_projects",
-  },
-  {
-    name: "MTS School Website (Forked)",
-    desc: "Forked full-stack website project. Explored structure, routing, and frontend integration.",
-    tech: ["JavaScript", "Next.js"],
-    github: "https://github.com/LochanJangid/mts",
-  }
-];
+const tags = ['Python', 'Scikit-learn', 'Random Forest', 'FastAPI', 'Docker', 'Streamlit'];
 
 export default function Work() {
   return (
-    <section id="work" className="px-10 py-24">
-      <h2 className="text-4xl mb-12 text-center">Projects</h2>
+    <section className="section" id="work">
+      <div className="container">
+        <div className="section-head">
+          <div>
+            <div className="kicker mono">01 / Featured work</div>
+            <h2 className="section-title display">A model you can inspect.</h2>
+          </div>
+          <p className="section-note">
+            The portfolio currently focuses on one substantial ML project rather than fifteen tiny rectangles pretending to be a career.
+          </p>
+        </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
-
-        {works.map((w, i) => (
-          <motion.a
-            key={i}
-            href={w.github}
-            target="_blank"
-            whileHover={{ y: -6 }}
-            className={`group p-6 rounded-xl border transition 
-              ${w.highlight 
-                ? "border-cyan-400 bg-white/5" 
-                : "border-white/10 hover:border-cyan-400"}
-            `}
-          >
-
-            {/* TITLE */}
-            <h3 className="text-xl font-semibold group-hover:text-cyan-400 transition">
-              {w.name}
-            </h3>
-
-            {/* DESC */}
-            <p className="text-gray-400 mt-3 text-sm leading-relaxed">
-              {w.desc}
-            </p>
-
-            {/* TECH */}
-            <div className="flex flex-wrap gap-2 mt-4">
-              {w.tech.map((t) => (
-                <span
-                  key={t}
-                  className="text-xs border border-white/10 px-2 py-1 rounded group-hover:border-cyan-400 transition"
-                >
-                  {t}
-                </span>
-              ))}
+        <div className="project-feature">
+          <article className="project-card project-card-main">
+            <div>
+              <div className="project-meta mono"><span>SEE HOUSE</span><span>REGRESSION</span></div>
+              <h3 className="project-title display">California Housing<br />Price Intelligence</h3>
+              <p className="project-desc">
+                An end-to-end housing price prediction system built around a Random Forest Regressor,
+                exposed through a FastAPI inference service and packaged for deployment.
+              </p>
+              <div className="tags">
+                {tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}
+              </div>
             </div>
+            <a className="project-link" href="/work/see-house">Explore the case study ↗</a>
+          </article>
 
-            {/* FOOTER */}
-            <div className="mt-6 flex justify-between items-center text-sm text-gray-500">
-              <span>View Project</span>
-              <span className="group-hover:translate-x-1 transition">→</span>
+          <aside className="project-card model-panel">
+            <div className="panel-content">
+              <div>
+                <div className="panel-eyebrow mono">Inference snapshot</div>
+                <div className="prediction-display">
+                  <div className="prediction-label">Example estimated median value</div>
+                  <div className="prediction-value">$421,700</div>
+                  <div className="mono" style={{fontSize:11,color:'color-mix(in oklab,var(--cream) 48%,transparent)'}}>raw model output × 100,000</div>
+                </div>
+              </div>
+              <div>
+                <div className="spark-bars" aria-label="Illustrative model signal bars">
+                  {[48,67,58,85,73,91,64,78,52,88,72,96].map((height, i) => <span key={i} style={{height:`${height}%`, animationDelay:`${i*55}ms`}} />)}
+                </div>
+                <div className="model-foot">
+                  <div><span>MODEL</span><strong>Random Forest Regressor</strong></div>
+                  <div><span>FEATURES</span><strong>8 numeric inputs</strong></div>
+                </div>
+              </div>
             </div>
-
-          </motion.a>
-        ))}
-
+          </aside>
+        </div>
       </div>
     </section>
   );

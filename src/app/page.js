@@ -1,20 +1,18 @@
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import About from "../components/About";
-import Experience from "../components/Experience";
-import Work from "../components/Work";
-import Contact from "../components/Contact";
-import Footer from "../components/Footer";
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import Focus from '../components/Focus';
+import Work from '../components/Work';
+import About from '../components/About';
+import Footer from '../components/Footer';
 
-export default function Page() {
+export default function Home() {
   return (
-    <main className="bg-[#070708] text-white">
+    <main className="page-shell">
       <Navbar />
       <Hero />
-      <About />
-      <Experience />
+      <Focus />
       <Work />
-      <Contact />
+      <About />
       <Footer />
     </main>
   );
