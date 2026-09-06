@@ -209,3 +209,525 @@ button, input { font: inherit; }
   .footer-bottom { display:block; }
   .footer-links { margin-top:12px; }
 }
+
+/* =========================================
+   MNIST LIVE NEURAL NETWORK
+   ========================================= */
+
+.mnist-panel {
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.mnist-live-model {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* HEADER */
+
+.mnist-live-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.mnist-live-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 10px;
+  font-family: var(--display-font, serif);
+  font-size: 54px;
+  line-height: 0.9;
+}
+
+.mnist-live-title span {
+  font-family: monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: color-mix(
+    in oklab,
+    var(--cream) 45%,
+    transparent
+  );
+}
+
+.inference-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px solid
+    color-mix(in oklab, var(--cream) 15%, transparent);
+  border-radius: 999px;
+
+  font-family: monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+
+  color: color-mix(
+    in oklab,
+    var(--cream) 55%,
+    transparent
+  );
+}
+
+.status-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cream);
+
+  animation: mnist-pulse 1s infinite ease-in-out;
+}
+
+@keyframes mnist-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.75);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* NETWORK */
+
+.network-flow {
+  display: grid;
+  grid-template-columns:
+    0.8fr
+    0.16fr
+    1fr
+    0.16fr
+    0.9fr
+    0.16fr
+    1.15fr;
+
+  align-items: center;
+  gap: 7px;
+  margin: 34px 0 30px;
+}
+
+.flow-stage {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage-label {
+  margin-top: 13px;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: color-mix(
+    in oklab,
+    var(--cream) 42%,
+    transparent
+  );
+  text-align: center;
+}
+
+.stage-count {
+  margin-top: 5px;
+  font-size: 8px;
+  color: color-mix(
+    in oklab,
+    var(--cream) 28%,
+    transparent
+  );
+}
+
+/* INPUT DIGIT */
+
+.drawn-digit {
+  width: 78px;
+  height: 78px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      color-mix(
+        in oklab,
+        var(--cream) 8%,
+        transparent
+      ),
+      transparent 70%
+    );
+
+  border: 1px solid
+    color-mix(in oklab, var(--cream) 25%, transparent);
+
+  font-family: var(--display-font, serif);
+  font-size: 62px;
+  line-height: 1;
+
+  box-shadow:
+    0 0 30px
+      color-mix(
+        in oklab,
+        var(--cream) 5%,
+        transparent
+      ),
+    inset 0 0 20px
+      color-mix(
+        in oklab,
+        var(--cream) 3%,
+        transparent
+      );
+}
+
+/* PIXEL GRID */
+
+.pixel-stream {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+
+  width: 70px;
+  height: 70px;
+
+  margin-top: 12px;
+  padding: 5px;
+
+  border: 1px solid
+    color-mix(in oklab, var(--cream) 9%, transparent);
+
+  border-radius: 9px;
+}
+
+.pixel-stream span {
+  display: block;
+
+  background: var(--cream);
+  border-radius: 1px;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* NEURON CLOUD */
+
+.neuron-cloud {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+
+  background:
+    radial-gradient(
+      circle,
+      color-mix(
+        in oklab,
+        var(--cream) 6%,
+        transparent
+      ),
+      transparent 68%
+    );
+
+  border-radius: 50%;
+
+  border: 1px solid
+    color-mix(in oklab, var(--cream) 9%, transparent);
+}
+
+.neuron-cloud.large {
+  width: 105px;
+  height: 105px;
+
+  grid-template-columns: repeat(7, 1fr);
+  gap: 7px;
+  padding: 16px;
+}
+
+.neuron-cloud.medium {
+  width: 86px;
+  height: 86px;
+
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  padding: 14px;
+}
+
+.neuron-cloud span {
+  width: 5px;
+  height: 5px;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background: var(--cream);
+
+  box-shadow:
+    0 0 8px
+      color-mix(
+        in oklab,
+        var(--cream) 40%,
+        transparent
+      );
+
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+
+/* FLOW CONNECTION */
+
+.flow-connector {
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.flow-connector::before {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      color-mix(
+        in oklab,
+        var(--cream) 22%,
+        transparent
+      ),
+      transparent
+    );
+}
+
+.flow-connector span {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+  background: var(--cream);
+
+  opacity: 0;
+
+  animation: neuron-flow 1.6s infinite linear;
+}
+
+.flow-connector span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.flow-connector span:nth-child(2) {
+  animation-delay: 0.45s;
+}
+
+.flow-connector span:nth-child(3) {
+  animation-delay: 0.9s;
+}
+
+@keyframes neuron-flow {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.8;
+  }
+
+  80% {
+    opacity: 0.8;
+  }
+
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* OUTPUT */
+
+.output-bars {
+  width: 100%;
+  max-width: 150px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.output-row {
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  align-items: center;
+  gap: 6px;
+}
+
+.output-digit {
+  font-family: monospace;
+  font-size: 8px;
+
+  color: color-mix(
+    in oklab,
+    var(--cream) 45%,
+    transparent
+  );
+}
+
+.output-track {
+  height: 4px;
+
+  overflow: hidden;
+
+  border-radius: 99px;
+
+  background:
+    color-mix(
+      in oklab,
+      var(--cream) 8%,
+      transparent
+    );
+}
+
+.output-track span {
+  display: block;
+
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: var(--cream);
+
+  transition: width 0.4s ease;
+}
+
+.output-row:nth-child(9) .output-track span {
+  box-shadow:
+    0 0 10px
+      color-mix(
+        in oklab,
+        var(--cream) 45%,
+        transparent
+      );
+}
+
+.output-result {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 7px;
+
+  margin-top: 13px;
+}
+
+.output-result span {
+  font-size: 8px;
+
+  color: color-mix(
+    in oklab,
+    var(--cream) 35%,
+    transparent
+  );
+}
+
+.output-result strong {
+  font-family: var(--display-font, serif);
+  font-size: 32px;
+  line-height: 1;
+}
+
+.output-result em {
+  font-family: monospace;
+  font-size: 8px;
+  font-style: normal;
+
+  color: color-mix(
+    in oklab,
+    var(--cream) 50%,
+    transparent
+  );
+}
+
+/* FOOTER */
+
+.network-footer {
+  display: grid;
+  grid-template-columns:
+    1.5fr
+    0.8fr
+    0.9fr
+    0.8fr;
+
+  gap: 15px;
+
+  padding-top: 18px;
+
+  border-top: 1px solid
+    color-mix(in oklab, var(--cream) 10%, transparent);
+}
+
+.network-footer > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.network-footer span {
+  font-size: 8px;
+  letter-spacing: 0.1em;
+
+  color: color-mix(
+    in oklab,
+    var(--cream) 35%,
+    transparent
+  );
+}
+
+.network-footer strong {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .network-flow {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .flow-connector {
+    height: 30px;
+    transform: rotate(90deg);
+  }
+
+  .network-footer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .network-footer {
+    grid-template-columns: 1fr;
+  }
+}
