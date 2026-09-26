@@ -1,0 +1,894 @@
+/* =====================================================
+   BANK MARKETING CASE STUDY
+   ===================================================== */
+
+.bank-page {
+  --bank-cream: #fef3e7;
+  --bank-brown: #362216;
+  --bank-border: #dfcfbf;
+  --bank-muted: #806f61;
+
+  min-height: 100vh;
+
+  background: var(--bank-cream);
+  color: var(--bank-brown);
+}
+
+.bank-page * {
+  box-sizing: border-box;
+}
+
+
+/* =====================================================
+   SMALL LABELS
+   ===================================================== */
+
+.bank-kicker {
+  display: block;
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 8px;
+  line-height: 1.2;
+
+  letter-spacing: .13em;
+  text-transform: uppercase;
+
+  color: rgba(254, 243, 231, .48);
+}
+
+
+.bank-story-number {
+  display: block;
+
+  margin-bottom: 18px;
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 8px;
+
+  letter-spacing: .13em;
+  text-transform: uppercase;
+
+  color: var(--bank-muted);
+}
+
+
+/* =====================================================
+   STORY
+   ===================================================== */
+
+.bank-story {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, .9fr);
+
+  gap: 100px;
+
+  max-width: 1100px;
+}
+
+
+.bank-story h2,
+.bank-decision h2,
+.bank-stack h2 {
+  margin: 0;
+
+  font-size: clamp(42px, 5vw, 72px);
+
+  line-height: .98;
+
+  letter-spacing: -.045em;
+}
+
+
+.bank-story p,
+.bank-decision p {
+  max-width: 600px;
+
+  margin: 0 0 22px;
+
+  font-size: 15px;
+
+  line-height: 1.75;
+
+  color: var(--bank-muted);
+}
+
+
+.bank-story .bank-large-copy,
+.bank-decision .bank-large-copy {
+  font-size: 19px;
+
+  line-height: 1.55;
+
+  color: var(--bank-brown);
+}
+
+
+/* =====================================================
+   DATA
+   ===================================================== */
+
+.bank-data-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  border-top:
+    1px solid
+    var(--bank-border);
+
+  border-bottom:
+    1px solid
+    var(--bank-border);
+}
+
+
+.bank-data-grid article {
+  min-height: 230px;
+
+  padding: 25px;
+
+  border-right:
+    1px solid
+    var(--bank-border);
+}
+
+
+.bank-data-grid article:last-child {
+  border-right: 0;
+}
+
+
+.bank-data-grid article > span {
+  display: block;
+
+  margin-bottom: 80px;
+
+  font-size: 8px;
+
+  color: var(--bank-muted);
+}
+
+
+.bank-data-grid h3 {
+  margin: 0 0 10px;
+
+  font-size: 18px;
+
+  font-weight: 500;
+
+  letter-spacing: -.02em;
+}
+
+
+.bank-data-grid p {
+  margin: 0;
+
+  color: var(--bank-muted);
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+
+/* =====================================================
+   FEATURE ENGINEERING
+   ===================================================== */
+
+.bank-engineering {
+  border-top:
+    1px solid
+    var(--bank-border);
+}
+
+
+.bank-engineering article {
+  display: grid;
+
+  grid-template-columns: 80px 1fr;
+
+  gap: 25px;
+
+  padding: 25px 0;
+
+  border-bottom:
+    1px solid
+    var(--bank-border);
+}
+
+
+.bank-engineering article > span {
+  font-size: 8px;
+
+  color: var(--bank-muted);
+}
+
+
+.bank-engineering h3 {
+  margin: 0 0 8px;
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  letter-spacing: -.01em;
+}
+
+
+.bank-engineering p {
+  max-width: 650px;
+
+  margin: 0;
+
+  color: var(--bank-muted);
+
+  font-size: 14px;
+
+  line-height: 1.65;
+}
+
+
+/* =====================================================
+   DURATION DECISION
+   ===================================================== */
+
+.bank-decision {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, .8fr)
+    minmax(0, 1fr);
+
+  gap: 100px;
+
+  padding: 50px 0;
+
+  border-top:
+    1px solid
+    var(--bank-border);
+
+  border-bottom:
+    1px solid
+    var(--bank-border);
+}
+
+
+.bank-code {
+  display: inline-block;
+
+  margin-bottom: 25px;
+
+  padding: 10px 13px;
+
+  border:
+    1px solid
+    var(--bank-border);
+
+  border-radius: 5px;
+
+  background: rgba(255, 255, 255, .2);
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 10px;
+
+  letter-spacing: .08em;
+}
+
+
+/* =====================================================
+   INFERENCE PIPELINE
+   ===================================================== */
+
+.bank-pipeline {
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, 1fr);
+
+  border-top:
+    1px solid
+    var(--bank-border);
+
+  border-bottom:
+    1px solid
+    var(--bank-border);
+}
+
+
+.bank-pipeline article {
+  min-height: 240px;
+
+  padding: 25px;
+
+  border-right:
+    1px solid
+    var(--bank-border);
+}
+
+
+.bank-pipeline article:last-child {
+  border-right: 0;
+}
+
+
+.bank-pipeline article > span {
+  display: block;
+
+  margin-bottom: 95px;
+
+  color: var(--bank-muted);
+
+  font-size: 8px;
+}
+
+
+.bank-pipeline h3 {
+  margin: 0 0 10px;
+
+  font-size: 17px;
+
+  font-weight: 500;
+
+  letter-spacing: -.02em;
+}
+
+
+.bank-pipeline p {
+  margin: 0;
+
+  color: var(--bank-muted);
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+
+/* =====================================================
+   ENGINEERING STACK
+   ===================================================== */
+
+.bank-stack {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, .8fr)
+    minmax(0, 1fr);
+
+  gap: 100px;
+}
+
+
+.bank-stack-list {
+  border-top:
+    1px solid
+    var(--bank-border);
+}
+
+
+.bank-stack-list > div {
+  display: grid;
+
+  grid-template-columns: 110px 1fr;
+
+  gap: 15px;
+
+  padding: 20px 0;
+
+  border-bottom:
+    1px solid
+    var(--bank-border);
+}
+
+
+.bank-stack-list span {
+  font-size: 8px;
+
+  color: var(--bank-muted);
+}
+
+
+.bank-stack-list strong {
+  font-size: 16px;
+
+  font-weight: 500;
+
+  letter-spacing: -.015em;
+}
+
+
+.bank-stack-list p {
+  grid-column: 2;
+
+  max-width: 500px;
+
+  margin: 0;
+
+  color: var(--bank-muted);
+
+  font-size: 13px;
+
+  line-height: 1.55;
+}
+
+
+/* =====================================================
+   SOURCE
+   ===================================================== */
+
+.bank-story-grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 100px;
+
+  padding-top: 45px;
+
+  border-top:
+    1px solid
+    var(--bank-border);
+}
+
+
+.bank-story-grid article {
+  max-width: 520px;
+}
+
+
+.bank-story-grid h3 {
+  margin: 0 0 15px;
+
+  font-size: 24px;
+
+  font-weight: 500;
+
+  line-height: 1.05;
+
+  letter-spacing: -.025em;
+}
+
+
+.bank-story-grid p {
+  margin: 0 0 18px;
+
+  color: var(--bank-muted);
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+.bank-story-grid .project-link {
+  display: block;
+
+  width: fit-content;
+
+  margin-top: 12px;
+}
+
+
+/* =====================================================
+   ACTUAL BANKMARKETER APPLICATION WINDOW
+
+   IMPORTANT:
+   Everything inside the iframe belongs to the actual
+   BankMarketer website.
+
+   We only style the browser-like frame around it.
+   ===================================================== */
+
+.bank-live-window {
+  width: 100%;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    #d8c8b8;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 25px 70px rgba(54, 34, 22, .10);
+}
+
+
+/* =====================================================
+   BROWSER BAR
+   ===================================================== */
+
+.bank-live-window-bar {
+  display: grid;
+
+  grid-template-columns:
+    120px
+    1fr
+    120px;
+
+  align-items: center;
+
+  height: 46px;
+
+  padding: 0 16px;
+
+  border-bottom:
+    1px solid
+    #dfe5ec;
+
+  background:
+    #f8fafc;
+}
+
+
+.bank-window-controls {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+
+.bank-window-controls span {
+  display: block;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #94a3b8;
+
+  opacity: .75;
+}
+
+
+.bank-window-address {
+  justify-self: center;
+
+  max-width: 360px;
+
+  overflow: hidden;
+
+  padding: 7px 18px;
+
+  border:
+    1px solid
+    #dce3ea;
+
+  border-radius: 100px;
+
+  background: #ffffff;
+
+  color: #64748b;
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 8px;
+
+  line-height: 1;
+
+  letter-spacing: .05em;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+
+.bank-window-open {
+  justify-self: end;
+
+  color: #243f91;
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 8px;
+
+  line-height: 1;
+
+  letter-spacing: .08em;
+
+  text-decoration: none;
+
+  transition: opacity .2s ease;
+}
+
+
+.bank-window-open:hover {
+  opacity: .55;
+}
+
+
+/* =====================================================
+   ACTUAL WEBSITE
+
+   The iframe displays the REAL deployed project.
+   ===================================================== */
+
+.bank-live-website {
+  position: relative;
+
+  width: 100%;
+
+  height: 760px;
+
+  overflow: hidden;
+
+  background: #ffffff;
+}
+
+
+.bank-live-iframe {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+
+  outline: 0;
+
+  background: #ffffff;
+}
+
+
+/* =====================================================
+   IFRAME LOADING STATE
+   ===================================================== */
+
+.bank-live-website::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  background: #ffffff;
+}
+
+
+/* =====================================================
+   DESKTOP WINDOW SIZE
+   ===================================================== */
+
+@media (min-width: 1200px) {
+
+  .bank-live-website {
+    height: 800px;
+  }
+
+}
+
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+  .bank-story,
+  .bank-decision,
+  .bank-stack {
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+  }
+
+
+  .bank-data-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+
+  .bank-data-grid article:nth-child(2) {
+    border-right: 0;
+  }
+
+
+  .bank-data-grid article:nth-child(-n + 2) {
+    border-bottom:
+      1px solid
+      var(--bank-border);
+  }
+
+
+  .bank-pipeline {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+
+  .bank-pipeline article:nth-child(2n) {
+    border-right: 0;
+  }
+
+
+  .bank-pipeline article {
+    border-bottom:
+      1px solid
+      var(--bank-border);
+  }
+
+
+  .bank-live-window-bar {
+    grid-template-columns:
+      100px
+      1fr
+      90px;
+  }
+
+
+  .bank-live-website {
+    height: 720px;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+  .bank-story-grid {
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+  }
+
+
+  .bank-data-grid,
+  .bank-pipeline {
+    grid-template-columns: 1fr;
+  }
+
+
+  .bank-data-grid article {
+    min-height: auto;
+
+    border-right: 0;
+
+    border-bottom:
+      1px solid
+      var(--bank-border);
+  }
+
+
+  .bank-data-grid article:last-child {
+    border-bottom: 0;
+  }
+
+
+  .bank-data-grid article > span {
+    margin-bottom: 35px;
+  }
+
+
+  .bank-pipeline article {
+    min-height: auto;
+
+    border-right: 0;
+  }
+
+
+  .bank-pipeline article > span {
+    margin-bottom: 35px;
+  }
+
+
+  .bank-engineering article {
+    grid-template-columns:
+      50px 1fr;
+
+    gap: 15px;
+  }
+
+
+  .bank-stack-list > div {
+    grid-template-columns:
+      85px 1fr;
+  }
+
+
+  .bank-stack-list p {
+    grid-column: 2;
+  }
+
+
+  .bank-live-window {
+    border-radius: 9px;
+  }
+
+
+  .bank-live-window-bar {
+    grid-template-columns:
+      60px
+      1fr
+      55px;
+
+    height: 42px;
+
+    padding: 0 11px;
+  }
+
+
+  .bank-window-address {
+    max-width: 160px;
+
+    padding: 6px 12px;
+
+    font-size: 7px;
+  }
+
+
+  .bank-window-open {
+    font-size: 7px;
+  }
+
+
+  .bank-live-website {
+    height: 680px;
+  }
+
+}
+
+
+/* =====================================================
+   VERY SMALL SCREENS
+   ===================================================== */
+
+@media (max-width: 420px) {
+
+  .bank-live-window-bar {
+    grid-template-columns:
+      50px
+      1fr
+      48px;
+  }
+
+
+  .bank-window-controls {
+    gap: 4px;
+  }
+
+
+  .bank-window-controls span {
+    width: 6px;
+    height: 6px;
+  }
+
+
+  .bank-window-address {
+    max-width: 135px;
+
+    padding: 6px 9px;
+  }
+
+
+  .bank-live-website {
+    height: 620px;
+  }
+
+}
