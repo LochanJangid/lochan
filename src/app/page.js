@@ -349,7 +349,7 @@ export default function Home() {
                 WORK
                ================================================= */}
 
-            <section className="mt-24">
+            <section className="mt-10">
               <div
                 className={`mb-8 border-b pb-5 ${
                   spideyMode
