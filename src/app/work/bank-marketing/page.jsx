@@ -1,842 +1,465 @@
 "use client";
 
-import "./style.css";
-
-import Navbar from "../../../components/Navbar";
-import Footer from "../../../components/Footer";
-
-
-function BankMarketerWindow() {
-  return (
-    <div className="bank-live-window">
-
-      {/* Browser / application frame */}
-
-      <div className="bank-live-window-bar">
-
-        <div className="bank-window-controls">
-          <span />
-          <span />
-          <span />
-        </div>
-
-
-        <div className="bank-window-address mono">
-          bank-marketing-alpha.vercel.app
-        </div>
-
-
-        <a
-          href="https://bank-marketing-alpha.vercel.app/"
-          target="_blank"
-          rel="noreferrer"
-          className="bank-window-open"
-        >
-          OPEN ↗
-        </a>
-
-      </div>
-
-
-      {/* ACTUAL PROJECT WEBSITE */}
-
-      <div className="bank-live-website">
-
-        <iframe
-          src="https://bank-marketing-alpha.vercel.app/"
-          title="BankMarketer live application"
-          className="bank-live-iframe"
-          loading="lazy"
-        />
-
-      </div>
-
-    </div>
-  );
-}
-
-
 const pipeline = [
   [
-    "01",
     "Input",
-    "Customer information enters through the BankMarketer interface."
+    "Customer information enters through the BankMarketer interface.",
   ],
   [
-    "02",
     "Validate",
-    "FastAPI and Pydantic validate the request."
+    "FastAPI and Pydantic validate the request.",
   ],
   [
-    "03",
     "Transform",
-    "The saved preprocessing pipeline prepares the features."
+    "The saved preprocessing pipeline prepares the features.",
   ],
   [
-    "04",
     "Predict",
-    "XGBoost produces the classification result."
+    "XGBoost produces the classification result.",
   ],
   [
-    "05",
     "Respond",
-    "The prediction is returned to the application."
+    "The prediction is returned to the application.",
   ],
 ];
 
-
-const engineering = [
-  [
-    "MODEL",
-    "XGBoost",
-    "Gradient-boosted decision trees for the final classification."
-  ],
-  [
-    "API",
-    "FastAPI",
-    "Production inference endpoint with Pydantic validation."
-  ],
-  [
-    "FRONTEND",
-    "Next.js",
-    "The customer-facing BankMarketer application."
-  ],
-  [
-    "DEPLOYMENT",
-    "Docker · Render · Vercel",
-    "Containerized backend and separately deployed frontend."
-  ],
+const dataGroups = [
+  {
+    name: "Customer",
+    description:
+      "Age, job, marital status, and education.",
+  },
+  {
+    name: "Financial",
+    description:
+      "Balance, housing, personal loan, and default.",
+  },
+  {
+    name: "Campaign",
+    description:
+      "Contact method, timing, and campaign activity.",
+  },
+  {
+    name: "History",
+    description:
+      "Previous contacts and previous campaign outcomes.",
+  },
 ];
 
+const features = [
+  {
+    name: "was_contacted",
+    description:
+      "Identifies whether the customer had previous contact activity.",
+  },
+  {
+    name: "campaign × previous",
+    description:
+      "Combines current campaign intensity with previous contact history.",
+  },
+  {
+    name: "poutcome × campaign",
+    description:
+      "Connects previous campaign outcome with the current campaign context.",
+  },
+];
+
+const stack = [
+  ["Model", "XGBoost"],
+  ["API", "FastAPI"],
+  ["Validation", "Pydantic"],
+  ["Frontend", "Next.js"],
+  ["Container", "Docker"],
+  ["Deployment", "Render · Vercel"],
+];
 
 export default function BankMarketingPage() {
-
   return (
+    <main className="min-h-screen bg-[#eeeeec] py-6 sm:py-10">
+      {/* Paper */}
+      <article className="mx-auto w-[calc(100%-24px)] max-w-[850px] bg-white px-7 py-10 shadow-sm sm:px-14 sm:py-16 md:px-20 md:py-20">
 
-    <main className="page-shell bank-page">
-
-      <Navbar />
-
-
-      {/* =================================================
-          HERO
-          ================================================= */}
-
-      <section className="project-page-hero">
-
-        <div className="container">
-
-          <div className="kicker mono">
-            04 / Machine learning case study
-          </div>
-
-
-          <h1 className="project-page-title display">
-
-            Bank Marketing:
-            <br />
-
-            who gets the call?
-
-          </h1>
-
-
-          <p className="project-page-sub">
-
-            An end-to-end classification system that turns
-            customer and campaign information into a
-            production prediction service.
-
-          </p>
-
-
-          <div
-            className="hero-actions"
-            style={{ marginTop: 30 }}
-          >
-
+        {/* Paper header */}
+        <header className="border-b border-neutral-300 pb-8">
+          <div className="flex items-center justify-between text-xs text-neutral-500">
             <a
-              className="btn btn-primary"
-              href="#product"
+              href="/"
+              className="font-medium text-neutral-800 hover:underline"
             >
-              Open the model ↓
+              Lochan Jangid
             </a>
 
+            <span>Machine Learning Case Study · 2026</span>
+          </div>
 
+          <h1 className="mt-12 font-serif text-4xl font-bold leading-tight tracking-tight text-neutral-950 sm:text-5xl">
+            Bank Marketing
+          </h1>
+
+          <p className="mt-4 max-w-2xl font-serif text-xl leading-8 text-neutral-600">
+            An end-to-end classification system for predicting
+            term deposit subscriptions.
+          </p>
+
+          <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm">
             <a
-              className="btn btn-secondary"
               href="https://bank-marketing-alpha.vercel.app/"
               target="_blank"
               rel="noreferrer"
+              className="text-blue-700 underline underline-offset-2"
             >
-              Open actual app ↗
+              Live application ↗
             </a>
 
+            <a
+              href="https://github.com/LochanJangid/bank-marketing"
+              target="_blank"
+              rel="noreferrer"
+              className="text-blue-700 underline underline-offset-2"
+            >
+              Source ↗
+            </a>
           </div>
+        </header>
 
+        {/* Abstract */}
+        <section className="mt-10">
+          <h2 className="font-serif text-lg font-bold">
+            Abstract
+          </h2>
 
-          <div className="project-hero-meta">
+          <p className="mt-3 font-serif text-[15px] leading-7 text-neutral-700">
+            This project develops a binary classification system
+            using the Bank Marketing dataset. The system combines
+            an XGBoost model with a reusable preprocessing pipeline,
+            FastAPI inference, Pydantic validation, and a Next.js
+            frontend. The resulting application accepts customer
+            and campaign information and returns a prediction
+            through a deployed API.
+          </p>
+        </section>
 
-            <div className="meta-block">
-
-              <div className="meta-label mono">
-                Model
-              </div>
-
-              <div className="meta-value">
-                XGBoost
-              </div>
-
+        {/* Metadata */}
+        <section className="mt-8 border-y border-neutral-200 py-5">
+          <div className="grid grid-cols-2 gap-y-5 text-sm sm:grid-cols-4">
+            <div>
+              <p className="text-xs text-neutral-400">Task</p>
+              <p className="mt-1">Binary classification</p>
             </div>
 
-
-            <div className="meta-block">
-
-              <div className="meta-label mono">
-                Task
-              </div>
-
-              <div className="meta-value">
-                Binary classification
-              </div>
-
+            <div>
+              <p className="text-xs text-neutral-400">Model</p>
+              <p className="mt-1">XGBoost</p>
             </div>
 
-
-            <div className="meta-block">
-
-              <div className="meta-label mono">
-                Dataset
-              </div>
-
-              <div className="meta-value">
-                45,211 customers
-              </div>
-
+            <div>
+              <p className="text-xs text-neutral-400">Dataset</p>
+              <p className="mt-1">45,211 instances</p>
             </div>
 
-
-            <div className="meta-block">
-
-              <div className="meta-label mono">
-                Stack
-              </div>
-
-              <div className="meta-value">
+            <div>
+              <p className="text-xs text-neutral-400">Stack</p>
+              <p className="mt-1">
                 Python · FastAPI · Next.js
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* =================================================
-          QUESTION
-          ================================================= */}
-
-      <section className="section">
-
-        <div className="container">
-
-          <div className="bank-story">
-
-            <div>
-
-              <span className="bank-story-number">
-                THE QUESTION
-              </span>
-
-              <h2 className="display">
-
-                Can customer
-                <br />
-                history help
-                <br />
-                target a call?
-
-              </h2>
-
-            </div>
-
-
-            <div>
-
-              <p className="bank-large-copy">
-
-                The Bank Marketing dataset contains information
-                about customers, their financial situation,
-                contact methods, and previous campaign outcomes.
-
               </p>
-
-
-              <p>
-
-                The goal was not to stop at a notebook model.
-                The project turns that model into an application
-                that accepts a real customer and returns a prediction.
-
-              </p>
-
             </div>
-
           </div>
-
-        </div>
-
-      </section>
-
-
-      {/* =================================================
-          PRODUCT
-          ================================================= */}
-
-      <section
-        className="section"
-        id="product"
-      >
-
-        <div className="container">
-
-          <div className="section-head">
-
-            <div>
-
-              <div className="kicker mono">
-                01 / The product
-              </div>
-
-              <h2 className="section-title display">
-
-                This is the
-                <br />
-                actual application.
-
-              </h2>
-
-            </div>
-
-
-            <p className="section-note">
-
-              The interface below is not a recreation.
-              It is the deployed BankMarketer application
-              running inside the case study.
-
-            </p>
-
-          </div>
-
-
-          <BankMarketerWindow />
-
-        </div>
-
-      </section>
-
-
-      {/* =================================================
-          DATA
-          ================================================= */}
-
-      <section className="section">
-
-        <div className="container">
-
-          <div className="section-head">
-
-            <div>
-
-              <div className="kicker mono">
-                02 / The data
-              </div>
-
-              <h2 className="section-title display">
-
-                Customer signals,
-                <br />
-                not just columns.
-
-              </h2>
-
-            </div>
-
-
-            <p className="section-note">
-
-              Demographics, financial information,
-              campaign activity, and previous outcomes
-              provide the model's input space.
-
-            </p>
-
-          </div>
-
-
-          <div className="bank-data-grid">
-
-            <article>
-
-              <span className="mono">
-                01
-              </span>
-
-              <h3>
-                Customer
-              </h3>
-
-              <p>
-                Age, job, marital status, and education.
-              </p>
-
-            </article>
-
-
-            <article>
-
-              <span className="mono">
-                02
-              </span>
-
-              <h3>
-                Financial
-              </h3>
-
-              <p>
-                Balance, housing, personal loan, and default.
-              </p>
-
-            </article>
-
-
-            <article>
-
-              <span className="mono">
-                03
-              </span>
-
-              <h3>
-                Campaign
-              </h3>
-
-              <p>
-                Contact method, timing, and campaign activity.
-              </p>
-
-            </article>
-
-
-            <article>
-
-              <span className="mono">
-                04
-              </span>
-
-              <h3>
-                History
-              </h3>
-
-              <p>
-                Previous contacts and previous campaign outcomes.
-              </p>
-
-            </article>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* =================================================
-          FEATURE ENGINEERING
-          ================================================= */}
-
-      <section className="section">
-
-        <div className="container">
-
-          <div className="section-head">
-
-            <div>
-
-              <div className="kicker mono">
-                03 / Feature engineering
-              </div>
-
-              <h2 className="section-title display">
-
-                Turn history
-                <br />
-                into signal.
-
-              </h2>
-
-            </div>
-
-
-            <p className="section-note">
-
-              Additional features were created to give the
-              model more useful information about campaign history.
-
-            </p>
-
-          </div>
-
-
-          <div className="bank-engineering">
-
-            <article>
-
-              <span className="mono">
-                01
-              </span>
-
-              <div>
-
-                <h3>
-                  was_contacted
-                </h3>
-
-                <p>
-                  Identifies whether the customer had previous
-                  contact activity.
-                </p>
-
-              </div>
-
-            </article>
-
-
-            <article>
-
-              <span className="mono">
-                02
-              </span>
-
-              <div>
-
-                <h3>
-                  campaign × previous
-                </h3>
-
-                <p>
-                  Combines current campaign intensity with
-                  previous contact history.
-                </p>
-
-              </div>
-
-            </article>
-
-
-            <article>
-
-              <span className="mono">
-                03
-              </span>
-
-              <div>
-
-                <h3>
-                  poutcome × campaign
-                </h3>
-
-                <p>
-                  Connects previous campaign outcome with
-                  the current campaign context.
-                </p>
-
-              </div>
-
-            </article>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* =================================================
-          DURATION
-          ================================================= */}
-
-      <section className="section">
-
-        <div className="container">
-
-          <div className="bank-decision">
-
-            <div>
-
-              <span className="bank-story-number">
-                DESIGN DECISION
-              </span>
-
-              <h2 className="display">
-
-                The feature
-                <br />
-                I left out.
-
-              </h2>
-
-            </div>
-
-
-            <div>
-
-              <div className="bank-code mono">
-                duration
-              </div>
-
-
-              <p className="bank-large-copy">
-
-                Duration is deliberately excluded from the
-                public prediction interface.
-
-              </p>
-
-
-              <p>
-
-                The value becomes known during the call.
-                A pre-contact prediction should not depend
-                on information that only exists after the
-                interaction has started.
-
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* =================================================
-          PIPELINE
-          ================================================= */}
-
-      <section className="section">
-
-        <div className="container">
-
-          <div className="section-head">
-
-            <div>
-
-              <div className="kicker mono">
-                04 / Inference pipeline
-              </div>
-
-              <h2 className="section-title display">
-
-                From form
-                <br />
-                to prediction.
-
-              </h2>
-
-            </div>
-
-
-            <p className="section-note">
-
-              The deployed system connects the frontend,
-              validation, preprocessing, model, and response.
-
-            </p>
-
-          </div>
-
-
-          <div className="bank-pipeline">
-
-            {pipeline.map(
-              ([number, title, text]) => (
-
-                <article key={number}>
-
-                  <span className="mono">
-                    {number}
-                  </span>
-
-                  <h3>
-                    {title}
+        </section>
+
+        {/* 1 */}
+        <section className="mt-14">
+          <SectionHeading number="1" title="Problem" />
+
+          <p className="mt-5 font-serif text-[15px] leading-7 text-neutral-700">
+            The Bank Marketing dataset contains information about
+            customers, their financial situation, contact methods,
+            and previous campaign outcomes.
+          </p>
+
+          <p className="mt-4 font-serif text-[15px] leading-7 text-neutral-700">
+            The objective is to predict whether a customer will
+            subscribe to a term deposit.
+          </p>
+
+          <p className="mt-4 font-serif text-[15px] leading-7 text-neutral-700">
+            The project was implemented as an application rather
+            than stopping at a notebook model. The final system
+            accepts customer information and returns a prediction.
+          </p>
+        </section>
+
+        {/* 2 */}
+        <section className="mt-14">
+          <SectionHeading number="2" title="Data" />
+
+          <p className="mt-5 font-serif text-[15px] leading-7 text-neutral-700">
+            The input space contains customer demographics,
+            financial information, campaign activity, and previous
+            campaign outcomes.
+          </p>
+
+          <div className="mt-6 divide-y divide-neutral-200 border-y border-neutral-200">
+            {dataGroups.map((item, index) => (
+              <div
+                key={item.name}
+                className="grid grid-cols-[35px_1fr] gap-4 py-4"
+              >
+                <span className="text-xs text-neutral-400">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <div>
+                  <h3 className="font-serif font-bold">
+                    {item.name}
                   </h3>
 
-                  <p>
-                    {text}
+                  <p className="mt-1 font-serif text-sm leading-6 text-neutral-600">
+                    {item.description}
                   </p>
-
-                </article>
-
-              )
-            )}
-
+                </div>
+              </div>
+            ))}
           </div>
+        </section>
 
-        </div>
+        {/* 3 */}
+        <section className="mt-14">
+          <SectionHeading number="3" title="Feature Engineering" />
 
-      </section>
+          <p className="mt-5 font-serif text-[15px] leading-7 text-neutral-700">
+            Additional features were created to provide the model
+            with more useful information about campaign history.
+          </p>
 
-
-      {/* =================================================
-          ENGINEERING
-          ================================================= */}
-
-      <section className="section">
-
-        <div className="container">
-
-          <div className="bank-stack">
-
-            <div>
-
-              <span className="bank-story-number">
-                05 / Engineering
-              </span>
-
-              <h2 className="display">
-
-                Not just
-                <br />
-                a notebook.
-
-              </h2>
-
-            </div>
-
-
-            <div className="bank-stack-list">
-
-              {engineering.map(
-                ([label, title, text]) => (
-
-                  <div key={label}>
-
-                    <span className="mono">
-                      {label}
-                    </span>
-
-                    <strong>
-                      {title}
-                    </strong>
-
-                    <p>
-                      {text}
-                    </p>
-
-                  </div>
-
-                )
-              )}
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* =================================================
-          SOURCE
-          ================================================= */}
-
-      <section className="section">
-
-        <div className="container">
-
-          <div className="bank-story-grid">
-
-            <article>
-
-              <span className="bank-story-number">
-                SOURCE
-              </span>
-
-              <h3>
-                The implementation
-                <br />
-                is public.
-              </h3>
-
-              <p>
-
-                The repository contains the machine learning
-                workflow, preprocessing system, API,
-                frontend, and deployment configuration.
-
-              </p>
-
-              <a
-                className="project-link"
-                href="https://github.com/LochanJangid/bank-marketing"
-                target="_blank"
-                rel="noreferrer"
+          <div className="mt-6 space-y-5">
+            {features.map((feature) => (
+              <div
+                key={feature.name}
+                className="border-b border-neutral-200 pb-5"
               >
-                Open GitHub repository ↗
-              </a>
+                <p className="font-mono text-sm text-neutral-900">
+                  {feature.name}
+                </p>
 
-            </article>
+                <p className="mt-1 font-serif text-sm leading-6 text-neutral-600">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
 
+        {/* 4 */}
+        <section className="mt-14">
+          <SectionHeading number="4" title="Model" />
 
-            <article>
+          <p className="mt-5 font-serif text-[15px] leading-7 text-neutral-700">
+            XGBoost is used as the final classification model.
+            A reusable preprocessing pipeline handles the feature
+            transformations before inference.
+          </p>
 
-              <span className="bank-story-number">
-                LIVE
+          <div className="mt-6 border border-neutral-200 bg-neutral-50 p-5">
+            <p className="font-mono text-xs text-neutral-500">
+              MODEL
+            </p>
+
+            <p className="mt-2 font-serif text-lg font-bold">
+              XGBoost Classifier
+            </p>
+
+            <p className="mt-2 font-serif text-sm leading-6 text-neutral-600">
+              Gradient-boosted decision trees used for the final
+              binary classification.
+            </p>
+          </div>
+        </section>
+
+        {/* Design decision */}
+        <section className="mt-14">
+          <h2 className="font-serif text-lg font-bold">
+            A modelling decision
+          </h2>
+
+          <p className="mt-5 font-mono text-sm">
+            duration
+          </p>
+
+          <p className="mt-3 font-serif text-[15px] leading-7 text-neutral-700">
+            Duration is deliberately excluded from the public
+            prediction interface.
+          </p>
+
+          <p className="mt-4 font-serif text-[15px] leading-7 text-neutral-700">
+            The value becomes known during the call. A pre-contact
+            prediction should not depend on information that only
+            exists after the interaction has started.
+          </p>
+        </section>
+
+        {/* 5 */}
+        <section className="mt-14">
+          <SectionHeading number="5" title="System" />
+
+          <p className="mt-5 font-serif text-[15px] leading-7 text-neutral-700">
+            The trained model is exposed through a FastAPI service.
+            Pydantic validates incoming requests, the saved
+            preprocessing pipeline transforms the features, and
+            XGBoost produces the final prediction.
+          </p>
+
+          <div className="mt-7 border-y border-neutral-200">
+            {stack.map(([label, value]) => (
+              <div
+                key={label}
+                className="grid grid-cols-[110px_1fr] border-b border-neutral-200 py-3 last:border-b-0"
+              >
+                <span className="text-sm text-neutral-400">
+                  {label}
+                </span>
+
+                <span className="font-serif text-sm">
+                  {value}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Pipeline */}
+        <section className="mt-14">
+          <h2 className="font-serif text-lg font-bold">
+            Inference pipeline
+          </h2>
+
+          <div className="mt-6 border-y border-neutral-200">
+            {pipeline.map(([title, description], index) => (
+              <div
+                key={title}
+                className="grid grid-cols-[35px_100px_1fr] gap-3 border-b border-neutral-200 py-4 last:border-b-0"
+              >
+                <span className="text-xs text-neutral-400">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <span className="font-serif font-bold">
+                  {title}
+                </span>
+
+                <span className="font-serif text-sm leading-6 text-neutral-600">
+                  {description}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 6 */}
+        <section className="mt-14">
+          <SectionHeading number="6" title="Application" />
+
+          <p className="mt-5 font-serif text-[15px] leading-7 text-neutral-700">
+            The model is connected to a Next.js frontend through
+            the deployed FastAPI service.
+          </p>
+
+          <div className="mt-6 overflow-hidden border border-neutral-300">
+            <div className="flex items-center justify-between border-b border-neutral-200 bg-neutral-50 px-4 py-3">
+              <span className="font-mono text-xs text-neutral-500">
+                bank-marketing-alpha.vercel.app
               </span>
 
-              <h3>
-                Use the full
-                <br />
-                application.
-              </h3>
-
-              <p>
-
-                The embedded window above is the same deployed
-                application. Open it separately when you want
-                the full browser experience.
-
-              </p>
-
               <a
-                className="project-link"
                 href="https://bank-marketing-alpha.vercel.app/"
                 target="_blank"
                 rel="noreferrer"
+                className="text-xs text-blue-700 underline underline-offset-2"
               >
-                Open BankMarketer ↗
+                Open ↗
               </a>
+            </div>
 
-            </article>
+            <iframe
+              src="https://bank-marketing-alpha.vercel.app/"
+              title="BankMarketer live application"
+              className="h-[600px] w-full border-0"
+              loading="lazy"
+            />
+          </div>
+        </section>
 
+        {/* 7 */}
+        <section className="mt-14">
+          <SectionHeading number="7" title="Deployment" />
+
+          <p className="mt-5 font-serif text-[15px] leading-7 text-neutral-700">
+            The backend is containerized with Docker and deployed
+            separately from the Next.js frontend. Render hosts the
+            backend while Vercel hosts the frontend.
+          </p>
+        </section>
+
+        {/* Conclusion */}
+        <section className="mt-14 border-t border-neutral-300 pt-8">
+          <h2 className="font-serif text-lg font-bold">
+            Conclusion
+          </h2>
+
+          <p className="mt-4 font-serif text-[15px] leading-7 text-neutral-700">
+            Bank Marketing takes a classification model from
+            preprocessing and feature engineering to a deployed
+            inference service and usable frontend.
+          </p>
+        </section>
+
+        {/* Links */}
+        <footer className="mt-14 border-t border-neutral-300 pt-6">
+          <div className="flex flex-wrap gap-x-5 gap-y-2 font-serif text-sm">
+            <a
+              href="https://github.com/LochanJangid/bank-marketing"
+              target="_blank"
+              rel="noreferrer"
+              className="text-blue-700 underline underline-offset-2"
+            >
+              GitHub repository ↗
+            </a>
+
+            <a
+              href="https://bank-marketing-alpha.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-blue-700 underline underline-offset-2"
+            >
+              Live application ↗
+            </a>
+
+            <a
+              href="/"
+              className="text-blue-700 underline underline-offset-2"
+            >
+              Portfolio
+            </a>
           </div>
 
-        </div>
-
-      </section>
-
-
-      <Footer />
-
+          <p className="mt-6 text-xs text-neutral-400">
+            © 2026 Lochan Jangid
+          </p>
+        </footer>
+      </article>
     </main>
-
   );
+}
 
+function SectionHeading({ number, title }) {
+  return (
+    <div className="flex items-baseline gap-3">
+      <span className="font-mono text-xs text-neutral-400">
+        {number}.
+      </span>
+
+      <h2 className="font-serif text-lg font-bold">
+        {title}
+      </h2>
+    </div>
+  );
 }

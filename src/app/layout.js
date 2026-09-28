@@ -1,15 +1,15 @@
-import './globals.css';
-import { Analytics } from '@vercel/analytics/next';
+import "./globals.css";
 
 export const metadata = {
-  title: 'Lochan Jangid — ML Engineer & AI Builder',
-  description: 'Lochan Jangid builds machine learning systems, LLM applications, and the engineering systems that make them useful.',
+  title: "Lochan Jangid | ML Engineer",
+  description:
+    "Lochan Jangid is a machine learning engineer building practical ML and AI systems.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}<Analytics /></body>
+      <body>{children}</body>
     </html>
   );
 }
