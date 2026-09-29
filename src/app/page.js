@@ -61,6 +61,20 @@ const projects = [
       ["Source", "https://github.com/LochanJangid/bank-marketing"],
     ],
   },
+  {
+    number: "05",
+    title: "Medical AI",
+    subtitle: "HEALTHCARE / CONVERSATIONAL AI",
+    description:
+      "An end-to-end conversational AI system for providing health information and support.",
+    system: "Validate → engineer → transform → LLM → API",
+    status: "DEPLOYED",
+    links: [
+      ["Demo", "https://medical-ai-gules.vercel.app/"],
+      ["Case study", "/work/medical-ai"],
+      ["Source", "https://github.com/LochanJangid/MedicalAI"],
+    ],
+  },
 ];
 
 const spiderBackground =
