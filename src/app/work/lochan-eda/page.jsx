@@ -457,7 +457,8 @@ X_train, X_test, y_train, y_test = eda.prepare(
     split=True,
     test_size=0.2,
     random_state=42,
-    stratify=df["target"]
+    stratify=df["target"],
+    in_return="ndarray"/"dataframe"/"tensor"
 )`}
                 </NotebookCell>
 

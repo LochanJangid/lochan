@@ -77,6 +77,20 @@ const projects = [
   },
 ];
 
+const documentationPages = [
+  ["Documentation home", "/work/lochan-eda/docs"],
+  ["Getting started", "/work/lochan-eda/docs/getting-started"],
+  ["Automated workflow", "/work/lochan-eda/docs/automated-eda"],
+  ["Dataset profiling", "/work/lochan-eda/docs/profiler"],
+  ["Numerical analysis", "/work/lochan-eda/docs/numerical"],
+  ["Categorical analysis", "/work/lochan-eda/docs/categorical"],
+  ["Missing values", "/work/lochan-eda/docs/missing"],
+  ["Preprocessing", "/work/lochan-eda/docs/preprocessing"],
+  ["Train / test workflow", "/work/lochan-eda/docs/train-test"],
+  ["Reports", "/work/lochan-eda/docs/reports"],
+  ["API reference", "/work/lochan-eda/docs/api"],
+];
+
 const spiderBackground =
   "https://wallpapercat.com/w/full/a/8/7/5815535-3840x2160-desktop-hd-4k-wallpaper-image.jpg";
 
@@ -391,7 +405,7 @@ export default function Home() {
 
                     {spideyMode && (
                       <p className="mt-2 max-w-[600px] font-serif text-sm leading-6 text-neutral-400">
-                        Four systems. Four problems. One obsession:
+                        Five systems. Five problems. One obsession:
                         make it work.
                       </p>
                     )}
@@ -399,7 +413,7 @@ export default function Home() {
 
                   {spideyMode && (
                     <span className="font-mono text-[9px] text-neutral-500">
-                      04 RECORDS
+                      05 RECORDS
                     </span>
                   )}
                 </div>
@@ -503,9 +517,9 @@ export default function Home() {
                             </span>
                           </p>
 
-                          <p className="mt-1">
+                          <div className="mt-1">
                             <ProjectLinks links={project.links} />
-                          </p>
+                          </div>
                         </div>
                       </>
                     )}
@@ -513,6 +527,100 @@ export default function Home() {
                 ))}
               </div>
             </section>
+
+            <nav
+              id="all-pages"
+              aria-label="All portfolio pages"
+              className={`mt-14 border-t pt-8 ${
+                spideyMode
+                  ? "border-white/10"
+                  : "border-[#dedbd6]"
+              }`}
+            >
+              {spideyMode && (
+                <p className="font-mono text-[9px] tracking-[0.3em] text-red-500">
+                  ROUTE INDEX
+                </p>
+              )}
+
+              <h2
+                className={`mt-2 font-serif text-[26px] font-bold ${
+                  spideyMode ? "text-white" : "text-[#292725]"
+                }`}
+              >
+                All pages
+              </h2>
+
+              <p
+                className={`mt-2 font-serif text-sm leading-6 ${
+                  spideyMode ? "text-neutral-400" : "text-[#706b66]"
+                }`}
+              >
+                Direct links to every project and documentation page.
+              </p>
+
+              <div className="mt-6 grid gap-8 sm:grid-cols-2">
+                <div>
+                  <h3
+                    className={`font-serif text-lg font-bold ${
+                      spideyMode ? "text-neutral-200" : "text-[#292725]"
+                    }`}
+                  >
+                    Project pages
+                  </h3>
+
+                  <ul className="mt-3 space-y-2">
+                    {projects.map((project) => {
+                      const href = project.links.find(
+                        ([label]) => label === "Case study"
+                      )?.[1];
+
+                      return (
+                        <li key={project.title}>
+                          <a
+                            href={href}
+                            className={`font-serif text-sm underline underline-offset-2 transition ${
+                              spideyMode
+                                ? "text-red-300 decoration-red-700 hover:text-white"
+                                : "text-[#514d49] decoration-neutral-400 hover:text-neutral-900"
+                            }`}
+                          >
+                            {project.title}
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+
+                <div>
+                  <h3
+                    className={`font-serif text-lg font-bold ${
+                      spideyMode ? "text-neutral-200" : "text-[#292725]"
+                    }`}
+                  >
+                    Lochan EDA documentation
+                  </h3>
+
+                  <ul className="mt-3 space-y-2">
+                    {documentationPages.map(([label, href]) => (
+                      <li key={href}>
+                        <a
+                          href={href}
+                          className={`font-serif text-sm underline underline-offset-2 transition ${
+                            spideyMode
+                              ? "text-red-300 decoration-red-700 hover:text-white"
+                              : "text-[#514d49] decoration-neutral-400 hover:text-neutral-900"
+                          }`}
+                        >
+                          {label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </nav>
 
             {/* =================================================
                 TRILOGY
