@@ -1,7 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Spidey from "./Spidey/Spidey";
+import {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+
+import SpiderExperience from "./Spidey/SpiderExperience";
 
 const projects = [
   {
@@ -94,6 +99,91 @@ const documentationPages = [
 const spiderBackground =
   "https://wallpapercat.com/w/full/a/8/7/5815535-3840x2160-desktop-hd-4k-wallpaper-image.jpg";
 
+const profileImage =
+  "https://github.com/LochanJangid.png";
+
+
+/* =========================================================
+   PROFILE → FULLSCREEN SPIDER-MAN TRANSITION
+   ========================================================= */
+
+function SpideyTransition({ rect, spideyMode }) {
+  const [destination, setDestination] = useState(null);
+
+  useEffect(() => {
+    if (!spideyMode) return undefined;
+
+    let firstFrame;
+    let secondFrame;
+    firstFrame = window.requestAnimationFrame(() => {
+      secondFrame = window.requestAnimationFrame(() => {
+        const portrait = document.getElementById("personal-profile-frame");
+        if (!portrait) return;
+
+        const bounds = portrait.getBoundingClientRect();
+        setDestination({
+          left: bounds.left,
+          top: bounds.top,
+          width: bounds.width,
+          height: bounds.height,
+        });
+      });
+    });
+
+    return () => {
+      window.cancelAnimationFrame(firstFrame);
+      if (secondFrame) window.cancelAnimationFrame(secondFrame);
+    };
+  }, [spideyMode]);
+
+  const imageRect = destination || rect;
+
+  return (
+    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
+      <div
+        className="absolute inset-0 bg-[#f7f3ed] transition-opacity duration-700 ease-out"
+        style={{ opacity: destination ? 0 : 1 }}
+      />
+      <div
+        className="absolute rounded-full border border-[#ed7654]/70"
+        style={{
+          left: rect.left + rect.width / 2,
+          top: rect.top + rect.height / 2,
+          width: rect.width,
+          height: rect.height,
+          transform: `translate(-50%, -50%) scale(${destination ? 26 : 1})`,
+          opacity: destination ? 0 : 0.9,
+          boxShadow: "0 0 32px rgba(237,118,84,.24)",
+          transition:
+            "transform 950ms cubic-bezier(0.2, 0.75, 0.2, 1), opacity 750ms ease-out",
+        }}
+      />
+      <img
+        src={profileImage}
+        alt=""
+        className="absolute border-[8px] border-[#fff9f1] object-cover sm:border-[12px]"
+        style={{
+          left: imageRect.left,
+          top: imageRect.top,
+          width: imageRect.width,
+          height: imageRect.height,
+          objectPosition: "center",
+          borderRadius: destination
+            ? "46% 54% 48% 52% / 48% 43% 57% 52%"
+            : "9999px",
+          boxShadow: "0 24px 70px rgba(88,55,38,.2)",
+          transition:
+            "left 950ms cubic-bezier(0.2, 0.75, 0.2, 1), top 950ms cubic-bezier(0.2, 0.75, 0.2, 1), width 950ms cubic-bezier(0.2, 0.75, 0.2, 1), height 950ms cubic-bezier(0.2, 0.75, 0.2, 1), border-radius 700ms ease-out",
+        }}
+      />
+    </div>
+  );
+}
+
+/* =========================================================
+   PROJECT LINKS
+   ========================================================= */
+
 function ProjectLinks({ links, spideyMode }) {
   return (
     <div
@@ -104,14 +194,23 @@ function ProjectLinks({ links, spideyMode }) {
       }`}
     >
       {links.map(([label, href]) => {
-        const external = href.startsWith("http");
+        const external =
+          href.startsWith("http");
 
         return (
           <a
             key={label}
             href={href}
-            target={external ? "_blank" : undefined}
-            rel={external ? "noreferrer" : undefined}
+            target={
+              external
+                ? "_blank"
+                : undefined
+            }
+            rel={
+              external
+                ? "noreferrer"
+                : undefined
+            }
             className={
               spideyMode
                 ? "text-red-300 underline decoration-red-700 underline-offset-4 transition hover:text-white"
@@ -126,16 +225,27 @@ function ProjectLinks({ links, spideyMode }) {
   );
 }
 
+/* =========================================================
+   WEB PATTERN
+   ========================================================= */
+
 function WebPattern({ active }) {
-  if (!active) return null;
+  if (!active) {
+    return null;
+  }
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[1] overflow-hidden opacity-[0.055]">
       <div className="absolute left-1/2 top-1/2 h-[160vmax] w-px -translate-x-1/2 -translate-y-1/2 bg-white" />
+
       <div className="absolute left-1/2 top-1/2 h-[160vmax] w-px -translate-x-1/2 -translate-y-1/2 rotate-[30deg] bg-white" />
+
       <div className="absolute left-1/2 top-1/2 h-[160vmax] w-px -translate-x-1/2 -translate-y-1/2 rotate-[60deg] bg-white" />
+
       <div className="absolute left-1/2 top-1/2 h-[160vmax] w-px -translate-x-1/2 -translate-y-1/2 rotate-[90deg] bg-white" />
+
       <div className="absolute left-1/2 top-1/2 h-[160vmax] w-px -translate-x-1/2 -translate-y-1/2 rotate-[120deg] bg-white" />
+
       <div className="absolute left-1/2 top-1/2 h-[160vmax] w-px -translate-x-1/2 -translate-y-1/2 rotate-[150deg] bg-white" />
 
       <div className="absolute left-1/2 top-1/2 h-[25vmax] w-[25vmax] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white" />
@@ -146,6 +256,10 @@ function WebPattern({ active }) {
     </div>
   );
 }
+
+/* =========================================================
+   INITIAL PAGE
+   ========================================================= */
 
 function InitialPage() {
   return (
@@ -167,26 +281,156 @@ function InitialPage() {
   );
 }
 
+/* =========================================================
+   HOME
+   ========================================================= */
+
 export default function Home() {
   const [mounted, setMounted] = useState(false);
-  const [spideyMode, setSpideyMode] = useState(false);
+  const portfolioRef = useRef(null);
+
+  const [spideyMode, setSpideyMode] =
+    useState(false);
+
+  const [spideyTransition, setSpideyTransition] =
+    useState(false);
+
+  const [transitionRect, setTransitionRect] =
+    useState({
+      left: 0,
+      top: 0,
+      width: 88,
+      height: 88,
+    });
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (!spideyTransition) {
+      return undefined;
+    }
+
+    const modeTimer =
+      window.setTimeout(() => {
+        setSpideyMode(true);
+      }, 120);
+
+    const cleanupTimer =
+      window.setTimeout(() => {
+        setSpideyTransition(false);
+      }, 1450);
+
+    return () => {
+      window.clearTimeout(modeTimer);
+      window.clearTimeout(cleanupTimer);
+    };
+  }, [spideyTransition]);
+
+  useEffect(() => {
+    const updateScrollDepth = () => {
+      const portfolio = portfolioRef.current;
+
+      if (!portfolio) return;
+
+      const offset = Math.sin(window.scrollY * 0.002) * 5;
+      portfolio.style.setProperty("--portfolio-left-scroll", `${offset}px`);
+      portfolio.style.setProperty("--portfolio-right-scroll", `${-offset}px`);
+    };
+
+    window.addEventListener("scroll", updateScrollDepth, { passive: true });
+    updateScrollDepth();
+
+    return () => {
+      window.removeEventListener("scroll", updateScrollDepth);
+    };
+  }, []);
+
+  function handlePortfolioPointerMove(event) {
+    const portfolio = portfolioRef.current;
+
+    if (
+      !portfolio ||
+      event.pointerType === "touch" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    const pointerX = (event.clientX / window.innerWidth - 0.5) * 2;
+    const pointerY = (event.clientY / window.innerHeight - 0.5) * 2;
+
+    portfolio.style.setProperty("--portfolio-tilt-x", `${-pointerY * 1.1}deg`);
+    portfolio.style.setProperty("--portfolio-tilt-y", `${pointerX * 1.4}deg`);
+    portfolio.style.setProperty("--portfolio-pointer-x", `${pointerX * -4}px`);
+    portfolio.style.setProperty("--portfolio-pointer-y", `${pointerY * -4}px`);
+    portfolio.style.setProperty("--portfolio-left-x", `${pointerX * -3}px`);
+    portfolio.style.setProperty("--portfolio-left-y", `${pointerY * -2}px`);
+    portfolio.style.setProperty("--portfolio-right-x", `${pointerX * 4}px`);
+    portfolio.style.setProperty("--portfolio-right-y", `${pointerY * 3}px`);
+    portfolio.style.setProperty(
+      "--portfolio-light-x",
+      `${(event.clientX / window.innerWidth) * 100}%`,
+    );
+    portfolio.style.setProperty(
+      "--portfolio-light-y",
+      `${(event.clientY / window.innerHeight) * 100}%`,
+    );
+  }
+
+  function resetPortfolioPointer() {
+    const portfolio = portfolioRef.current;
+    if (!portfolio) return;
+
+    portfolio.style.setProperty("--portfolio-tilt-x", "0deg");
+    portfolio.style.setProperty("--portfolio-tilt-y", "0deg");
+    portfolio.style.setProperty("--portfolio-pointer-x", "0px");
+    portfolio.style.setProperty("--portfolio-pointer-y", "0px");
+    portfolio.style.setProperty("--portfolio-left-x", "0px");
+    portfolio.style.setProperty("--portfolio-left-y", "0px");
+    portfolio.style.setProperty("--portfolio-right-x", "0px");
+    portfolio.style.setProperty("--portfolio-right-y", "0px");
+    portfolio.style.setProperty("--portfolio-light-x", "50%");
+    portfolio.style.setProperty("--portfolio-light-y", "35%");
+  }
+
   if (!mounted) {
     return <InitialPage />;
   }
 
+  if (spideyMode) {
+    return (
+      <>
+        <SpiderExperience
+          projects={projects}
+          onExit={() => {
+            setSpideyMode(false);
+            setSpideyTransition(false);
+          }}
+        />
+        {spideyTransition && (
+          <SpideyTransition
+            rect={transitionRect}
+            spideyMode={spideyMode}
+          />
+        )}
+      </>
+    );
+  }
+
   return (
-    <main
-      className={`relative min-h-screen overflow-hidden transition-colors duration-1000 ${
-        spideyMode
-          ? "bg-[#020202] text-white"
-          : "bg-white text-[#292725]"
-      }`}
-    >
+    <>
+      <main
+        ref={portfolioRef}
+        onPointerMove={handlePortfolioPointerMove}
+        onPointerLeave={resetPortfolioPointer}
+        className={`relative min-h-screen overflow-hidden transition-colors duration-1000 ${
+          spideyMode
+            ? "bg-[#020202] text-white"
+            : "bg-white text-[#292725]"
+        }`}
+      >
       {/* =========================================================
           SPIDER-MAN BACKGROUND
          ========================================================= */}
@@ -195,13 +439,13 @@ export default function Home() {
         className={`pointer-events-none fixed inset-0 z-0 transition-all duration-1000 ${
           spideyMode
             ? "scale-100 opacity-100"
-            : "scale-110 opacity-0"
+            : "scale-105 opacity-0"
         }`}
       >
         <img
           src={spiderBackground}
           alt=""
-          className="h-full w-full object-cover object-center"
+          className="h-full w-full object-cover object-[52%_38%]"
         />
 
         <div className="absolute inset-0 bg-black/72" />
@@ -210,18 +454,14 @@ export default function Home() {
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_70%,rgba(30,70,170,0.22),transparent_35%)]" />
 
-        <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black via-black/50 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black via-black/50 to-transparent"         />
       </div>
+
+      {/* Cinematic transition */}
+
+      {/* Web */}
 
       <WebPattern active={spideyMode} />
-
-      {/* =========================================================
-          SPIDEY
-         ========================================================= */}
-
-      <div className="relative z-[70]">
-        <Spidey />
-      </div>
 
       {/* =========================================================
           SPIDER MODE STATUS
@@ -236,7 +476,11 @@ export default function Home() {
       >
         <div className="border border-red-500/40 bg-black/80 px-4 py-2.5 font-mono text-[9px] tracking-[0.22em] text-red-400 shadow-2xl backdrop-blur-xl">
           JAIPUR / INDIA
-          <span className="mx-2 text-neutral-700">/</span>
+
+          <span className="mx-2 text-neutral-700">
+            /
+          </span>
+
           ARCHIVE ACTIVE
         </div>
       </div>
@@ -245,7 +489,16 @@ export default function Home() {
           MAIN CONTENT
          ========================================================= */}
 
-      <div className="relative z-10 mx-auto w-[calc(100%-2rem)] max-w-[1000px] py-12 sm:w-[calc(100%-4rem)] sm:py-20">
+      <div
+        className="relative z-10 mx-auto w-[calc(100%-2rem)] max-w-[1000px] py-12 sm:w-[calc(100%-4rem)] sm:py-20"
+        style={{
+          transform:
+            "perspective(1600px) rotateX(var(--portfolio-tilt-x, 0deg)) rotateY(var(--portfolio-tilt-y, 0deg))",
+          transformStyle: "preserve-3d",
+          transition: "transform 180ms cubic-bezier(0.2, 0.7, 0.3, 1)",
+          willChange: "transform",
+        }}
+      >
 
         {/* =======================================================
             SPIDER ARCHIVE HEADER
@@ -275,9 +528,18 @@ export default function Home() {
               </div>
 
               <div className="border-l border-red-700/50 pl-5 font-mono text-[9px] leading-6 tracking-[0.12em] text-neutral-400">
-                <div>SUBJECT: LOCHAN JANGID</div>
-                <div>IDENTITY: ENGINEER</div>
-                <div>LOCATION: JAIPUR, INDIA</div>
+                <div>
+                  SUBJECT: LOCHAN JANGID
+                </div>
+
+                <div>
+                  IDENTITY: ENGINEER
+                </div>
+
+                <div>
+                  LOCATION: JAIPUR, INDIA
+                </div>
+
                 <div className="text-green-500">
                   STATUS: ACTIVE
                 </div>
@@ -287,19 +549,28 @@ export default function Home() {
         )}
 
         {/* =======================================================
-            IMPORTANT:
-            SAME GRID IN BOTH MODES.
-
-            This prevents the profile image from moving.
+            TWO-COLUMN CONTENT
            ======================================================= */}
 
         <div className="grid grid-cols-1 gap-16 sm:grid-cols-[minmax(0,1.65fr)_minmax(240px,0.8fr)] sm:gap-16">
 
           {/* =====================================================
-              LEFT
+              LEFT COLUMN
              ===================================================== */}
 
-          <div>
+          <div
+            style={{
+              transform:
+                "translate3d(var(--portfolio-left-x, 0px), calc(var(--portfolio-left-y, 0px) + var(--portfolio-left-scroll, 0px)), 22px)",
+              transformStyle: "preserve-3d",
+              transition: "transform 220ms ease-out",
+            }}
+          >
+
+            {/* =================================================
+                NORMAL / SPIDER INTRO
+               ================================================= */}
+
             {!spideyMode ? (
               <section>
                 <h1 className="font-serif text-[32px] font-bold leading-tight tracking-tight">
@@ -370,6 +641,70 @@ export default function Home() {
                 >
                   ESTABLISH CONTACT
                 </a>
+              </section>
+            )}
+
+            {!spideyMode && (
+              <section className="mt-10">
+                <h2 className="mb-5 font-serif text-[26px] font-bold text-[#292725]">
+                  Experience
+                </h2>
+
+                <article className="grid grid-cols-[44px_1fr] gap-4 border-t border-[#e8e5e1] py-5">
+                  <a
+                    href="https://www.linkedin.com/company/30204738/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="REGex Software Services on LinkedIn"
+                    className="grid h-11 w-11 place-items-center overflow-hidden rounded-lg border border-[#e8e5e1] bg-white"
+                  >
+                    <img
+                      src="https://media.licdn.com/dms/image/v2/C510BAQG-rlPs90C2EA/company-logo_100_100/company-logo_100_100/0/1630589399099?e=1792627200&v=beta&t=4v-beAQ9nIUC9_cHqD0B08Rr7rvPJu5wMHooXX41Sss"
+                      alt="REGex Software Services logo"
+                      className="h-full w-full object-contain"
+                    />
+                  </a>
+
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                      <div>
+                        <h3 className="font-serif text-[18px] font-bold leading-snug text-[#292725]">
+                          AI/ML Intern
+                        </h3>
+                        <a
+                          href="https://www.linkedin.com/company/30204738/"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="font-serif text-[15px] font-semibold text-[#514d49] underline decoration-[#c8c4be] underline-offset-2 transition hover:text-[#292725]"
+                        >
+                          REGex Software Services
+                        </a>
+                        <p className="mt-1 font-serif text-[14px] text-[#706b66]">
+                          Full-time · On-site
+                        </p>
+                      </div>
+                      <p className="font-mono text-[9px] leading-5 tracking-[0.06em] text-[#8b857e] sm:text-right">
+                        DEC 2025 – PRESENT · 11 MOS
+                      </p>
+                    </div>
+
+                    <p className="mt-2 font-serif text-[14px] text-[#706b66]">
+                      Jaipur, Rajasthan, India
+                    </p>
+
+                    <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 font-serif text-[13px] text-[#706b66]">
+                      <span>Python (Programming Language)</span>
+                      <span aria-hidden="true" className="text-[#c8c4be]">
+                        ·
+                      </span>
+                      <span>C (Programming Language)</span>
+                      <span aria-hidden="true" className="text-[#c8c4be]">
+                        ·
+                      </span>
+                      <span>+1 skill</span>
+                    </div>
+                  </div>
+                </article>
               </section>
             )}
 
@@ -511,14 +846,18 @@ export default function Home() {
                             >
                               {project.title}
                             </a>
+
                             :{" "}
+
                             <span className="text-[#514d49]">
                               {project.description}
                             </span>
                           </p>
 
                           <div className="mt-1">
-                            <ProjectLinks links={project.links} />
+                            <ProjectLinks
+                              links={project.links}
+                            />
                           </div>
                         </div>
                       </>
@@ -527,100 +866,6 @@ export default function Home() {
                 ))}
               </div>
             </section>
-
-            <nav
-              id="all-pages"
-              aria-label="All portfolio pages"
-              className={`mt-14 border-t pt-8 ${
-                spideyMode
-                  ? "border-white/10"
-                  : "border-[#dedbd6]"
-              }`}
-            >
-              {spideyMode && (
-                <p className="font-mono text-[9px] tracking-[0.3em] text-red-500">
-                  ROUTE INDEX
-                </p>
-              )}
-
-              <h2
-                className={`mt-2 font-serif text-[26px] font-bold ${
-                  spideyMode ? "text-white" : "text-[#292725]"
-                }`}
-              >
-                All pages
-              </h2>
-
-              <p
-                className={`mt-2 font-serif text-sm leading-6 ${
-                  spideyMode ? "text-neutral-400" : "text-[#706b66]"
-                }`}
-              >
-                Direct links to every project and documentation page.
-              </p>
-
-              <div className="mt-6 grid gap-8 sm:grid-cols-2">
-                <div>
-                  <h3
-                    className={`font-serif text-lg font-bold ${
-                      spideyMode ? "text-neutral-200" : "text-[#292725]"
-                    }`}
-                  >
-                    Project pages
-                  </h3>
-
-                  <ul className="mt-3 space-y-2">
-                    {projects.map((project) => {
-                      const href = project.links.find(
-                        ([label]) => label === "Case study"
-                      )?.[1];
-
-                      return (
-                        <li key={project.title}>
-                          <a
-                            href={href}
-                            className={`font-serif text-sm underline underline-offset-2 transition ${
-                              spideyMode
-                                ? "text-red-300 decoration-red-700 hover:text-white"
-                                : "text-[#514d49] decoration-neutral-400 hover:text-neutral-900"
-                            }`}
-                          >
-                            {project.title}
-                          </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-
-                <div>
-                  <h3
-                    className={`font-serif text-lg font-bold ${
-                      spideyMode ? "text-neutral-200" : "text-[#292725]"
-                    }`}
-                  >
-                    Lochan EDA documentation
-                  </h3>
-
-                  <ul className="mt-3 space-y-2">
-                    {documentationPages.map(([label, href]) => (
-                      <li key={href}>
-                        <a
-                          href={href}
-                          className={`font-serif text-sm underline underline-offset-2 transition ${
-                            spideyMode
-                              ? "text-red-300 decoration-red-700 hover:text-white"
-                              : "text-[#514d49] decoration-neutral-400 hover:text-neutral-900"
-                          }`}
-                        >
-                          {label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </nav>
 
             {/* =================================================
                 TRILOGY
@@ -644,6 +889,7 @@ export default function Home() {
                 </div>
 
                 <div className="mt-8 grid gap-4 sm:grid-cols-3">
+
                   <article className="border border-red-900/50 bg-black/60 p-6 backdrop-blur-xl">
                     <p className="font-mono text-[9px] text-red-400">
                       ACT I / ORIGIN
@@ -702,6 +948,7 @@ export default function Home() {
                       POWER → CONTROL → RESPONSIBILITY
                     </p>
                   </article>
+
                 </div>
               </section>
             )}
@@ -712,8 +959,10 @@ export default function Home() {
 
             {spideyMode && (
               <section className="mt-24 border border-black bg-[#e9e5da] p-6 text-black shadow-2xl sm:p-9">
+
                 <div className="border-b-4 border-black pb-4">
                   <div className="flex items-end justify-between gap-4">
+
                     <h2 className="font-serif text-4xl font-black uppercase leading-none tracking-tight sm:text-5xl">
                       The Daily Bugle
                     </h2>
@@ -721,10 +970,12 @@ export default function Home() {
                     <span className="font-mono text-[8px]">
                       SPECIAL EDITION
                     </span>
+
                   </div>
                 </div>
 
                 <div className="mt-6 grid gap-7 sm:grid-cols-[1.5fr_1fr]">
+
                   <div>
                     <p className="font-mono text-[9px] font-bold tracking-[0.15em]">
                       JAIPUR / TECHNOLOGY / SCIENCE
@@ -758,11 +1009,13 @@ export default function Home() {
                       More systems expected.
                     </p>
                   </div>
+
                 </div>
 
                 <div className="mt-7 border-t border-black/20 pt-3 font-mono text-[8px] tracking-[0.18em]">
                   JAIPUR EDITION / ENGINEERING DESK / 2026
                 </div>
+
               </section>
             )}
 
@@ -772,7 +1025,9 @@ export default function Home() {
 
             {spideyMode && (
               <section className="mt-24">
+
                 <div className="border-t border-white/10 pt-10">
+
                   <p className="font-mono text-[9px] tracking-[0.3em] text-red-500">
                     EQUIPMENT ROOM
                   </p>
@@ -786,9 +1041,11 @@ export default function Home() {
                     libraries, frameworks, terminals and a
                     suspicious number of Docker containers.
                   </p>
+
                 </div>
 
                 <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-4">
+
                   {[
                     ["01", "PYTHON", "PRIMARY"],
                     ["02", "PYTORCH", "DEEP LEARNING"],
@@ -798,25 +1055,29 @@ export default function Home() {
                     ["06", "NEXT.JS", "INTERFACES"],
                     ["07", "XGBOOST", "BOOSTING"],
                     ["08", "MLFLOW", "EXPERIMENTS"],
-                  ].map(([number, name, type]) => (
-                    <div
-                      key={number}
-                      className="bg-black/70 p-5 transition hover:bg-red-950/30"
-                    >
-                      <div className="font-mono text-[8px] text-red-500">
-                        {number}
-                      </div>
+                  ].map(
+                    ([number, name, type]) => (
+                      <div
+                        key={number}
+                        className="bg-black/70 p-5 transition hover:bg-red-950/30"
+                      >
+                        <div className="font-mono text-[8px] text-red-500">
+                          {number}
+                        </div>
 
-                      <div className="mt-4 font-mono text-[10px] text-white">
-                        {name}
-                      </div>
+                        <div className="mt-4 font-mono text-[10px] text-white">
+                          {name}
+                        </div>
 
-                      <div className="mt-1 font-mono text-[8px] text-neutral-400">
-                        {type}
+                        <div className="mt-1 font-mono text-[8px] text-neutral-400">
+                          {type}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  )}
+
                 </div>
+
               </section>
             )}
 
@@ -826,6 +1087,7 @@ export default function Home() {
 
             {spideyMode && (
               <section className="relative mt-28 overflow-hidden border-y border-white/10 py-16">
+
                 <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-red-700/10 blur-3xl" />
 
                 <p className="relative font-mono text-[9px] tracking-[0.3em] text-red-500">
@@ -835,6 +1097,7 @@ export default function Home() {
                 <h2 className="relative mt-5 max-w-[750px] font-serif text-4xl font-bold leading-[1.05] text-white sm:text-5xl">
                   The point isn&apos;t just to build a model.
                   <br />
+
                   <span className="text-neutral-500">
                     It is to build something worth using.
                   </span>
@@ -849,6 +1112,7 @@ export default function Home() {
                 </p>
 
                 <div className="relative mt-10 grid max-w-[700px] gap-5 sm:grid-cols-3">
+
                   <div>
                     <p className="font-mono text-[8px] text-neutral-500">
                       PRINCIPLE 01
@@ -878,22 +1142,31 @@ export default function Home() {
                       Capability comes with responsibility.
                     </p>
                   </div>
+
                 </div>
 
                 <div className="relative mt-10 font-mono text-[9px] tracking-[0.2em] text-neutral-600">
                   ARCHIVE STATUS: OPEN
                 </div>
+
               </section>
             )}
+
           </div>
 
           {/* =====================================================
               RIGHT COLUMN
-
-              FIXED GRID POSITION
              ===================================================== */}
 
-          <aside>
+          <aside
+            style={{
+              transform:
+                "translate3d(var(--portfolio-right-x, 0px), calc(var(--portfolio-right-y, 0px) + var(--portfolio-right-scroll, 0px)), 38px)",
+              transformStyle: "preserve-3d",
+              transition: "transform 220ms ease-out",
+            }}
+          >
+
             <section
               className={
                 spideyMode
@@ -901,8 +1174,10 @@ export default function Home() {
                   : ""
               }
             >
+
               {spideyMode && (
                 <div className="mb-7 flex items-center justify-between border-b border-white/10 pb-4">
+
                   <span className="font-mono text-[9px] tracking-[0.2em] text-red-500">
                     SUBJECT PROFILE
                   </span>
@@ -910,6 +1185,7 @@ export default function Home() {
                   <span className="font-mono text-[9px] text-neutral-500">
                     001
                   </span>
+
                 </div>
               )}
 
@@ -924,16 +1200,38 @@ export default function Home() {
               </h2>
 
               {/* =================================================
-                  FIXED PROFILE ANCHOR
-
-                  The image itself NEVER changes position,
-                  width, height, scale or transform.
+                  PROFILE IMAGE
                  ================================================= */}
 
               <div className="mt-6 grid grid-cols-[88px_1fr] items-start gap-5">
+
                 <button
                   type="button"
-                  onClick={() => setSpideyMode((value) => !value)}
+                  onClick={(event) => {
+
+                    /* Exit Spider-Man mode */
+
+                    if (spideyMode) {
+                      setSpideyMode(false);
+                      return;
+                    }
+
+                    /* Get the real screen position */
+
+                    const rect =
+                      event.currentTarget.getBoundingClientRect();
+
+                    if (spideyTransition) return;
+
+                    setTransitionRect({
+                      left: rect.left,
+                      top: rect.top,
+                      width: rect.width,
+                      height: rect.height,
+                    });
+
+                    setSpideyTransition(true);
+                  }}
                   aria-label={
                     spideyMode
                       ? "Exit Spider-Man mode"
@@ -941,37 +1239,36 @@ export default function Home() {
                   }
                   className="group relative h-[88px] w-[88px] shrink-0 rounded-full focus:outline-none"
                 >
-                  {/* Glow only */}
+
+                  {/* GLOW */}
 
                   <div
-                    className={`pointer-events-none absolute -inset-3 rounded-full blur-xl transition-opacity duration-700 ${
+                    className={`pointer-events-none absolute -inset-3 rounded-full blur-xl transition-all duration-500 ${
                       spideyMode
-                        ? "bg-red-600/35 opacity-100"
-                        : "bg-red-600/20 opacity-0 group-hover:opacity-100"
+                        ? "bg-red-600/40 opacity-100"
+                        : "bg-red-600/25 opacity-0 group-hover:opacity-100"
                     }`}
                   />
 
-                  {/* Ring only */}
+                  {/* RING */}
 
                   <div
-                    className={`pointer-events-none absolute -inset-[3px] rounded-full transition-all duration-700 ${
+                    className={`pointer-events-none absolute -inset-[3px] rounded-full transition-all duration-500 ${
                       spideyMode
                         ? "bg-gradient-to-br from-red-500 via-red-700 to-blue-700"
                         : "bg-transparent group-hover:bg-red-500/70"
                     }`}
                   />
 
-                  {/* ACTUAL PHOTO
-                      Never scale.
-                      Never translate.
-                      Always 88x88.
-                   */}
+                  {/* PHOTO */}
 
                   <img
-                    src="https://github.com/LochanJangid.png"
+                    src={profileImage}
                     alt="Lochan Jangid"
-                    className="relative h-[88px] w-[88px] rounded-full border-2 border-black object-cover"
+                    className="relative h-[88px] w-[88px] rounded-full border-2 border-black object-cover transition-transform duration-500 ease-out group-hover:scale-[1.08] group-hover:shadow-[0_0_24px_rgba(220,38,38,0.3)]"
                   />
+
+                  {/* LABEL */}
 
                   <span
                     className={`pointer-events-none absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[7px] tracking-[0.18em] transition-opacity duration-300 ${
@@ -980,8 +1277,11 @@ export default function Home() {
                         : "text-neutral-400 opacity-0 group-hover:opacity-100"
                     }`}
                   >
-                    {spideyMode ? "EXIT MODE" : "ACTIVATE"}
+                    {spideyMode
+                      ? "EXIT MODE"
+                      : "ACTIVATE"}
                   </span>
+
                 </button>
 
                 <p
@@ -995,7 +1295,10 @@ export default function Home() {
                   engineer focused on building practical ML and AI
                   applications.
                 </p>
+
               </div>
+
+              {/* ABOUT */}
 
               <p
                 className={`mt-8 font-serif text-[16px] leading-[1.7] ${
@@ -1021,15 +1324,20 @@ export default function Home() {
                 technologies.
               </p>
 
-              {/* IDENTITY DATA */}
+              {/* =================================================
+                  IDENTITY DATA
+                 ================================================= */}
 
               {spideyMode && (
                 <div className="mt-8 border-t border-white/10 pt-6">
+
                   <div className="grid grid-cols-2 gap-y-6 font-mono text-[9px]">
+
                     <div>
                       <div className="text-neutral-500">
                         SUBJECT
                       </div>
+
                       <div className="mt-1 text-white">
                         LOCHAN JANGID
                       </div>
@@ -1039,6 +1347,7 @@ export default function Home() {
                       <div className="text-neutral-500">
                         ROLE
                       </div>
+
                       <div className="mt-1 text-red-300">
                         ML ENGINEER
                       </div>
@@ -1048,6 +1357,7 @@ export default function Home() {
                       <div className="text-neutral-500">
                         BASE
                       </div>
+
                       <div className="mt-1 text-white">
                         JAIPUR, INDIA
                       </div>
@@ -1057,6 +1367,7 @@ export default function Home() {
                       <div className="text-neutral-500">
                         STATUS
                       </div>
+
                       <div className="mt-1 text-green-400">
                         BUILDING
                       </div>
@@ -1066,6 +1377,7 @@ export default function Home() {
                       <div className="text-neutral-500">
                         PRIMARY TOOL
                       </div>
+
                       <div className="mt-1 text-blue-300">
                         PYTHON
                       </div>
@@ -1075,13 +1387,17 @@ export default function Home() {
                       <div className="text-neutral-500">
                         MISSION
                       </div>
+
                       <div className="mt-1 text-white">
                         BUILD SYSTEMS
                       </div>
                     </div>
+
                   </div>
+
                 </div>
               )}
+
             </section>
 
             {/* =================================================
@@ -1095,6 +1411,7 @@ export default function Home() {
                   : "border-[#dedbd6] pt-12"
               }`}
             >
+
               {spideyMode && (
                 <p className="mb-5 font-mono text-[9px] tracking-[0.2em] text-red-500">
                   ESTABLISH CONNECTION
@@ -1103,9 +1420,12 @@ export default function Home() {
 
               <div
                 className={`flex flex-wrap gap-x-4 gap-y-2 ${
-                  spideyMode ? "font-mono text-[11px]" : ""
+                  spideyMode
+                    ? "font-mono text-[11px]"
+                    : ""
                 }`}
               >
+
                 <a
                   href="https://www.linkedin.com/in/lochan-jangid/"
                   target="_blank"
@@ -1119,7 +1439,9 @@ export default function Home() {
                   LinkedIn
                 </a>
 
-                <span className="text-neutral-600">·</span>
+                <span className="text-neutral-600">
+                  ·
+                </span>
 
                 <a
                   href="https://github.com/LochanJangid"
@@ -1134,7 +1456,9 @@ export default function Home() {
                   GitHub
                 </a>
 
-                <span className="text-neutral-600">·</span>
+                <span className="text-neutral-600">
+                  ·
+                </span>
 
                 <a
                   href="mailto:lochanjangid@gmail.com"
@@ -1146,9 +1470,12 @@ export default function Home() {
                 >
                   Email
                 </a>
+
               </div>
             </div>
+
           </aside>
+
         </div>
 
         {/* =========================================================
@@ -1162,9 +1489,13 @@ export default function Home() {
               : "border-[#dedbd6]"
           }`}
         >
+
           {spideyMode ? (
             <div className="grid gap-3 font-mono text-[8px] tracking-[0.16em] text-neutral-500 sm:grid-cols-3">
-              <span>LOCHAN JANGID / PARKER ARCHIVE</span>
+
+              <span>
+                LOCHAN JANGID / PARKER ARCHIVE
+              </span>
 
               <span className="text-center text-red-700">
                 JAIPUR / INDIA
@@ -1173,14 +1504,39 @@ export default function Home() {
               <span className="text-right">
                 ARCHIVE 001 / 2026
               </span>
+
             </div>
           ) : (
             <div className="font-serif text-[13px] text-[#99938c]">
               © 2026 Lochan Jangid
             </div>
           )}
+
         </footer>
+
       </div>
-    </main>
+
+      {/* =========================================================
+          REDUCED MOTION
+         ========================================================= */}
+
+      <style jsx global>{`
+        @media (prefers-reduced-motion: reduce) {
+          *,
+          *::before,
+          *::after {
+            scroll-behavior: auto !important;
+          }
+        }
+
+      `}</style>
+      </main>
+      {spideyTransition && (
+        <SpideyTransition
+          rect={transitionRect}
+          spideyMode={spideyMode}
+        />
+      )}
+    </>
   );
 }

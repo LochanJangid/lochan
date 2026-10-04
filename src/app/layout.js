@@ -1,4 +1,5 @@
 import "./globals.css";
+import GlobalSpidey from "./Spidey/GlobalSpidey";
 
 export const metadata = {
   title: "Lochan Jangid | ML Engineer",
@@ -9,7 +10,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <GlobalSpidey />
+      </body>
     </html>
   );
 }

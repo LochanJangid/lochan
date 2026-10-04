@@ -548,7 +548,7 @@ function distance(a, b) {
    MAIN
 ========================================================= */
 
-export default function Spidey() {
+export default function Spidey({ bridgeRef }) {
   const [mounted, setMounted] =
     useState(false);
 
@@ -714,12 +714,96 @@ export default function Spidey() {
 
     b.lastTime =
       performance.now();
+    
+      if (bridgeRef?.current) {
+  bridgeRef.current.x = b.x;
+  bridgeRef.current.y = b.y;
+
+  bridgeRef.current.vx = b.vx;
+  bridgeRef.current.vy = b.vy;
+
+  bridgeRef.current.state = b.state;
+  bridgeRef.current.direction = b.direction;
+
+  bridgeRef.current.target = b.target
+    ? {
+        x: b.target.x,
+        y: b.target.y,
+        type: b.target.type,
+        side: b.target.side || null,
+      }
+    : null;
+
+  bridgeRef.current.rope = b.rope
+    ? {
+        anchor: {
+          x: b.rope.anchor.x,
+          y: b.rope.anchor.y,
+        },
+        length: b.rope.length,
+        type: b.rope.type,
+        side: b.rope.side || null,
+      }
+    : null;
+}
 
     setPosition({
       x: b.x,
       y: b.y,
     });
   }, [mounted]);
+
+  useEffect(() => {
+    if (!mounted || !bridgeRef?.current) return undefined;
+
+    const requestWebAt = ({ x, y, type = "wall", name } = {}) => {
+      const b = body.current;
+
+      if (
+        !Number.isFinite(x) ||
+        !Number.isFinite(y) ||
+        x < 0 ||
+        x > window.innerWidth ||
+        y < 0 ||
+        y > window.innerHeight ||
+        b.state === "SHOOT" ||
+        (b.state === "SWING" && b.chainShooting)
+      ) {
+        return false;
+      }
+
+      const start = {
+        x: b.x + W / 2,
+        y: b.y + H / 2,
+      };
+      const targetDistance = distance(start, { x, y });
+
+      if (targetDistance < 180 || targetDistance > 850) {
+        return false;
+      }
+
+      const target = {
+        x,
+        y,
+        type,
+        name,
+      };
+
+      shootWeb(target, {
+        chain: b.state === "SWING" && Boolean(b.rope),
+      });
+
+      return true;
+    };
+
+    bridgeRef.current.requestWebAt = requestWebAt;
+
+    return () => {
+      if (bridgeRef.current?.requestWebAt === requestWebAt) {
+        delete bridgeRef.current.requestWebAt;
+      }
+    };
+  }, [bridgeRef, mounted]);
 
   /* =======================================================
      PHYSICS LOOP
@@ -1200,6 +1284,36 @@ export default function Spidey() {
           b.y
         )
       );
+
+      if (bridgeRef?.current) {
+        Object.assign(bridgeRef.current, {
+          x: b.x,
+          y: b.y,
+          vx: b.vx,
+          vy: b.vy,
+          state: b.state,
+          direction: b.direction,
+          target: b.target
+            ? {
+                x: b.target.x,
+                y: b.target.y,
+                type: b.target.type,
+                side: b.target.side || null,
+              }
+            : null,
+          rope: b.rope
+            ? {
+                anchor: {
+                  x: b.rope.anchor.x,
+                  y: b.rope.anchor.y,
+                },
+                length: b.rope.length,
+                type: b.rope.type,
+                side: b.rope.side || null,
+              }
+            : null,
+        });
+      }
 
       /*
        * One React position update per
