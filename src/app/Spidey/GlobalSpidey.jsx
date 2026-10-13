@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Spidey from "./Spidey";
 
 export default function GlobalSpidey() {
@@ -14,6 +14,17 @@ export default function GlobalSpidey() {
     target: null,
     rope: null,
   });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.__SPIDEY_BRIDGE__ = bridgeRef;
+    }
+    return () => {
+      if (typeof window !== "undefined" && window.__SPIDEY_BRIDGE__ === bridgeRef) {
+        delete window.__SPIDEY_BRIDGE__;
+      }
+    };
+  }, []);
 
   return <Spidey bridgeRef={bridgeRef} />;
 }

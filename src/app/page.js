@@ -7,6 +7,7 @@ import {
 } from "react";
 
 import SpiderExperience from "./Spidey/SpiderExperience";
+import SpideyTransition from "./Spidey/SpideyTransition";
 
 const projects = [
   {
@@ -80,6 +81,19 @@ const projects = [
       ["Source", "https://github.com/LochanJangid/MedicalAI"],
     ],
   },
+  {
+    number: "06",
+    title: "SANJEEVNI-CLINIC",
+    subtitle: "HEALTHCARE / CONVERSATIONAL AI",
+    description:
+      "Unified Clinical Operating System & Healthcare ERP.",
+    system: "Backend → WebRTC → LLM → Frontend",
+    status: "DEPLOYED",
+    links: [
+      ["Demo", "https://sanjeevni-clinic.vercel.app/"],
+      ["Source", "https://github.com/LochanJangid/sanjeevni-clinic"],
+    ],
+  },
 ];
 
 const documentationPages = [
@@ -107,78 +121,7 @@ const profileImage =
    PROFILE → FULLSCREEN SPIDER-MAN TRANSITION
    ========================================================= */
 
-function SpideyTransition({ rect, spideyMode }) {
-  const [destination, setDestination] = useState(null);
 
-  useEffect(() => {
-    if (!spideyMode) return undefined;
-
-    let firstFrame;
-    let secondFrame;
-    firstFrame = window.requestAnimationFrame(() => {
-      secondFrame = window.requestAnimationFrame(() => {
-        const portrait = document.getElementById("personal-profile-frame");
-        if (!portrait) return;
-
-        const bounds = portrait.getBoundingClientRect();
-        setDestination({
-          left: bounds.left,
-          top: bounds.top,
-          width: bounds.width,
-          height: bounds.height,
-        });
-      });
-    });
-
-    return () => {
-      window.cancelAnimationFrame(firstFrame);
-      if (secondFrame) window.cancelAnimationFrame(secondFrame);
-    };
-  }, [spideyMode]);
-
-  const imageRect = destination || rect;
-
-  return (
-    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
-      <div
-        className="absolute inset-0 bg-[#f7f3ed] transition-opacity duration-700 ease-out"
-        style={{ opacity: destination ? 0 : 1 }}
-      />
-      <div
-        className="absolute rounded-full border border-[#ed7654]/70"
-        style={{
-          left: rect.left + rect.width / 2,
-          top: rect.top + rect.height / 2,
-          width: rect.width,
-          height: rect.height,
-          transform: `translate(-50%, -50%) scale(${destination ? 26 : 1})`,
-          opacity: destination ? 0 : 0.9,
-          boxShadow: "0 0 32px rgba(237,118,84,.24)",
-          transition:
-            "transform 950ms cubic-bezier(0.2, 0.75, 0.2, 1), opacity 750ms ease-out",
-        }}
-      />
-      <img
-        src={profileImage}
-        alt=""
-        className="absolute border-[8px] border-[#fff9f1] object-cover sm:border-[12px]"
-        style={{
-          left: imageRect.left,
-          top: imageRect.top,
-          width: imageRect.width,
-          height: imageRect.height,
-          objectPosition: "center",
-          borderRadius: destination
-            ? "46% 54% 48% 52% / 48% 43% 57% 52%"
-            : "9999px",
-          boxShadow: "0 24px 70px rgba(88,55,38,.2)",
-          transition:
-            "left 950ms cubic-bezier(0.2, 0.75, 0.2, 1), top 950ms cubic-bezier(0.2, 0.75, 0.2, 1), width 950ms cubic-bezier(0.2, 0.75, 0.2, 1), height 950ms cubic-bezier(0.2, 0.75, 0.2, 1), border-radius 700ms ease-out",
-        }}
-      />
-    </div>
-  );
-}
 
 /* =========================================================
    PROJECT LINKS
@@ -295,6 +238,9 @@ export default function Home() {
   const [spideyTransition, setSpideyTransition] =
     useState(false);
 
+  const [isExiting, setIsExiting] =
+    useState(false);
+
   const [transitionRect, setTransitionRect] =
     useState({
       left: 0,
@@ -302,6 +248,15 @@ export default function Home() {
       width: 88,
       height: 88,
     });
+
+  const handleExitSpidey = () => {
+    setIsExiting(true);
+    setTimeout(() => {
+      setSpideyMode(false);
+      setIsExiting(false);
+      setSpideyTransition(false);
+    }, 550);
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -315,12 +270,12 @@ export default function Home() {
     const modeTimer =
       window.setTimeout(() => {
         setSpideyMode(true);
-      }, 120);
+      }, 350);
 
     const cleanupTimer =
       window.setTimeout(() => {
         setSpideyTransition(false);
-      }, 1450);
+      }, 1100);
 
     return () => {
       window.clearTimeout(modeTimer);
@@ -404,15 +359,20 @@ export default function Home() {
       <>
         <SpiderExperience
           projects={projects}
-          onExit={() => {
-            setSpideyMode(false);
-            setSpideyTransition(false);
-          }}
+          onExit={handleExitSpidey}
         />
         {spideyTransition && (
           <SpideyTransition
             rect={transitionRect}
             spideyMode={spideyMode}
+            direction="enter"
+            onComplete={() => setSpideyTransition(false)}
+          />
+        )}
+        {isExiting && (
+          <SpideyTransition
+            direction="exit"
+            onComplete={() => setIsExiting(false)}
           />
         )}
       </>
@@ -1535,6 +1495,14 @@ export default function Home() {
         <SpideyTransition
           rect={transitionRect}
           spideyMode={spideyMode}
+          direction="enter"
+          onComplete={() => setSpideyTransition(false)}
+        />
+      )}
+      {isExiting && (
+        <SpideyTransition
+          direction="exit"
+          onComplete={() => setIsExiting(false)}
         />
       )}
     </>

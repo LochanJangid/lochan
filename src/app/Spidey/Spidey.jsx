@@ -798,9 +798,89 @@ export default function Spidey({ bridgeRef }) {
 
     bridgeRef.current.requestWebAt = requestWebAt;
 
+    bridgeRef.current.triggerJump = () => {
+      const b = body.current;
+      b.vy = -(480 + Math.random() * 100);
+      b.vx = (Math.random() > 0.5 ? 1 : -1) * (140 + Math.random() * 100);
+      b.state = "JUMP";
+      b.stateTime = 0;
+      b.webShot = false;
+    };
+
+    bridgeRef.current.triggerRoam = () => {
+      const b = body.current;
+      b.state = "ROAM";
+      b.stateTime = 0;
+      b.vx = b.direction * 120;
+    };
+
+    bridgeRef.current.triggerSwing = () => {
+      const b = body.current;
+      const target = chooseTarget(b, { chain: false }) || {
+        x: window.innerWidth * 0.5,
+        y: Math.max(60, window.innerHeight * 0.18),
+        type: "page",
+      };
+      shootWeb(target, { chain: false });
+    };
+
+    bridgeRef.current.triggerClimb = (side = "left") => {
+      const b = body.current;
+      startClimb(b, side);
+    };
+
+    bridgeRef.current.triggerShoot = (coords) => {
+      const b = body.current;
+      const target = coords || chooseTarget(b, { chain: false }) || {
+        x: window.innerWidth * 0.5,
+        y: Math.max(60, window.innerHeight * 0.2),
+        type: "manual",
+      };
+      shootWeb(target, { chain: false });
+    };
+
+    bridgeRef.current.triggerFly = () => {
+      const b = body.current;
+      releaseWeb();
+      b.state = "FLY";
+      b.stateTime = 0;
+      b.vy = -450;
+      b.vx = (b.direction || 1) * 220;
+    };
+
+    bridgeRef.current.triggerShout = () => {
+      handleSpideyClick();
+    };
+
+    bridgeRef.current.jump = bridgeRef.current.triggerJump;
+    bridgeRef.current.roam = bridgeRef.current.triggerRoam;
+    bridgeRef.current.swing = bridgeRef.current.triggerSwing;
+    bridgeRef.current.climb = bridgeRef.current.triggerClimb;
+    bridgeRef.current.shoot = bridgeRef.current.triggerShoot;
+    bridgeRef.current.fly = bridgeRef.current.triggerFly;
+    bridgeRef.current.shout = bridgeRef.current.triggerShout;
+
+    if (typeof window !== "undefined") {
+      window.__LOCHAN_SPIDEY_ACTIONS__ = bridgeRef.current;
+    }
+
     return () => {
       if (bridgeRef.current?.requestWebAt === requestWebAt) {
         delete bridgeRef.current.requestWebAt;
+        delete bridgeRef.current.triggerJump;
+        delete bridgeRef.current.triggerRoam;
+        delete bridgeRef.current.triggerSwing;
+        delete bridgeRef.current.triggerClimb;
+        delete bridgeRef.current.triggerShoot;
+        delete bridgeRef.current.triggerFly;
+        delete bridgeRef.current.triggerShout;
+        delete bridgeRef.current.jump;
+        delete bridgeRef.current.roam;
+        delete bridgeRef.current.swing;
+        delete bridgeRef.current.climb;
+        delete bridgeRef.current.shoot;
+        delete bridgeRef.current.fly;
+        delete bridgeRef.current.shout;
       }
     };
   }, [bridgeRef, mounted]);

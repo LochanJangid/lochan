@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -186,3 +186,120 @@ a {
 .serif {
   font-family: "Instrument Serif", serif;
 }
+
+/* =========================================================
+   SPIDER-VERSE CREATIVE IDENTITY & COMIC STYLES
+   ========================================================= */
+
+.font-comic {
+  font-family: 'Bebas Neue', 'Impact', sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.font-tech {
+  font-family: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
+}
+
+/* Halftone Screen Pattern */
+.spider-halftone {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1.2px, transparent 1.2px);
+  background-size: 14px 14px;
+}
+
+.spider-halftone-red {
+  background-image: radial-gradient(rgba(239, 35, 60, 0.25) 1.5px, transparent 1.5px);
+  background-size: 12px 12px;
+}
+
+.spider-halftone-blue {
+  background-image: radial-gradient(rgba(0, 240, 255, 0.25) 1.5px, transparent 1.5px);
+  background-size: 12px 12px;
+}
+
+/* Chromatic Aberration & RGB Glitch */
+.spider-chromatic-text {
+  text-shadow: -2px 0 0 rgba(0, 240, 255, 0.75), 2px 0 0 rgba(255, 42, 95, 0.85);
+}
+
+.spider-chromatic-text-lg {
+  text-shadow: -3px -1px 0 rgba(0, 240, 255, 0.8), 3px 1px 0 rgba(255, 42, 95, 0.9), 0 0 20px rgba(255, 42, 95, 0.3);
+}
+
+/* Angular Comic Cut Panels */
+.comic-cut-card {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 16px) 0,
+    100% 16px,
+    100% 100%,
+    16px 100%,
+    0 calc(100% - 16px)
+  );
+}
+
+.comic-cut-card-lg {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 24px) 0,
+    100% 24px,
+    100% 100%,
+    24px 100%,
+    0 calc(100% - 24px)
+  );
+}
+
+.comic-cut-corner-br {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 20px),
+    calc(100% - 20px) 100%,
+    0 100%
+  );
+}
+
+/* Comic Ink Box Shadows */
+.comic-shadow-red {
+  box-shadow: 4px 4px 0px #030712, 6px 6px 0px rgba(239, 35, 60, 0.65);
+}
+
+.comic-shadow-blue {
+  box-shadow: 4px 4px 0px #030712, 6px 6px 0px rgba(0, 240, 255, 0.65);
+}
+
+.comic-shadow-black {
+  box-shadow: 5px 5px 0px #000;
+}
+
+/* Spider-Verse Scanlines */
+.spider-scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.25) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+}
+
+/* Subtle Animated Multiverse Distortion */
+@keyframes spiderGlitchSkew {
+  0% { transform: skew(0deg); }
+  20% { transform: skew(-0.8deg); }
+  40% { transform: skew(0.6deg); }
+  60% { transform: skew(-0.4deg); }
+  80% { transform: skew(0.8deg); }
+  100% { transform: skew(0deg); }
+}
+
+.animate-spider-skew {
+  animation: spiderGlitchSkew 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-spider-skew {
+    animation: none !important;
+  }
+}
+
