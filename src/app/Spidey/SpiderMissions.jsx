@@ -162,9 +162,90 @@ const MISSION_DATA = [
     glowColor: "rgba(225, 29, 72, 0.25)",
     links: [
       { label: "Live Deployment", href: "https://sanjeevni-clinic.vercel.app/", external: true, primary: true },
+      { label: "Case Study", href: "/work/sanjeevni-clinic" },
       { label: "Source Code", href: "https://github.com/LochanJangid/sanjeevni-clinic", external: true },
     ],
     coverGraphic: "telehealth",
+  },
+  {
+    number: "07",
+    id: "MISSION_07",
+    sector: "VISUAL AI INTELLIGENCE",
+    title: "WebLens AI",
+    category: "MULTIMODAL // DEVTOOLS",
+    tagline: "Screenshot-Driven Visual Audit Studio",
+    description:
+      "Production-grade website visual improvement platform combining Playwright Chromium headless DOM coordinate mapping, Core Web Vitals profiling, and multi-model vision prompts for Claude 3.7 and GPT-4o.",
+    systemPipeline: "Playwright Headless → DOM Bounding Boxes → Contrast Math → Multimodal Vision Prompts → React/Tailwind Code",
+    techStack: ["Playwright", "FastAPI", "Next.js", "Claude 3.7", "GPT-4o Vision", "Tailwind CSS"],
+    verifiedMetrics: [
+      { label: "VIEWPORT CAPTURE", value: "Full-DPI Playwright" },
+      { label: "ACCESSIBILITY", value: "WCAG 2.1 AA Math" },
+      { label: "PROMPT ENGINES", value: "5 Calibrated Models" },
+      { label: "ACCESS", value: "100% Free Forever" },
+    ],
+    accentColor: "from-pink-600 to-rose-700",
+    borderAccent: "group-hover:border-rose-500",
+    glowColor: "rgba(244, 63, 94, 0.25)",
+    links: [
+      { label: "Live Platform", href: "https://weblensai.vercel.app/", external: true, primary: true },
+      { label: "Case Study", href: "/work/weblens-ai" },
+      { label: "Source Code", href: "https://github.com/LochanJangid/WebLens-AI", external: true },
+    ],
+    coverGraphic: "weblens",
+  },
+  {
+    number: "08",
+    id: "MISSION_08",
+    sector: "TRANSFORMER MECHANICS",
+    title: "nanoCalc-GPT",
+    category: "DEEP LEARNING // REASONING",
+    tagline: "Decoder Transformer Arithmetic Discovery",
+    description:
+      "A 1.2M parameter decoder-only transformer trained from scratch to master arithmetic (+ - * /) and solve the right-to-left carry dependency bottleneck, reaching 99.51% exact-match accuracy.",
+    systemPipeline: "12-Token Invariant → 6× Transformer Blocks (dim 128) → Target Reversal Induction → 99.51% Exact Match",
+    techStack: ["PyTorch", "Transformers", "Python", "Self-Attention", "OneCycleLR", "AdamW"],
+    verifiedMetrics: [
+      { label: "OVERALL ACCURACY", value: "99.51% Exact Match" },
+      { label: "ADD & SUBTRACTION", value: "100.00% Perfect" },
+      { label: "PARAMETER COUNT", value: "1.195M (6 Blocks)" },
+      { label: "CONVERGENCE", value: "~3 Mins (Single GPU)" },
+    ],
+    accentColor: "from-purple-600 to-indigo-700",
+    borderAccent: "group-hover:border-purple-500",
+    glowColor: "rgba(168, 85, 247, 0.25)",
+    links: [
+      { label: "Case Study", href: "/work/nanocalc-gpt", primary: true },
+      { label: "Source Code", href: "https://github.com/LochanJangid/nanocalc-gpt", external: true },
+    ],
+    coverGraphic: "nanocalc",
+  },
+  {
+    number: "09",
+    id: "MISSION_09",
+    sector: "SYSTEMS & DATA PLATFORMS",
+    title: "zero-sql",
+    category: "SYSTEMS // DATABASE STUDIO",
+    tagline: "Multi-Engine Desktop Database Client",
+    description:
+      "A lightweight, privacy-focused desktop database client engineered for SQLite, PostgreSQL, MySQL, DuckDB, and SQL Server with zero telemetry, local schema RAG, and virtualized data grids.",
+    systemPipeline: "Native Engine Drivers → Monaco Editor → Local Schema RAG → DOM Table Virtualization → Desktop Distribution",
+    techStack: ["Next.js", "TypeScript", "Monaco Editor", "PostgreSQL", "SQLite", "DuckDB"],
+    verifiedMetrics: [
+      { label: "ENGINE SUPPORT", value: "5 RDBMS & OLAP" },
+      { label: "TELEMETRY", value: "0% (Strictly Local)" },
+      { label: "GRID PERFORMANCE", value: "60 FPS Virtualized" },
+      { label: "EDITOR CORE", value: "Monaco SQL Engine" },
+    ],
+    accentColor: "from-emerald-600 to-cyan-700",
+    borderAccent: "group-hover:border-emerald-500",
+    glowColor: "rgba(16, 185, 129, 0.25)",
+    links: [
+      { label: "Official Portal", href: "https://zero-sql.vercel.app", external: true, primary: true },
+      { label: "Case Study", href: "/work/zero-sql" },
+      { label: "Source Code", href: "https://github.com/LochanJangid/zero_sql", external: true },
+    ],
+    coverGraphic: "zerosql",
   },
 ];
 
@@ -291,6 +372,85 @@ function GraphicCover({ type }) {
     );
   }
 
+  if (type === "weblens") {
+    return (
+      <svg viewBox="0 0 320 180" className="w-full h-full object-cover">
+        <rect width="320" height="180" fill="#07070a" />
+        {/* Viewport frame */}
+        <rect x="30" y="25" width="260" height="125" fill="#0f0f14" stroke="#f43f5e" strokeWidth="1.5" rx="6" />
+        <circle cx="45" cy="37" r="3" fill="#f43f5e" />
+        <circle cx="55" cy="37" r="3" fill="#fbbf24" />
+        <circle cx="65" cy="37" r="3" fill="#10b981" />
+        {/* Crosshair targeting reticle */}
+        <circle cx="160" cy="90" r="35" fill="none" stroke="#f43f5e" strokeWidth="1.5" strokeDasharray="4 2" opacity="0.8" />
+        <line x1="160" y1="45" x2="160" y2="135" stroke="#f43f5e" strokeWidth="1" opacity="0.6" />
+        <line x1="115" y1="90" x2="205" y2="90" stroke="#f43f5e" strokeWidth="1" opacity="0.6" />
+        <rect x="135" y="75" width="50" height="30" fill="none" stroke="#38bdf8" strokeWidth="1.5" />
+        <text x="24" y="165" fill="#f43f5e" fontFamily="monospace" fontSize="10" letterSpacing="2">
+          PLAYWRIGHT // CHROMIUM VISION AUDIT
+        </text>
+      </svg>
+    );
+  }
+
+  if (type === "nanocalc") {
+    return (
+      <svg viewBox="0 0 320 180" className="w-full h-full object-cover">
+        <rect width="320" height="180" fill="#0b0818" />
+        {/* Transformer Attention Layer blocks */}
+        {Array.from({ length: 6 }).map((_, i) => (
+          <rect
+            key={i}
+            x={35 + i * 42}
+            y="40"
+            width="34"
+            height="70"
+            fill="#1e1b4b"
+            stroke="#818cf8"
+            strokeWidth="1.5"
+            rx="3"
+          />
+        ))}
+        {/* Residual stream lines */}
+        <line x1="25" y1="75" x2="295" y2="75" stroke="#c084fc" strokeWidth="2" />
+        <path d="M50,30 Q160,10 270,30" fill="none" stroke="#38bdf8" strokeWidth="1.5" strokeDasharray="3 3" />
+        <text x="24" y="140" fill="#c084fc" fontFamily="monospace" fontSize="10" letterSpacing="2">
+          TRANSFORMER // 1.2M PARAMETER DECODER
+        </text>
+        <text x="24" y="160" fill="#38bdf8" fontFamily="monospace" fontSize="9" letterSpacing="1">
+          99.51% EXACT MATCH // REVERSED CARRY FLOW
+        </text>
+      </svg>
+    );
+  }
+
+  if (type === "zerosql") {
+    return (
+      <svg viewBox="0 0 320 180" className="w-full h-full object-cover">
+        <rect width="320" height="180" fill="#061314" />
+        {/* Database Cylinders */}
+        <g transform="translate(50, 35)">
+          <ellipse cx="40" cy="20" rx="35" ry="12" fill="#064e3b" stroke="#10b981" strokeWidth="1.5" />
+          <path d="M5,20 v40 a35,12 0 0,0 70,0 v-40" fill="#042f2e" stroke="#10b981" strokeWidth="1.5" />
+          <ellipse cx="40" cy="60" rx="35" ry="12" fill="none" stroke="#10b981" strokeWidth="1" opacity="0.6" />
+        </g>
+        <g transform="translate(160, 35)">
+          <ellipse cx="40" cy="20" rx="35" ry="12" fill="#1e293b" stroke="#38bdf8" strokeWidth="1.5" />
+          <path d="M5,20 v40 a35,12 0 0,0 70,0 v-40" fill="#0f172a" stroke="#38bdf8" strokeWidth="1.5" />
+          <ellipse cx="40" cy="60" rx="35" ry="12" fill="none" stroke="#38bdf8" strokeWidth="1" opacity="0.6" />
+        </g>
+        {/* Query link */}
+        <line x1="125" y1="65" x2="160" y2="65" stroke="#10b981" strokeWidth="2" strokeDasharray="4 2" />
+        <text x="24" y="145" fill="#10b981" fontFamily="monospace" fontSize="10" letterSpacing="2">
+          DESKTOP ENGINE // 0% TELEMETRY SQL
+        </text>
+        <text x="24" y="162" fill="#38bdf8" fontFamily="monospace" fontSize="9" letterSpacing="1">
+          SQLITE · POSTGRES · DUCKDB · MYSQL
+        </text>
+      </svg>
+    );
+  }
+
   // Telehealth / Sanjeevni
   return (
     <svg viewBox="0 0 320 180" className="w-full h-full object-cover">
@@ -343,7 +503,7 @@ export default function SpiderMissions() {
           <div>
             <div className="inline-flex items-center gap-2 mb-2 font-mono text-[11px] tracking-[0.3em] text-red-500 font-bold uppercase">
               <span className="h-2 w-2 rounded-full bg-red-500 animate-ping" />
-              DEPLOYED MISSIONS ARCHIVE // SECTOR 01-06
+              DEPLOYED MISSIONS ARCHIVE // SECTOR 01-09
             </div>
             <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white font-sans">
               MACHINE LEARNING{" "}

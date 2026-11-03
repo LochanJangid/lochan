@@ -84,14 +84,56 @@ const projects = [
   {
     number: "06",
     title: "SANJEEVNI-CLINIC",
-    subtitle: "HEALTHCARE / CONVERSATIONAL AI",
+    subtitle: "HEALTHCARE / CLINICAL ERP & AI",
     description:
-      "Unified Clinical Operating System & Healthcare ERP.",
+      "Unified Clinical Operating System & Healthcare ERP with WebRTC teleconsultations and LLM triage.",
     system: "Backend → WebRTC → LLM → Frontend",
     status: "DEPLOYED",
     links: [
       ["Demo", "https://sanjeevni-clinic.vercel.app/"],
+      ["Case study", "/work/sanjeevni-clinic"],
       ["Source", "https://github.com/LochanJangid/sanjeevni-clinic"],
+    ],
+  },
+  {
+    number: "07",
+    title: "WebLens AI",
+    subtitle: "DEVTOOLS / MULTIMODAL AI",
+    description:
+      "Production-grade AI website intelligence and screenshot-driven visual audit studio.",
+    system: "Playwright → DOM coordinates → vision prompts → LLM → code",
+    status: "DEPLOYED",
+    links: [
+      ["Demo", "https://weblensai.vercel.app/"],
+      ["Case study", "/work/weblens-ai"],
+      ["Source", "https://github.com/LochanJangid/WebLens-AI"],
+    ],
+  },
+  {
+    number: "08",
+    title: "nanoCalc-GPT",
+    subtitle: "TRANSFORMER / DEEP LEARNING",
+    description:
+      "A 1.2M parameter decoder-only transformer discovering multi-digit arithmetic from scratch.",
+    system: "Tokens → 6× transformer blocks → target reversal → 99.51% exact match",
+    status: "OPEN SOURCE",
+    links: [
+      ["Case study", "/work/nanocalc-gpt"],
+      ["Source", "https://github.com/LochanJangid/nanocalc-gpt"],
+    ],
+  },
+  {
+    number: "09",
+    title: "zero-sql",
+    subtitle: "DATABASE / DESKTOP STUDIO",
+    description:
+      "A high-performance, privacy-focused desktop database client for SQLite, Postgres, MySQL, DuckDB & SQL Server.",
+    system: "Local drivers → Monaco editor → virtualization → desktop distribution",
+    status: "DEPLOYED",
+    links: [
+      ["Demo", "https://zero-sql.vercel.app"],
+      ["Case study", "/work/zero-sql"],
+      ["Source", "https://github.com/LochanJangid/zero_sql"],
     ],
   },
 ];
@@ -708,7 +750,7 @@ export default function Home() {
 
                   {spideyMode && (
                     <span className="font-mono text-[9px] text-neutral-500">
-                      05 RECORDS
+                      09 RECORDS
                     </span>
                   )}
                 </div>
