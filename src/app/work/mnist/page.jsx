@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_MNIST_API_URL;
 const predictUrl = apiBaseUrl ? `${apiBaseUrl}/predict` : "";
@@ -51,18 +52,18 @@ const modelCode = `model = torch.nn.Sequential(
 
 function Section({ number, title, children }) {
   return (
-    <section className="border-b border-neutral-200 py-10">
-      <div className="mb-6 flex items-baseline gap-3">
-        <span className="font-mono text-xs text-neutral-400">
+    <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
+      <div className="mb-4 flex items-baseline gap-3">
+        <span className="font-mono text-xs font-black uppercase text-[var(--pink)]">
           {number}
         </span>
 
-        <h2 className="font-serif text-xl font-bold text-neutral-950">
+        <h2 className="font-sans text-2xl font-black text-[var(--ink)]">
           {title}
         </h2>
       </div>
 
-      <div className="max-w-3xl font-serif text-[15px] leading-7 text-neutral-700">
+      <div className="font-sans text-base leading-relaxed text-[var(--mute)]">
         {children}
       </div>
     </section>
@@ -115,7 +116,7 @@ function NetworkVisualization() {
               Inference architecture
             </div>
 
-            <h3 className="mt-2 font-serif text-xl text-neutral-950">
+            <h3 className="mt-2 font-sans font-bold text-xl text-[var(--ink)]">
               From pixels to prediction.
             </h3>
           </div>
@@ -835,14 +836,14 @@ function MNISTDemo() {
   return (
     <div
       id="demo"
-      className="border border-neutral-300"
+      className="box relative bg-[var(--card)] p-6 sm:p-8 shadow-[5px_5px_0_var(--periwinkle)] my-8"
     >
       <div className="border-b border-neutral-200 px-5 py-5 sm:px-7">
         <div className="font-mono text-[10px] uppercase tracking-wider text-neutral-400">
           Live model interface
         </div>
 
-        <h3 className="mt-2 font-serif text-xl text-neutral-950">
+        <h3 className="mt-2 font-sans font-bold text-xl text-[var(--ink)]">
           Draw a digit and run inference.
         </h3>
 
@@ -900,7 +901,7 @@ function MNISTDemo() {
             <button
               type="button"
               onClick={clearCanvas}
-              className="border border-neutral-300 px-4 py-2 text-sm text-neutral-700"
+              className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2 text-sm font-bold"
             >
               Clear
             </button>
@@ -909,11 +910,9 @@ function MNISTDemo() {
               type="button"
               onClick={predictDigit}
               disabled={loading}
-              className="bg-neutral-900 px-4 py-2 text-sm text-white disabled:opacity-50"
+              className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2 text-sm font-black disabled:opacity-50"
             >
-              {loading
-                ? "Running..."
-                : "Predict digit →"}
+              {loading ? "Running..." : "Predict digit →"}
             </button>
           </div>
 
@@ -932,7 +931,7 @@ function MNISTDemo() {
               Representation
             </div>
 
-            <h3 className="mt-2 font-serif text-lg text-neutral-950">
+            <h3 className="mt-2 font-sans font-bold text-lg text-[var(--ink)]">
               28 × 28 input
             </h3>
 
@@ -980,7 +979,7 @@ function MNISTDemo() {
 
             {prediction !== null ? (
               <>
-                <div className="mt-3 font-serif text-6xl text-neutral-950">
+                <div className="mt-3 font-sans font-black text-6xl text-[var(--ink)]">
                   {prediction}
                 </div>
 
@@ -1040,67 +1039,86 @@ function MNISTDemo() {
 
 export default function MNISTPage() {
   return (
-    <main className="min-h-screen bg-[#eeeeec] py-6 sm:py-10">
-      <article className="mx-auto w-[calc(100%-24px)] max-w-[850px] bg-white px-7 py-10 shadow-sm sm:px-14 sm:py-16 md:px-20 md:py-20">
+    <main className="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+      {/* Breadcrumb */}
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[var(--mute)]">
+        <div className="flex items-center gap-2">
+          <Link href="/" className="hover:text-[var(--pink)]">lochan.dev</Link>
+          <span>/</span>
+          <Link href="/#projects" className="hover:text-[var(--pink)]">projects</Link>
+          <span>/</span>
+          <span className="font-bold text-[var(--ink)]">mnist</span>
+        </div>
+        <span className="font-handwriting text-lg text-[var(--pink)] font-bold -rotate-1">
+          Neural Drawing Board ✏️
+        </span>
+      </div>
 
-        {/* HEADER */}
-
-        <header className="border-b border-neutral-300 pb-10">
-          <div className="mb-5 font-mono text-xs uppercase tracking-wider text-neutral-500">
-            02 / Machine Learning Case Study
+      {/* Hero Header Box */}
+      <header className="box relative bg-[var(--card)] p-6 sm:p-10 mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--aqua)] text-3xl shadow-[3px_3px_0_var(--shadow)]">
+            ✏️
           </div>
-
-          <h1 className="max-w-3xl font-serif text-4xl leading-tight tracking-tight text-neutral-950 sm:text-5xl">
-            MNIST: handwriting, modeled.
-          </h1>
-
-          <p className="mt-6 max-w-2xl font-serif text-base leading-7 text-neutral-600">
-            An interactive handwritten-digit classifier that
-            transforms a drawn character into 784 numerical
-            features, passes them through a PyTorch neural
-            network, and returns one of ten digit classes.
-          </p>
-
-          <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm">
-            <a
-              href="#demo"
-              className="text-blue-700 underline underline-offset-4"
-            >
-              Try the model ↓
-            </a>
-
-            <a
-              href="https://github.com/LochanJangid/MNIST"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-4"
-            >
-              View source ↗
-            </a>
+          <div>
+            <div className="inline-block rounded-md border border-[var(--ink)] bg-[var(--sun)] px-2 py-0.5 font-mono text-xs font-black text-[#1b1840] shadow-[2px_2px_0_var(--shadow)] mb-2">
+              02 / Machine Learning Case Study
+            </div>
+            <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-black text-[var(--ink)] tracking-tight">
+              MNIST: handwriting, modeled.
+            </h1>
           </div>
+        </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-y-6 border-t border-neutral-200 pt-6 sm:grid-cols-4 sm:gap-y-0">
-            <Meta
-              label="FRAMEWORK"
-              value="PyTorch"
-            />
+        <div className="rainbow-bar mt-5 mb-5" aria-hidden="true" />
 
-            <Meta
-              label="TASK"
-              value="Classification"
-            />
+        <p className="font-sans text-base sm:text-lg text-[var(--mute)] leading-relaxed max-w-3xl">
+          An interactive handwritten-digit classifier that transforms a drawn character into 784 numerical features, passes them through a PyTorch neural network, and returns one of ten digit classes.
+        </p>
 
-            <Meta
-              label="INPUT"
-              value="28 × 28"
-            />
+        {/* Tag chips */}
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          {["PyTorch", "Classification", "Canvas API", "Tanh Activations", "784→286→120→10"].map((t) => (
+            <span key={t} className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">
+              #{t}
+            </span>
+          ))}
+        </div>
 
-            <Meta
-              label="OUTPUT"
-              value="10 classes"
-            />
-          </div>
-        </header>
+        {/* Action button row */}
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <a
+            href="#demo"
+            className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"
+          >
+            <span>Try the model ↓</span>
+          </a>
+
+          <a
+            href="https://github.com/LochanJangid/MNIST"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"
+          >
+            <span>View source ↗</span>
+          </a>
+
+          <Link
+            href="/#projects"
+            className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"
+          >
+            <span>← Lab Shelf</span>
+          </Link>
+        </div>
+
+        {/* Metadata stats bar */}
+        <div className="mt-8 grid grid-cols-2 gap-4 border-t-2 border-[var(--ink)]/10 pt-6 sm:grid-cols-4">
+          <Meta label="FRAMEWORK" value="PyTorch" />
+          <Meta label="TASK" value="Classification" />
+          <Meta label="INPUT" value="28 × 28" />
+          <Meta label="OUTPUT" value="10 classes" />
+        </div>
+      </header>
 
         {/* ABSTRACT */}
 
@@ -1262,21 +1280,49 @@ export default function MNISTPage() {
 
         {/* SOURCE */}
 
-        <footer className="mt-10 pt-7">
-          <div className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-            Source
+        {/* NEXT PROJECT CARD */}
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 mt-10">
+          <div className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--pink)] mb-2">
+            Next Case Study
           </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--aqua)] text-2xl shadow-[3px_3px_0_var(--shadow)]">
+                🌐
+              </div>
+              <div>
+                <h3 className="font-sans text-xl font-black text-[var(--ink)]">
+                  WebLens AI
+                </h3>
+                <p className="font-sans text-sm text-[var(--mute)] max-w-md">
+                  Autonomous visual audit & code generation studio using Playwright DOM coordinate extraction and multimodal LLMs.
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/work/weblens-ai"
+              className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-1.5"
+            >
+              <span>Explore Case Study</span>
+              <span>→</span>
+            </Link>
+          </div>
+        </section>
 
+        {/* FOOTER BREADCRUMB */}
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-[var(--mute)]">
+          <Link href="/#projects" className="hover:text-[var(--pink)] underline underline-offset-4">
+            ← Back to Lab Shelf
+          </Link>
           <a
             href="https://github.com/LochanJangid/MNIST"
             target="_blank"
             rel="noreferrer"
-            className="mt-2 inline-block text-sm text-blue-700 underline underline-offset-4"
+            className="hover:text-[var(--pink)] underline underline-offset-4"
           >
             github.com/LochanJangid/MNIST ↗
           </a>
-        </footer>
-      </article>
+        </div>
     </main>
   );
 }

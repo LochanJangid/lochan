@@ -166,6 +166,64 @@ class SpiderAudioEngine {
       });
     } catch {}
   }
+
+  /*
+   * NEURAL / DATA CHIRP (for algorithm steps, vector retrieval, tokens)
+   */
+  playNeuralChirp(freq = 640) {
+    if (this.muted) return;
+    this.ensureContext();
+    if (!this.ctx) return;
+
+    try {
+      const now = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, now);
+      osc.frequency.exponentialRampToValueAtTime(freq * 1.5, now + 0.05);
+
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.07);
+    } catch {}
+  }
+
+  /*
+   * DISCOVERY BADGE UNLOCK CHIME
+   */
+  playDiscoveryUnlock() {
+    if (this.muted) return;
+    this.ensureContext();
+    if (!this.ctx) return;
+
+    try {
+      const notes = [440, 554.37, 659.25, 880, 1108.73]; // A major arpeggio
+      notes.forEach((freq, idx) => {
+        const start = this.ctx.currentTime + idx * 0.05;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(freq, start);
+
+        gain.gain.setValueAtTime(0.12, start);
+        gain.gain.exponentialRampToValueAtTime(0.001, start + 0.25);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(start);
+        osc.stop(start + 0.26);
+      });
+    } catch {}
+  }
 }
 
 export const spiderAudio = new SpiderAudioEngine();

@@ -56,78 +56,100 @@ export default function WebLensAIPage() {
   const [selectedPrompt, setSelectedPrompt] = useState(0);
 
   return (
-    <main className="min-h-screen bg-[#eeeeec] py-6 sm:py-10">
-      <article className="mx-auto w-[calc(100%-24px)] max-w-[880px] bg-white px-7 py-10 shadow-sm sm:px-14 sm:py-16 md:px-20 md:py-20">
-        
-        {/* =====================================================
-            HEADER
-        ====================================================== */}
-        <header className="border-b border-neutral-300 pb-8">
-          <div className="flex items-center justify-between text-xs text-neutral-500">
-            <Link
-              href="/"
-              className="font-medium text-neutral-800 hover:underline"
-            >
-              Lochan Jangid
-            </Link>
+    <main className="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+      {/* Breadcrumb */}
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[var(--mute)]">
+        <div className="flex items-center gap-2">
+          <Link href="/" className="hover:text-[var(--pink)]">lochan.dev</Link>
+          <span>/</span>
+          <Link href="/#projects" className="hover:text-[var(--pink)]">projects</Link>
+          <span>/</span>
+          <span className="font-bold text-[var(--ink)]">weblens-ai</span>
+        </div>
+        <span className="font-handwriting text-lg text-[var(--pink)] font-bold -rotate-1">
+          Visual Intelligence Studio 🌐
+        </span>
+      </div>
 
-            <span>AI Systems Case Study · 2026</span>
+      {/* Hero Header Box */}
+      <header className="box relative bg-[var(--card)] p-6 sm:p-10 mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--aqua)] text-3xl shadow-[3px_3px_0_var(--shadow)]">
+            🌐
           </div>
-
-          <div className="mt-8 font-mono text-xs uppercase tracking-wider text-neutral-500">
-            07 / Multimodal Visual Intelligence
+          <div>
+            <div className="inline-block rounded-md border border-[var(--ink)] bg-[var(--sun)] px-2 py-0.5 font-mono text-xs font-black text-[#1b1840] shadow-[2px_2px_0_var(--shadow)] mb-2">
+              07 / Multimodal Visual Intelligence
+            </div>
+            <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-black text-[var(--ink)] tracking-tight">
+              WebLens AI: Production-Grade Website Intelligence & Visual Studio
+            </h1>
           </div>
+        </div>
 
-          <h1 className="mt-3 font-serif text-4xl font-bold leading-tight tracking-tight text-neutral-950 sm:text-5xl">
-            WebLens AI: Production-Grade AI Website Intelligence & Visual Studio
-          </h1>
+        <div className="rainbow-bar mt-5 mb-5" aria-hidden="true" />
 
-          <p className="mt-5 max-w-3xl font-serif text-xl leading-8 text-neutral-600">
-            A developer platform combining Playwright headless DOM coordinate
-            extraction, Core Web Vitals profiling, and multi-model vision prompt
-            synthesis to transform web interfaces from average to product-grade
-            with zero paywalls.
-          </p>
+        <p className="font-sans text-base sm:text-lg text-[var(--mute)] leading-relaxed max-w-3xl">
+          A developer platform combining Playwright headless DOM coordinate extraction, Core Web Vitals profiling, and multi-model vision prompt synthesis to transform web interfaces from average to product-grade with zero paywalls.
+        </p>
 
-          <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            <a
-              href="https://weblensai.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Live application ↗
-            </a>
+        {/* Tag chips */}
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          {["Playwright", "Multimodal LLM", "Next.js", "Tailwind CSS", "WCAG AA"].map((t) => (
+            <span key={t} className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">
+              #{t}
+            </span>
+          ))}
+        </div>
 
-            <a
-              href="https://github.com/LochanJangid/WebLens-AI"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Source repository ↗
-            </a>
-          </div>
+        {/* Action button row */}
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <a
+            href="https://weblensai.vercel.app/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"
+          >
+            <span>Live application ↗</span>
+          </a>
 
-          <div className="mt-10 grid grid-cols-2 gap-4 border-t border-neutral-200 pt-6 sm:grid-cols-4">
-            <Meta label="HEADLESS BROWSER" value="Playwright Chromium" />
-            <Meta label="VISION MODELS" value="Claude 3.7 · GPT-4o" />
-            <Meta label="COLOR ENGINE" value="60-30-10 Algorithmic" />
-            <Meta label="ACCESS MODEL" value="100% Free Forever" />
-          </div>
-        </header>
+          <a
+            href="https://github.com/LochanJangid/WebLens-AI"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"
+          >
+            <span>Source repository ↗</span>
+          </a>
+
+          <Link
+            href="/#projects"
+            className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"
+          >
+            <span>← Lab Shelf</span>
+          </Link>
+        </div>
+
+        {/* Metadata stats bar */}
+        <div className="mt-8 grid grid-cols-2 gap-4 border-t-2 border-[var(--ink)]/10 pt-6 sm:grid-cols-4">
+          <Meta label="HEADLESS BROWSER" value="Playwright Chromium" />
+          <Meta label="VISION MODELS" value="Claude 3.7 · GPT-4o" />
+          <Meta label="COLOR ENGINE" value="60-30-10 Algorithmic" />
+          <Meta label="ACCESS MODEL" value="100% Free Forever" />
+        </div>
+      </header>
 
         {/* =====================================================
             01 / ABSTRACT
         ====================================================== */}
         <Section number="01" title="Abstract">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             Most automated website audits offer generic, text-heavy recommendations
             that developers struggle to translate into actionable code. When developers turn
             to generative AI for visual improvements, the models frequently hallucinate
             layouts or completely alter the original product copy.
           </p>
-          <p className="mt-4 font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="mt-4 font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             <strong>WebLens AI</strong> addresses this disconnect by fusing exact
             pixel coordinates from headless browser runs with multimodal vision prompts
             crafted specifically for modern AI engineering assistants (Claude 3.7 Sonnet,
@@ -157,7 +179,7 @@ export default function WebLensAIPage() {
             03 / DOM & VISUAL PIPELINE
         ====================================================== */}
         <Section number="03" title="Headless DOM & Visual Coordinate Extraction">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             Rather than passing downscaled screenshots or raw unparsed HTML strings to
             vision models, WebLens AI establishes a multi-stage inspection pipeline:
           </p>
@@ -201,7 +223,7 @@ export default function WebLensAIPage() {
             04 / MULTIMODAL PROMPT ENGINE
         ====================================================== */}
         <Section number="04" title="Calibrated Multi-Model Vision Synthesis">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             Different foundation models excel at distinct design tasks. WebLens AI tailors
             its prompt framing to match the strengths of each model family:
           </p>
@@ -232,7 +254,7 @@ export default function WebLensAIPage() {
             05 / 60-30-10 DESIGN ENGINE
         ====================================================== */}
         <Section number="05" title="The 60-30-10 Design System Engine">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             To resolve inconsistent color usage across indie projects, WebLens AI incorporates
             an algorithmic 60-30-10 color distribution calculator:
           </p>
@@ -280,7 +302,7 @@ export default function WebLensAIPage() {
             06 / DETERMINISTIC LEVEL-1 TEMPLATES
         ====================================================== */}
         <Section number="06" title="Zero-Hallucination Fallback Architecture">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             Not all audits require expensive LLM inferences. Common design flaws like missing
             image alt attributes, touch targets smaller than 48px, or improper heading order
             (h1 immediately followed by h4) are identified and diagnosed instantly via
@@ -333,32 +355,49 @@ export default function WebLensAIPage() {
           </div>
         </Section>
 
-        {/* =====================================================
-            FOOTER
-        ====================================================== */}
-        <footer className="mt-16 border-t border-neutral-300 pt-7 flex flex-col sm:flex-row justify-between items-baseline gap-4">
-          <div>
-            <div className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-              Source Code & Deployment
-            </div>
-            <a
-              href="https://github.com/LochanJangid/WebLens-AI"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-1 inline-block text-sm text-blue-700 underline underline-offset-4"
-            >
-              github.com/LochanJangid/WebLens-AI ↗
-            </a>
+        {/* NEXT PROJECT CARD */}
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 mt-10">
+          <div className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--pink)] mb-2">
+            Next Case Study
           </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--pink)] text-2xl shadow-[3px_3px_0_var(--shadow)]">
+                📈
+              </div>
+              <div>
+                <h3 className="font-sans text-xl font-black text-[var(--ink)]">
+                  BankMarketer
+                </h3>
+                <p className="font-sans text-sm text-[var(--mute)] max-w-md">
+                  Term deposit propensity classification engine with SHAP waterfall explainability deployed on FastAPI.
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/work/bank-marketing"
+              className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-1.5"
+            >
+              <span>Explore Case Study</span>
+              <span>→</span>
+            </Link>
+          </div>
+        </section>
 
-          <Link
-            href="/"
-            className="text-sm font-medium text-neutral-700 hover:text-black underline underline-offset-4"
-          >
-            ← Back to portfolio
+        {/* FOOTER BREADCRUMB */}
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-[var(--mute)]">
+          <Link href="/#projects" className="hover:text-[var(--pink)] underline underline-offset-4">
+            ← Back to Lab Shelf
           </Link>
-        </footer>
-      </article>
+          <a
+            href="https://github.com/LochanJangid/WebLens-AI"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[var(--pink)] underline underline-offset-4"
+          >
+            github.com/LochanJangid/WebLens-AI ↗
+          </a>
+        </div>
     </main>
   );
 }
@@ -366,10 +405,10 @@ export default function WebLensAIPage() {
 function Meta({ label, value }) {
   return (
     <div>
-      <div className="font-mono text-[10px] tracking-wider text-neutral-400">
+      <div className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--mute)]">
         {label}
       </div>
-      <div className="mt-1 text-sm font-medium text-neutral-800">{value}</div>
+      <div className="mt-1 font-sans text-sm sm:text-base font-extrabold text-[var(--ink)]">{value}</div>
     </div>
   );
 }
@@ -377,22 +416,24 @@ function Meta({ label, value }) {
 function Result({ value, label }) {
   return (
     <div>
-      <div className="font-serif text-2xl font-bold text-neutral-950">{value}</div>
-      <div className="mt-1 text-xs text-neutral-500">{label}</div>
+      <div className="font-sans text-2xl font-black text-[var(--ink)]">{value}</div>
+      <div className="mt-1 font-sans text-xs text-[var(--mute)]">{label}</div>
     </div>
   );
 }
 
 function Section({ number, title, children }) {
   return (
-    <section className="border-b border-neutral-200 py-10 last:border-0">
+    <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
       <div className="mb-5 flex items-baseline gap-3">
-        <span className="font-mono text-xs text-neutral-400">{number}</span>
-        <h2 className="font-serif text-2xl font-bold text-neutral-900">
+        <span className="font-mono text-xs font-black uppercase text-[var(--pink)]">{number}</span>
+        <h2 className="font-sans text-2xl font-black text-[var(--ink)]">
           {title}
         </h2>
       </div>
-      {children}
+      <div className="font-sans text-base leading-relaxed text-[var(--mute)]">
+        {children}
+      </div>
     </section>
   );
 }

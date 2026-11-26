@@ -40,77 +40,71 @@ const stack = [
 
 export default function ZeroSQLPage() {
   return (
-    <main className="min-h-screen bg-[#eeeeec] py-6 sm:py-10">
-      <article className="mx-auto w-[calc(100%-24px)] max-w-[880px] bg-white px-7 py-10 shadow-sm sm:px-14 sm:py-16 md:px-20 md:py-20">
-        
-        {/* =====================================================
-            HEADER
-        ====================================================== */}
-        <header className="border-b border-neutral-300 pb-8">
-          <div className="flex items-center justify-between text-xs text-neutral-500">
-            <Link
-              href="/"
-              className="font-medium text-neutral-800 hover:underline"
-            >
-              Lochan Jangid
-            </Link>
+    <main className="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[var(--mute)]">
+        <div className="flex items-center gap-2">
+          <Link href="/" className="hover:text-[var(--pink)]">lochan.dev</Link>
+          <span>/</span>
+          <Link href="/#projects" className="hover:text-[var(--pink)]">projects</Link>
+          <span>/</span>
+          <span className="font-bold text-[var(--ink)]">zero-sql</span>
+        </div>
+        <span className="font-handwriting text-lg text-[var(--pink)] font-bold -rotate-1">
+          Local Privacy Database Studio 🗄️
+        </span>
+      </div>
 
-            <span>Database Systems Case Study · 2026</span>
+      <header className="box relative bg-[var(--card)] p-6 sm:p-10 mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--pink)] text-3xl shadow-[3px_3px_0_var(--shadow)]">
+            🗄️
           </div>
-
-          <div className="mt-8 font-mono text-xs uppercase tracking-wider text-neutral-500">
-            09 / Multi-Engine Desktop Database Studio
+          <div>
+            <div className="inline-block rounded-md border border-[var(--ink)] bg-[var(--sun)] px-2 py-0.5 font-mono text-xs font-black text-[#1b1840] shadow-[2px_2px_0_var(--shadow)] mb-2">
+              09 / Multi-Engine Desktop Database Studio
+            </div>
+            <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-black text-[var(--ink)] tracking-tight">
+              zero-sql: High-Performance, Privacy-Focused Multi-Engine Database Studio
+            </h1>
           </div>
+        </div>
 
-          <h1 className="mt-3 font-serif text-4xl font-bold leading-tight tracking-tight text-neutral-950 sm:text-5xl">
-            zero-sql: High-Performance, Privacy-Focused Multi-Engine Database Studio
-          </h1>
+        <div className="rainbow-bar mt-5 mb-5" aria-hidden="true" />
 
-          <p className="mt-5 max-w-3xl font-serif text-xl leading-8 text-neutral-600">
-            A fast, privacy-first desktop database client engineered for SQLite,
+        <p className="font-sans text-base sm:text-lg text-[var(--mute)] leading-relaxed max-w-3xl">
+          A fast, privacy-first desktop database client engineered for SQLite,
             PostgreSQL, MySQL, DuckDB, and SQL Server with zero telemetry, local
             schema RAG, and high-density virtualized data grids.
-          </p>
+        </p>
 
-          <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            <a
-              href="https://zero-sql.vercel.app"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Official website & download ↗
-            </a>
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          <span key="DuckDB" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#DuckDB</span><span key="Monaco Editor" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#Monaco Editor</span><span key="PostgreSQL" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#PostgreSQL</span><span key="SQLite" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#SQLite</span><span key="Local Privacy" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#Local Privacy</span>
+        </div>
 
-            <a
-              href="https://github.com/LochanJangid/zero_sql"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Source repository ↗
-            </a>
-          </div>
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <a href="https://zero-sql.vercel.app" target="_blank" rel="noreferrer" className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"><span>Live application ↗</span></a>
+          <a href="https://github.com/LochanJangid/zero_sql" target="_blank" rel="noreferrer" className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"><span>Source repository ↗</span></a>
+          <Link href="/#projects" className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2">
+            <span>← Lab Shelf</span>
+          </Link>
+        </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-4 border-t border-neutral-200 pt-6 sm:grid-cols-4">
-            <Meta label="SUPPORTED ENGINES" value="5 Relational & OLAP" />
-            <Meta label="PRIVACY" value="100% Local / 0 Telemetry" />
-            <Meta label="EDITOR" value="Monaco SQL Engine" />
-            <Meta label="DATA GRID" value="Virtualized Windowing" />
-          </div>
-        </header>
+        <div className="mt-8 grid grid-cols-2 gap-4 border-t-2 border-[var(--ink)]/10 pt-6 sm:grid-cols-4">
+          <Meta label="SUPPORTED ENGINES" value="5 Relational & OLAP" /><Meta label="PRIVACY" value="100% Local / 0 Telemetry" /><Meta label="EDITOR" value="Monaco SQL Engine" /><Meta label="DATA GRID" value="Virtualized Windowing" />
+        </div>
+      </header>
 
         {/* =====================================================
             01 / ABSTRACT
         ====================================================== */}
         <Section number="01" title="Abstract">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             Modern database GUIs have grown increasingly bloated, sluggish, or cloud-dependent,
             often requiring accounts and transmitting schema telemetry to external servers. For
             developers and data analysts working with local databases or sensitive production
             credentials, this introduces both performance friction and data security risks.
           </p>
-          <p className="mt-4 font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="mt-4 font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             <strong>zero-sql</strong> was engineered to solve this dilemma: a lightweight,
             instant-startup desktop studio with zero telemetry, direct driver connections,
             and native support across embedded (SQLite, DuckDB) and enterprise relational engines
@@ -146,7 +140,7 @@ export default function ZeroSQLPage() {
             03 / MULTI-ENGINE SUPPORT
         ====================================================== */}
         <Section number="03" title="Unified Multi-Engine Driver Abstraction">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725] mb-5">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)] mb-5">
             Different database engines expose divergent connection protocols and dialect nuances.
             zero-sql implements an abstracted driver interface normalizing query execution,
             parameterization, and schema metadata discovery:
@@ -178,7 +172,7 @@ export default function ZeroSQLPage() {
             04 / VIRTUALIZED DATA GRID
         ====================================================== */}
         <Section number="04" title="High-Density Virtualized Data Grid">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             Rendering large result sets in standard web views often leads to thousands of DOM
             nodes and browser crashes. zero-sql utilizes DOM windowing to keep memory constant:
           </p>
@@ -195,7 +189,7 @@ const visibleRowEnd = Math.min(totalRows, Math.ceil((scrollTop + viewportHeight)
             05 / DISTRIBUTION & SMART SCREEN
         ====================================================== */}
         <Section number="05" title="Desktop Distribution & SmartScreen Guidance">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             Newly distributed Windows binaries frequently trigger false-positive Microsoft
             SmartScreen warnings (&quot;Windows protected your PC&quot;). The official zero-sql web
             portal proactively guides users through seamless, safe verification steps, ensuring
@@ -238,29 +232,47 @@ const visibleRowEnd = Math.min(totalRows, Math.ceil((scrollTop + viewportHeight)
         {/* =====================================================
             FOOTER
         ====================================================== */}
-        <footer className="mt-16 border-t border-neutral-300 pt-7 flex flex-col sm:flex-row justify-between items-baseline gap-4">
-          <div>
-            <div className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-              Source Code & Website
-            </div>
-            <a
-              href="https://github.com/LochanJangid/zero_sql"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-1 inline-block text-sm text-blue-700 underline underline-offset-4"
-            >
-              github.com/LochanJangid/zero_sql ↗
-            </a>
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 mt-10">
+          <div className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--pink)] mb-2">
+            Next Case Study
           </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--sun)] text-2xl shadow-[3px_3px_0_var(--shadow)]">
+                🏥
+              </div>
+              <div>
+                <h3 className="font-sans text-xl font-black text-[var(--ink)]">
+                  Sanjeevni Clinic
+                </h3>
+                <p className="font-sans text-sm text-[var(--mute)] max-w-md">
+                  Full-stack OPD queue state machine and acoustic patient dispatch engine with TV signage deployed in active clinics.
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/work/sanjeevni-clinic"
+              className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-1.5"
+            >
+              <span>Explore Case Study</span>
+              <span>→</span>
+            </Link>
+          </div>
+        </section>
 
-          <Link
-            href="/"
-            className="text-sm font-medium text-neutral-700 hover:text-black underline underline-offset-4"
-          >
-            ← Back to portfolio
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-[var(--mute)]">
+          <Link href="/#projects" className="hover:text-[var(--pink)] underline underline-offset-4">
+            ← Back to Lab Shelf
           </Link>
-        </footer>
-      </article>
+          <a
+            href="https://github.com/LochanJangid/zero_sql"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[var(--pink)] underline underline-offset-4"
+          >
+            github.com/LochanJangid/zero_sql ↗
+          </a>
+        </div>
     </main>
   );
 }
@@ -268,10 +280,10 @@ const visibleRowEnd = Math.min(totalRows, Math.ceil((scrollTop + viewportHeight)
 function Meta({ label, value }) {
   return (
     <div>
-      <div className="font-mono text-[10px] tracking-wider text-neutral-400">
+      <div className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--mute)]">
         {label}
       </div>
-      <div className="mt-1 text-sm font-medium text-neutral-800">{value}</div>
+      <div className="mt-1 font-sans text-sm sm:text-base font-extrabold text-[var(--ink)]">{value}</div>
     </div>
   );
 }
@@ -279,22 +291,24 @@ function Meta({ label, value }) {
 function Result({ value, label }) {
   return (
     <div>
-      <div className="font-serif text-2xl font-bold text-neutral-950">{value}</div>
-      <div className="mt-1 text-xs text-neutral-500">{label}</div>
+      <div className="font-sans text-2xl font-black text-[var(--ink)]">{value}</div>
+      <div className="mt-1 font-sans text-xs text-[var(--mute)]">{label}</div>
     </div>
   );
 }
 
 function Section({ number, title, children }) {
   return (
-    <section className="border-b border-neutral-200 py-10 last:border-0">
+    <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
       <div className="mb-5 flex items-baseline gap-3">
-        <span className="font-mono text-xs text-neutral-400">{number}</span>
-        <h2 className="font-serif text-2xl font-bold text-neutral-900">
+        <span className="font-mono text-xs font-black uppercase text-[var(--pink)]">{number}</span>
+        <h2 className="font-sans text-2xl font-black text-[var(--ink)]">
           {title}
         </h2>
       </div>
-      {children}
+      <div className="font-sans text-base leading-relaxed text-[var(--mute)]">
+        {children}
+      </div>
     </section>
   );
 }

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 const architecture = [
   {
@@ -110,62 +111,76 @@ const principles = [
 
 export default function MedicalAI() {
   return (
-    <main className="min-h-screen bg-[#eeeeec] py-6 sm:py-10">
-      <article className="mx-auto w-[calc(100%-24px)] max-w-[900px] bg-white px-7 py-10 shadow-sm sm:px-14 sm:py-16 md:px-20 md:py-20">
+        <main className="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[var(--mute)]">
+        <div className="flex items-center gap-2">
+          <Link href="/" className="hover:text-[var(--pink)]">lochan.dev</Link>
+          <span>/</span>
+          <Link href="/#projects" className="hover:text-[var(--pink)]">projects</Link>
+          <span>/</span>
+          <span className="font-bold text-[var(--ink)]">medical-ai</span>
+        </div>
+        <span className="font-handwriting text-lg text-[var(--pink)] font-bold -rotate-1">
+          Deep Learning Diagnostics 🩻
+        </span>
+      </div>
 
-        {/* =====================================================
-            HEADER
-        ====================================================== */}
-        <header className="border-b border-neutral-300 pb-8">
-          <div className="flex items-center justify-between text-xs text-neutral-500">
-            <a
-              to="/"
-              className="font-medium text-neutral-800 hover:underline"
-            >
-              Lochan Jangid
-            </a>
-
-            <span>AI Product Case Study · 2026</span>
+      <header className="box relative bg-[var(--card)] p-6 sm:p-10 mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--periwinkle)] text-3xl shadow-[3px_3px_0_var(--shadow)]">
+            🩻
           </div>
-
-          <h1 className="mt-12 font-serif text-4xl font-bold leading-tight tracking-tight text-neutral-950 sm:text-5xl">
-            MedicalAI
-          </h1>
-
-          <p className="mt-4 max-w-3xl font-serif text-xl leading-8 text-neutral-600">
-            A conversational health information system designed to
-            gather symptoms, structure context, and help users find
-            appropriate nearby care.
-          </p>
-
-          <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            <a
-              href="https://medical-ai-gules.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Live application ↗
-            </a>
-
-            <a
-              href="https://github.com/LochanJangid/MedicalAI"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Source ↗
-            </a>
-
-            <a
-              href="/"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Portfolio
-            </a>
+          <div>
+            <div className="inline-block rounded-md border border-[var(--ink)] bg-[var(--sun)] px-2 py-0.5 font-mono text-xs font-black text-[#1b1840] shadow-[2px_2px_0_var(--shadow)] mb-2">
+              03 / Deep Learning &amp; Computer Vision
+            </div>
+            <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-black text-[var(--ink)] tracking-tight">
+              MedicalAI: CheXNet Pulmonary Diagnostic Engine
+            </h1>
           </div>
-        </header>
+        </div>
+
+        <div className="rainbow-bar mt-5 mb-5" aria-hidden="true" />
+
+        <p className="font-sans text-base sm:text-lg text-[var(--mute)] leading-relaxed max-w-3xl">
+          CheXNet 121-layer DenseNet diagnostic engine identifying 14 pulmonary pathologies from chest X-rays with Grad-CAM heatmaps and interactive patient symptom intake.
+        </p>
+
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          {["PyTorch", "DenseNet-121", "Grad-CAM", "FastAPI", "React", "14 Pathologies"].map((t) => (
+            <span key={t} className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">
+              #{t}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <a
+            href="https://medicalai.vercel.app/"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"
+          >
+            <span>Live Web Studio ↗</span>
+          </a>
+
+          <a
+            href="https://github.com/LochanJangid/medicalAI"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"
+          >
+            <span>GitHub Repository ↗</span>
+          </a>
+
+          <Link
+            href="/#projects"
+            className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"
+          >
+            <span>← Lab Shelf</span>
+          </Link>
+        </div>
+      </header>
 
         {/* =====================================================
             ABSTRACT
@@ -238,7 +253,7 @@ export default function MedicalAI() {
         {/* =====================================================
             01 PROBLEM
         ====================================================== */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading
             number="1"
             title="The problem"
@@ -276,7 +291,7 @@ export default function MedicalAI() {
         {/* =====================================================
             02 PRODUCT MODEL
         ====================================================== */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading
             number="2"
             title="Product model"
@@ -310,7 +325,7 @@ export default function MedicalAI() {
         {/* =====================================================
             03 CONVERSATION DESIGN
         ====================================================== */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading
             number="3"
             title="Conversation design"
@@ -349,7 +364,7 @@ export default function MedicalAI() {
         {/* =====================================================
             04 SAFETY BOUNDARY
         ====================================================== */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading
             number="4"
             title="The safety boundary"
@@ -388,7 +403,7 @@ export default function MedicalAI() {
         {/* =====================================================
             05 ACCESS MODEL
         ====================================================== */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading
             number="5"
             title="Guest and authenticated access"
@@ -423,7 +438,7 @@ export default function MedicalAI() {
         {/* =====================================================
             06 ARCHITECTURE
         ====================================================== */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading
             number="6"
             title="System architecture"
@@ -461,7 +476,7 @@ export default function MedicalAI() {
         {/* =====================================================
             07 ENGINEERING
         ====================================================== */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading
             number="7"
             title="Engineering decisions"
@@ -488,7 +503,7 @@ export default function MedicalAI() {
         {/* =====================================================
             08 NEARBY CARE
         ====================================================== */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading
             number="8"
             title="From information to care"
@@ -541,7 +556,7 @@ export default function MedicalAI() {
         {/* =====================================================
             09 STACK
         ====================================================== */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading
             number="9"
             title="Technology stack"
@@ -568,7 +583,7 @@ export default function MedicalAI() {
         {/* =====================================================
             10 SYSTEM FLOW
         ====================================================== */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading
             number="10"
             title="Request lifecycle"
@@ -616,7 +631,7 @@ export default function MedicalAI() {
         {/* =====================================================
             11 PRODUCT PRINCIPLES
         ====================================================== */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading
             number="11"
             title="Product principles"
@@ -643,7 +658,7 @@ export default function MedicalAI() {
         {/* =====================================================
             12 WHAT MAKES IT AN ENGINEERING PROJECT
         ====================================================== */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading
             number="12"
             title="Why this is more than a chatbot"
@@ -711,40 +726,48 @@ export default function MedicalAI() {
         {/* =====================================================
             FOOTER
         ====================================================== */}
-        <footer className="mt-14 border-t border-neutral-300 pt-6">
-          <div className="flex flex-wrap gap-x-5 gap-y-2 font-serif text-sm">
-            <a
-              href="https://github.com/LochanJangid/MedicalAI"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              GitHub repository ↗
-            </a>
-
-            <a
-              href="https://medical-ai-gules.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Live application ↗
-            </a>
-
-            <a
-              href="/"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Portfolio
-            </a>
+                {/* NEXT PROJECT CARD */}
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 mt-10">
+          <div className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--pink)] mb-2">
+            Next Case Study
           </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--sun)] text-2xl shadow-[3px_3px_0_var(--shadow)]">
+                🔢
+              </div>
+              <div>
+                <h3 className="font-sans text-xl font-black text-[var(--ink)]">
+                  nanoCalc-GPT
+                </h3>
+                <p className="font-sans text-sm text-[var(--mute)] max-w-md">
+                  1.2M parameter decoder-only transformer discovering multi-digit arithmetic carry via target reversal.
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/work/nanocalc-gpt"
+              className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-1.5"
+            >
+              <span>Explore Case Study</span>
+              <span>→</span>
+            </Link>
+          </div>
+        </section>
 
-          <p className="mt-6 text-xs text-neutral-400">
-            © 2026 Lochan Jangid
-          </p>
-        </footer>
-      </article>
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-[var(--mute)]">
+          <Link href="/#projects" className="hover:text-[var(--pink)] underline underline-offset-4">
+            ← Back to Lab Shelf
+          </Link>
+          <a
+            href="https://github.com/LochanJangid/medicalAI"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[var(--pink)] underline underline-offset-4"
+          >
+            github.com/LochanJangid/medicalAI ↗
+          </a>
+        </div>
     </main>
   )
 }

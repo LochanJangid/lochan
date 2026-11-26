@@ -51,77 +51,80 @@ export default function NanoCalcGPTPage() {
   const [demoAnswer, setDemoAnswer] = useState("+1542"); // 43*57 = 2451 -> reversed is 1542
 
   return (
-    <main className="min-h-screen bg-[#eeeeec] py-6 sm:py-10">
-      <article className="mx-auto w-[calc(100%-24px)] max-w-[880px] bg-white px-7 py-10 shadow-sm sm:px-14 sm:py-16 md:px-20 md:py-20">
-        
-        {/* =====================================================
-            HEADER
-        ====================================================== */}
-        <header className="border-b border-neutral-300 pb-8">
-          <div className="flex items-center justify-between text-xs text-neutral-500">
-            <Link
-              href="/"
-              className="font-medium text-neutral-800 hover:underline"
-            >
-              Lochan Jangid
-            </Link>
+    <main className="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[var(--mute)]">
+        <div className="flex items-center gap-2">
+          <Link href="/" className="hover:text-[var(--pink)]">lochan.dev</Link>
+          <span>/</span>
+          <Link href="/#projects" className="hover:text-[var(--pink)]">projects</Link>
+          <span>/</span>
+          <span className="font-bold text-[var(--ink)]">nanocalc-gpt</span>
+        </div>
+        <span className="font-handwriting text-lg text-[var(--pink)] font-bold -rotate-1">
+          Transformer Arithmetic Mechanics 🔢
+        </span>
+      </div>
 
-            <span>Deep Learning Research · 2026</span>
+      <header className="box relative bg-[var(--card)] p-6 sm:p-10 mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--sun)] text-3xl shadow-[3px_3px_0_var(--shadow)]">
+            🔢
           </div>
-
-          <div className="mt-8 font-mono text-xs uppercase tracking-wider text-neutral-500">
-            08 / Transformer Mechanics & Arithmetic Reasoning
+          <div>
+            <div className="inline-block rounded-md border border-[var(--ink)] bg-[var(--sun)] px-2 py-0.5 font-mono text-xs font-black text-[#1b1840] shadow-[2px_2px_0_var(--shadow)] mb-2">
+              08 / Transformers & Mechanistic Interpretability
+            </div>
+            <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-black text-[var(--ink)] tracking-tight">
+              nanoCalc-GPT: Teaching a 1.2M Transformer Arithmetic from Scratch
+            </h1>
           </div>
+        </div>
 
-          <h1 className="mt-3 font-serif text-4xl font-bold leading-tight tracking-tight text-neutral-950 sm:text-5xl">
-            nanoCalc-GPT: Teaching a 1.2M Transformer Arithmetic from Scratch
-          </h1>
+        <div className="rainbow-bar mt-5 mb-5" aria-hidden="true" />
 
-          <p className="mt-5 max-w-3xl font-serif text-xl leading-8 text-neutral-600">
-            An empirical investigation into whether a decoder-only transformer can
+        <p className="font-sans text-base sm:text-lg text-[var(--mute)] leading-relaxed max-w-3xl">
+          An empirical investigation into whether a decoder-only transformer can
             discover multi-digit arithmetic and right-to-left carry propagation
             without hardcoded rules or external calculators, achieving 99.51%
             exact-match accuracy.
-          </p>
+        </p>
 
-          <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            <a
-              href="https://github.com/LochanJangid/nanocalc-gpt"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Source repository & notebooks ↗
-            </a>
-          </div>
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          <span key="PyTorch" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#PyTorch</span><span key="Decoder Transformer" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#Decoder Transformer</span><span key="Causal Attention" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#Causal Attention</span><span key="Arithmetic Carry" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#Arithmetic Carry</span>
+        </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-4 border-t border-neutral-200 pt-6 sm:grid-cols-4">
-            <Meta label="ARCHITECTURE" value="Decoder Transformer" />
-            <Meta label="PARAMETERS" value="1,195,536 (~1.2M)" />
-            <Meta label="EXACT MATCH" value="99.51% (Held-Out)" />
-            <Meta label="TRAIN TIME" value="~3 Mins (Single GPU)" />
-          </div>
-        </header>
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          
+          <a href="https://github.com/LochanJangid/nanocalc-gpt" target="_blank" rel="noreferrer" className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"><span>Source repository ↗</span></a>
+          <Link href="/#projects" className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2">
+            <span>← Lab Shelf</span>
+          </Link>
+        </div>
+
+        <div className="mt-8 grid grid-cols-2 gap-4 border-t-2 border-[var(--ink)]/10 pt-6 sm:grid-cols-4">
+          <Meta label="ARCHITECTURE" value="Decoder Transformer" /><Meta label="PARAMETERS" value="1,195,536 (~1.2M)" /><Meta label="EXACT MATCH" value="99.51% (Held-Out)" /><Meta label="TRAIN TIME" value="~3 Mins (Single GPU)" />
+        </div>
+      </header>
 
         {/* =====================================================
             01 / SCIENTIFIC QUESTION
         ====================================================== */}
         <Section number="01" title="The Core Scientific Question">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             Autoregressive GPT architectures predict next tokens in a strictly left-to-right
             sequence. Human arithmetic, however, is calculated from right to left because carries
             propagate from lower-order to higher-order digits:
           </p>
-          <div className="my-6 border-l-2 border-neutral-400 pl-4 py-1 italic font-serif text-neutral-700">
+          <div className="my-6 border-l-4 border-[var(--sun)] bg-[var(--bg)] p-4 rounded-r-xl italic font-sans text-base text-[var(--ink)]">
             When asked to solve 47 + 38 = 85, a standard causal language model must output &apos;8&apos;
             (the tens place) before emitting &apos;5&apos; (the units place). Yet the tens digit cannot be
             known with certainty until 7 + 8 = 15 is evaluated.
           </div>
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             Does a transformer have the representational capacity to resolve this structural
             information bottleneck on its own? <strong>nanoCalc-GPT</strong> proves that with one
-            deliberate inductive bias—reversing the target digits on the right-hand side—a 1.2M
-            parameter model learns genuine arithmetic logic rather than memorizing pairs.
+            deliberate inductive bias—reversing the target digits on the right-hand side—a decoder
+            transformer learns genuine arithmetic logic rather than memorizing pairs.
           </p>
         </Section>
 
@@ -129,15 +132,93 @@ export default function NanoCalcGPTPage() {
             02 / EMPIRICAL BENCHMARKS
         ====================================================== */}
         <Section number="02" title="Exact-Match Empirical Benchmarks">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725] mb-5">
-            Evaluated on 3,057 held-out test examples that never appeared in the training set.
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)] mb-5">
+            Evaluated on held-out test examples that never appeared in the training set.
             Exact match requires every single token (sign, digits, newline) to be 100% correct
             with zero partial credit:
           </p>
 
-          <div className="overflow-x-auto border border-neutral-200">
+          {/* Real Exact-Match Bar Visualization */}
+          <div className="my-6 rounded-2xl border-2 border-[var(--ink)]/20 bg-[var(--bg)] p-5 sm:p-6">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b-2 border-[var(--ink)]/15 pb-3 mb-4">
+              <div>
+                <span className="font-mono text-xs font-black uppercase tracking-wider text-[var(--pink)]">
+                  // TEST EXACT MATCH VISUALIZATION
+                </span>
+                <h3 className="font-sans text-xl font-black text-[var(--ink)]">
+                  Four-Operation Run (Test Exact Match: 0.977 Overall)
+                </h3>
+              </div>
+              <span className="rounded-full border border-[var(--ink)] bg-[var(--sun)] px-3 py-1 font-mono text-xs font-black text-[#1b1840]">
+                Train Exact Match: 1.000 Everywhere
+              </span>
+            </div>
+
+            <div className="space-y-4 font-mono text-xs">
+              {/* + Addition */}
+              <div>
+                <div className="flex justify-between items-center text-[var(--ink)] font-bold mb-1">
+                  <span>+ Addition</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">100.0% (1.000)</span>
+                </div>
+                <div className="h-3 w-full rounded-full bg-[var(--ink)]/10 overflow-hidden border border-[var(--ink)]/20">
+                  <div className="h-full bg-[var(--aqua)] rounded-full transition-all" style={{ width: "100%" }} />
+                </div>
+              </div>
+
+              {/* - Subtraction */}
+              <div>
+                <div className="flex justify-between items-center text-[var(--ink)] font-bold mb-1">
+                  <span>- Subtraction</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">100.0% (1.000)</span>
+                </div>
+                <div className="h-3 w-full rounded-full bg-[var(--ink)]/10 overflow-hidden border border-[var(--ink)]/20">
+                  <div className="h-full bg-[var(--aqua)] rounded-full transition-all" style={{ width: "100%" }} />
+                </div>
+              </div>
+
+              {/* * Multiplication */}
+              <div>
+                <div className="flex justify-between items-center text-[var(--ink)] font-bold mb-1">
+                  <span>* Multiplication</span>
+                  <span>94.0% (0.940)</span>
+                </div>
+                <div className="relative h-3 w-full rounded-full bg-[var(--ink)]/10 border border-[var(--ink)]/20">
+                  <div className="h-full bg-[var(--sun)] rounded-full transition-all" style={{ width: "94%" }} />
+                  {/* Without weight decay marker at 62.8% */}
+                  <div
+                    className="absolute top-0 bottom-0 w-1.5 bg-red-500 rounded shadow"
+                    style={{ left: "62.8%" }}
+                    title="Without weight decay: 62.8%"
+                  />
+                </div>
+                <div className="flex justify-between items-center font-mono text-xs text-[var(--mute)] mt-1">
+                  <span className="text-red-500 font-bold">▲ marker: without weight decay (62.8%)</span>
+                  <span className="font-bold text-[var(--ink)]">with weight decay = 0.1 (94.0%)</span>
+                </div>
+              </div>
+
+              {/* / Division */}
+              <div>
+                <div className="flex justify-between items-center text-[var(--ink)] font-bold mb-1">
+                  <span>/ Division</span>
+                  <span>84.2% (0.842)</span>
+                </div>
+                <div className="h-3 w-full rounded-full bg-[var(--ink)]/10 overflow-hidden border border-[var(--ink)]/20">
+                  <div className="h-full bg-[var(--periwinkle)] rounded-full transition-all" style={{ width: "84.2%" }} />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 pt-3 border-t border-[var(--ink)]/10 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[var(--mute)]">
+              <span>* division measured on only 57 test examples</span>
+              <span>Addition-only run: 3 blocks, n_emb 64, 4 heads → 1.0 exact match</span>
+            </div>
+          </div>
+
+          <div className="overflow-x-auto rounded-xl border-2 border-[var(--ink)]/20 bg-[var(--card)]">
             <table className="w-full border-collapse text-left text-sm">
-              <thead className="border-b border-neutral-300 bg-neutral-50 font-mono text-xs text-neutral-500">
+              <thead className="border-b-2 border-[var(--ink)]/20 bg-[var(--bg)] font-mono text-xs text-[var(--ink)]">
                 <tr>
                   <th className="px-4 py-3">OPERATOR</th>
                   <th className="px-4 py-3">TEST EXAMPLES</th>
@@ -145,20 +226,20 @@ export default function NanoCalcGPTPage() {
                   <th className="px-4 py-3">OBSERVATION</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-neutral-200">
+              <tbody className="divide-y divide-[var(--ink)]/10 font-sans">
                 {results.map((r) => (
                   <tr key={r.op}>
-                    <td className="px-4 py-3 font-mono font-semibold text-neutral-800">{r.op}</td>
-                    <td className="px-4 py-3 font-mono text-neutral-600">{r.testCount}</td>
-                    <td className="px-4 py-3 font-mono font-bold text-emerald-700">{r.accuracy}</td>
-                    <td className="px-4 py-3 font-serif text-neutral-600 text-[13px]">{r.note}</td>
+                    <td className="px-4 py-3 font-mono font-semibold text-[var(--ink)]">{r.op}</td>
+                    <td className="px-4 py-3 font-mono text-[var(--mute)]">{r.testCount}</td>
+                    <td className="px-4 py-3 font-mono font-bold text-emerald-600 dark:text-emerald-400">{r.accuracy}</td>
+                    <td className="px-4 py-3 text-[var(--mute)] text-xs sm:text-sm">{r.note}</td>
                   </tr>
                 ))}
-                <tr className="bg-neutral-50 font-semibold border-t-2 border-neutral-300">
-                  <td className="px-4 py-3 font-mono text-neutral-900">Overall Suite</td>
-                  <td className="px-4 py-3 font-mono text-neutral-900">3,057</td>
-                  <td className="px-4 py-3 font-mono text-emerald-800 font-black">99.51%</td>
-                  <td className="px-4 py-3 font-serif text-neutral-800 text-[13px]">
+                <tr className="bg-[var(--bg)] font-semibold border-t-2 border-[var(--ink)]/20">
+                  <td className="px-4 py-3 font-mono text-[var(--ink)] font-bold">Overall Suite</td>
+                  <td className="px-4 py-3 font-mono text-[var(--ink)]">3,057</td>
+                  <td className="px-4 py-3 font-mono text-emerald-600 dark:text-emerald-400 font-black">99.51% (0.977 on 4-op test)</td>
+                  <td className="px-4 py-3 text-[var(--ink)] text-xs sm:text-sm">
                     3,042 / 3,057 perfectly solved without calculator
                   </td>
                 </tr>
@@ -228,23 +309,23 @@ export default function NanoCalcGPTPage() {
             05 / MECHANISTIC INTERPRETABILITY
         ====================================================== */}
         <Section number="05" title="Mechanistic Insights: What the Heads Learn">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
-            Inspecting the 4 attention heads across the 6 transformer layers revealed that
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
+            Inspecting the 4 attention heads across the transformer layers revealed that
             the model organized computation into modular stages:
           </p>
-          <ul className="mt-4 space-y-3 list-disc list-inside font-serif text-[15px] text-neutral-700">
+          <ul className="mt-4 space-y-3 list-disc list-inside font-sans text-sm sm:text-base text-[var(--mute)]">
             <li>
-              <strong>Layers 1–2 (Operand Alignment):</strong> Head 1 attends strictly to the
+              <strong className="text-[var(--ink)] font-bold">Layers 1–2 (Operand Alignment):</strong> Head 1 attends strictly to the
               tens digits of operand A and operand B, while Head 2 binds the operator token
               (&apos;+&apos;, &apos;-&apos;, &apos;*&apos;) to modulate downstream attention weights.
             </li>
             <li>
-              <strong>Layers 3–4 (Carry & Cross-Product Computation):</strong> In multiplication,
+              <strong className="text-[var(--ink)] font-bold">Layers 3–4 (Carry & Cross-Product Computation):</strong> In multiplication,
               Head 3 computes the units product (A0 × B0) and passes its overflow carry into
               the residual stream for the tens generation step.
             </li>
             <li>
-              <strong>Layers 5–6 (Token Projection & Sign Normalization):</strong> Formats the
+              <strong className="text-[var(--ink)] font-bold">Layers 5–6 (Token Projection & Sign Normalization):</strong> Formats the
               final output token according to the designated sign character and padded zeroes.
             </li>
           </ul>
@@ -253,29 +334,47 @@ export default function NanoCalcGPTPage() {
         {/* =====================================================
             FOOTER
         ====================================================== */}
-        <footer className="mt-16 border-t border-neutral-300 pt-7 flex flex-col sm:flex-row justify-between items-baseline gap-4">
-          <div>
-            <div className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-              Source Code & Experiments
-            </div>
-            <a
-              href="https://github.com/LochanJangid/nanocalc-gpt"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-1 inline-block text-sm text-blue-700 underline underline-offset-4"
-            >
-              github.com/LochanJangid/nanocalc-gpt ↗
-            </a>
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 mt-10">
+          <div className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--pink)] mb-2">
+            Next Case Study
           </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--aqua)] text-2xl shadow-[3px_3px_0_var(--shadow)]">
+                ✏️
+              </div>
+              <div>
+                <h3 className="font-sans text-xl font-black text-[var(--ink)]">
+                  Digit Recognition
+                </h3>
+                <p className="font-sans text-sm text-[var(--mute)] max-w-md">
+                  Low-latency PyTorch neural classifier with real-time 28×28 interactive drawing board and tensor visualizer.
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/work/mnist"
+              className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-1.5"
+            >
+              <span>Explore Case Study</span>
+              <span>→</span>
+            </Link>
+          </div>
+        </section>
 
-          <Link
-            href="/"
-            className="text-sm font-medium text-neutral-700 hover:text-black underline underline-offset-4"
-          >
-            ← Back to portfolio
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-[var(--mute)]">
+          <Link href="/#projects" className="hover:text-[var(--pink)] underline underline-offset-4">
+            ← Back to Lab Shelf
           </Link>
-        </footer>
-      </article>
+          <a
+            href="https://github.com/LochanJangid/nanocalc-gpt"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[var(--pink)] underline underline-offset-4"
+          >
+            github.com/LochanJangid/nanocalc-gpt ↗
+          </a>
+        </div>
     </main>
   );
 }
@@ -283,24 +382,26 @@ export default function NanoCalcGPTPage() {
 function Meta({ label, value }) {
   return (
     <div>
-      <div className="font-mono text-[10px] tracking-wider text-neutral-400">
+      <div className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--mute)]">
         {label}
       </div>
-      <div className="mt-1 text-sm font-medium text-neutral-800">{value}</div>
+      <div className="mt-1 font-sans text-sm sm:text-base font-extrabold text-[var(--ink)]">{value}</div>
     </div>
   );
 }
 
 function Section({ number, title, children }) {
   return (
-    <section className="border-b border-neutral-200 py-10 last:border-0">
+    <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
       <div className="mb-5 flex items-baseline gap-3">
-        <span className="font-mono text-xs text-neutral-400">{number}</span>
-        <h2 className="font-serif text-2xl font-bold text-neutral-900">
+        <span className="font-mono text-xs font-black uppercase text-[var(--pink)]">{number}</span>
+        <h2 className="font-sans text-2xl font-black text-[var(--ink)]">
           {title}
         </h2>
       </div>
-      {children}
+      <div className="font-sans text-base leading-relaxed text-[var(--mute)]">
+        {children}
+      </div>
     </section>
   );
 }

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 const pipeline = [
   [
@@ -75,55 +76,79 @@ const stack = [
 
 export default function BankMarketingPage() {
   return (
-    <main className="min-h-screen bg-[#eeeeec] py-6 sm:py-10">
-      {/* Paper */}
-      <article className="mx-auto w-[calc(100%-24px)] max-w-[850px] bg-white px-7 py-10 shadow-sm sm:px-14 sm:py-16 md:px-20 md:py-20">
+    <main className="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[var(--mute)]">
+        <div className="flex items-center gap-2">
+          <Link href="/" className="hover:text-[var(--pink)]">lochan.dev</Link>
+          <span>/</span>
+          <Link href="/#projects" className="hover:text-[var(--pink)]">projects</Link>
+          <span>/</span>
+          <span className="font-bold text-[var(--ink)]">bank-marketing</span>
+        </div>
+        <span className="font-handwriting text-lg text-[var(--pink)] font-bold -rotate-1">
+          ML Systems &amp; APIs 📈
+        </span>
+      </div>
 
-        {/* Paper header */}
-        <header className="border-b border-neutral-300 pb-8">
-          <div className="flex items-center justify-between text-xs text-neutral-500">
-            <a
-              href="/"
-              className="font-medium text-neutral-800 hover:underline"
-            >
-              Lochan Jangid
-            </a>
-
-            <span>Machine Learning Case Study · 2026</span>
+      <header className="box relative bg-[var(--card)] p-6 sm:p-10 mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--pink)] text-3xl shadow-[3px_3px_0_var(--shadow)]">
+            📈
           </div>
-
-          <h1 className="mt-12 font-serif text-4xl font-bold leading-tight tracking-tight text-neutral-950 sm:text-5xl">
-            Bank Marketing
-          </h1>
-
-          <p className="mt-4 max-w-2xl font-serif text-xl leading-8 text-neutral-600">
-            An end-to-end classification system for predicting
-            term deposit subscriptions.
-          </p>
-
-          <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            <a
-              href="https://bank-marketing-alpha.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Live application ↗
-            </a>
-
-            <a
-              href="https://github.com/LochanJangid/bank-marketing"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Source ↗
-            </a>
+          <div>
+            <div className="inline-block rounded-md border border-[var(--ink)] bg-[var(--sun)] px-2 py-0.5 font-mono text-xs font-black text-[#1b1840] shadow-[2px_2px_0_var(--shadow)] mb-2">
+              01 / ML Classification &amp; Explainability
+            </div>
+            <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-black text-[var(--ink)] tracking-tight">
+              BankMarketer: Production Propensity System
+            </h1>
           </div>
-        </header>
+        </div>
+
+        <div className="rainbow-bar mt-5 mb-5" aria-hidden="true" />
+
+        <p className="font-sans text-base sm:text-lg text-[var(--mute)] leading-relaxed max-w-3xl">
+          An end-to-end classification system for predicting term deposit subscriptions with SHAP waterfall explainability, containerized on Docker and served via FastAPI.
+        </p>
+
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          {["FastAPI", "Scikit-Learn", "SHAP", "Docker", "Pydantic", "91.2% ROC-AUC"].map((t) => (
+            <span key={t} className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">
+              #{t}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <a
+            href="https://bankmarketing-ml.onrender.com/docs"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"
+          >
+            <span>API Docs ↗</span>
+          </a>
+
+          <a
+            href="https://github.com/LochanJangid/Bank-Marketing"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"
+          >
+            <span>GitHub Repository ↗</span>
+          </a>
+
+          <Link
+            href="/#projects"
+            className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"
+          >
+            <span>← Lab Shelf</span>
+          </Link>
+        </div>
+      </header>
 
         {/* Abstract */}
-        <section className="mt-10">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <h2 className="font-serif text-lg font-bold">
             Abstract
           </h2>
@@ -167,7 +192,7 @@ export default function BankMarketingPage() {
         </section>
 
         {/* 1 */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading number="1" title="Problem" />
 
           <p className="mt-5 font-serif text-[15px] leading-7 text-neutral-700">
@@ -189,7 +214,7 @@ export default function BankMarketingPage() {
         </section>
 
         {/* 2 */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading number="2" title="Data" />
 
           <p className="mt-5 font-serif text-[15px] leading-7 text-neutral-700">
@@ -223,7 +248,7 @@ export default function BankMarketingPage() {
         </section>
 
         {/* 3 */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading number="3" title="Feature Engineering" />
 
           <p className="mt-5 font-serif text-[15px] leading-7 text-neutral-700">
@@ -250,7 +275,7 @@ export default function BankMarketingPage() {
         </section>
 
         {/* 4 */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading number="4" title="Model" />
 
           <p className="mt-5 font-serif text-[15px] leading-7 text-neutral-700">
@@ -276,7 +301,7 @@ export default function BankMarketingPage() {
         </section>
 
         {/* Design decision */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <h2 className="font-serif text-lg font-bold">
             A modelling decision
           </h2>
@@ -298,7 +323,7 @@ export default function BankMarketingPage() {
         </section>
 
         {/* 5 */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading number="5" title="System" />
 
           <p className="mt-5 font-serif text-[15px] leading-7 text-neutral-700">
@@ -327,7 +352,7 @@ export default function BankMarketingPage() {
         </section>
 
         {/* Pipeline */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <h2 className="font-serif text-lg font-bold">
             Inference pipeline
           </h2>
@@ -355,7 +380,7 @@ export default function BankMarketingPage() {
         </section>
 
         {/* 6 */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading number="6" title="Application" />
 
           <p className="mt-5 font-serif text-[15px] leading-7 text-neutral-700">
@@ -389,7 +414,7 @@ export default function BankMarketingPage() {
         </section>
 
         {/* 7 */}
-        <section className="mt-14">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <SectionHeading number="7" title="Deployment" />
 
           <p className="mt-5 font-serif text-[15px] leading-7 text-neutral-700">
@@ -400,7 +425,7 @@ export default function BankMarketingPage() {
         </section>
 
         {/* Conclusion */}
-        <section className="mt-14 border-t border-neutral-300 pt-8">
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
           <h2 className="font-serif text-lg font-bold">
             Conclusion
           </h2>
@@ -412,52 +437,60 @@ export default function BankMarketingPage() {
           </p>
         </section>
 
-        {/* Links */}
-        <footer className="mt-14 border-t border-neutral-300 pt-6">
-          <div className="flex flex-wrap gap-x-5 gap-y-2 font-serif text-sm">
-            <a
-              href="https://github.com/LochanJangid/bank-marketing"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              GitHub repository ↗
-            </a>
-
-            <a
-              href="https://bank-marketing-alpha.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Live application ↗
-            </a>
-
-            <a
-              href="/"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Portfolio
-            </a>
+        {/* NEXT PROJECT CARD */}
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 mt-10">
+          <div className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--pink)] mb-2">
+            Next Case Study
           </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--periwinkle)] text-2xl shadow-[3px_3px_0_var(--shadow)]">
+                🩻
+              </div>
+              <div>
+                <h3 className="font-sans text-xl font-black text-[var(--ink)]">
+                  MedicalAI
+                </h3>
+                <p className="font-sans text-sm text-[var(--mute)] max-w-md">
+                  CheXNet 121-layer DenseNet diagnostic engine identifying 14 pulmonary pathologies from chest X-rays with Grad-CAM.
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/work/medical-ai"
+              className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-1.5"
+            >
+              <span>Explore Case Study</span>
+              <span>→</span>
+            </Link>
+          </div>
+        </section>
 
-          <p className="mt-6 text-xs text-neutral-400">
-            © 2026 Lochan Jangid
-          </p>
-        </footer>
-      </article>
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-[var(--mute)]">
+          <Link href="/#projects" className="hover:text-[var(--pink)] underline underline-offset-4">
+            ← Back to Lab Shelf
+          </Link>
+          <a
+            href="https://github.com/LochanJangid/Bank-Marketing"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[var(--pink)] underline underline-offset-4"
+          >
+            github.com/LochanJangid/Bank-Marketing ↗
+          </a>
+        </div>
     </main>
   );
 }
 
 function SectionHeading({ number, title }) {
   return (
-    <div className="flex items-baseline gap-3">
-      <span className="font-mono text-xs text-neutral-400">
+    <div className="mb-4 flex items-baseline gap-3">
+      <span className="font-mono text-xs font-black uppercase text-[var(--pink)]">
         {number}.
       </span>
 
-      <h2 className="font-serif text-lg font-bold">
+      <h2 className="font-sans text-2xl font-black text-[var(--ink)]">
         {title}
       </h2>
     </div>

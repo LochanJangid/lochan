@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 const apiGroups = [
   {
@@ -83,8 +84,8 @@ function Section({ number, title, children, dark = false }) {
           </span>
 
           <h2
-            className={`font-serif text-xl font-bold ${
-              dark ? "text-white" : "text-neutral-950"
+            className={`font-sans text-xl font-bold ${
+              dark ? "text-white" : "text-[var(--ink)]"
             }`}
           >
             {title}
@@ -92,8 +93,8 @@ function Section({ number, title, children, dark = false }) {
         </div>
 
         <div
-          className={`font-serif text-[15px] leading-7 ${
-            dark ? "text-neutral-300" : "text-neutral-700"
+          className={`font-sans text-base leading-relaxed ${
+            dark ? "text-neutral-300" : "text-[var(--ink)]"
           }`}
         >
           {children}
@@ -135,78 +136,134 @@ function CodeBlock({ label, children, dark = false }) {
 
 export default function LochanEDA() {
   return (
-    <main className="min-h-screen bg-[#eeeeec] py-6 sm:py-10">
-      <article className="mx-auto w-[calc(100%-24px)] max-w-[850px] bg-white shadow-sm">
+    <main className="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[var(--mute)]">
+        <div className="flex items-center gap-2">
+          <Link href="/" className="hover:text-[var(--pink)]">lochan.dev</Link>
+          <span>/</span>
+          <Link href="/#projects" className="hover:text-[var(--pink)]">projects</Link>
+          <span>/</span>
+          <span className="font-bold text-[var(--ink)]">lochan-eda</span>
+        </div>
+        <span className="font-handwriting text-lg text-[var(--pink)] font-bold -rotate-1">
+          PyPI Automated EDA Tooling 📦
+        </span>
+      </div>
 
-        {/* =====================================================
-            HEADER
-        ===================================================== */}
-
-        <header className="px-7 pb-12 pt-10 sm:px-14 sm:pb-14 sm:pt-16 md:px-20">
-          <div className="mb-5 font-mono text-xs uppercase tracking-wider text-neutral-500">
-            03 / Developer Tool · Python Package
+      <header className="box relative bg-[var(--card)] p-6 sm:p-10 mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--aqua)] text-3xl shadow-[3px_3px_0_var(--shadow)]">
+            📦
           </div>
-
-          <h1 className="max-w-3xl font-serif text-4xl leading-tight tracking-tight text-neutral-950 sm:text-5xl">
-            Lochan EDA
+          <div>
+            <div className="inline-block rounded-md border border-[var(--ink)] bg-[var(--sun)] px-2 py-0.5 font-mono text-xs font-black text-[#1b1840] shadow-[2px_2px_0_var(--shadow)] mb-2">
+              05 / Open Source Python Package
+            </div>
+            <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-black text-[var(--ink)] tracking-tight">
+              Lochan EDA
             <br />
             <span className="text-neutral-500">
               Preprocessing that starts with the data.
             </span>
-          </h1>
+            </h1>
+          </div>
+        </div>
 
-          <p className="mt-6 max-w-2xl font-serif text-base leading-7 text-neutral-600">
-            A reusable Python toolkit for understanding tabular data and
+        <div className="rainbow-bar mt-5 mb-5" aria-hidden="true" />
+
+        <p className="font-sans text-base sm:text-lg text-[var(--mute)] leading-relaxed max-w-3xl">
+          A reusable Python toolkit for understanding tabular data and
             turning its behaviour into practical preprocessing decisions
             before machine learning.
-          </p>
+        </p>
 
-          <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm">
-            <a
-              href="https://pypi.org/project/lochan-eda/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-4"
-            >
-              PyPI ↗
-            </a>
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          <span key="PyPI Package" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#PyPI Package</span><span key="Automated EDA" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#Automated EDA</span><span key="Statistical Profiling" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#Statistical Profiling</span><span key="Python 3" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#Python 3</span>
+        </div>
 
-            <a
-              href="https://github.com/LochanJangid/lochan-eda"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-4"
-            >
-              GitHub ↗
-            </a>
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <a href="https://pypi.org/project/lochan-eda/" target="_blank" rel="noreferrer" className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"><span>Live application ↗</span></a>
+          <a href="https://github.com/LochanJangid/lochan_eda" target="_blank" rel="noreferrer" className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"><span>Source repository ↗</span></a>
+          <Link href="/#projects" className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2">
+            <span>← Lab Shelf</span>
+          </Link>
+        </div>
 
-            <a
-              href="/work/lochan-eda/docs"
-              className="text-blue-700 underline underline-offset-4"
-            >
-              Docs ↗
-            </a>
+        <div className="mt-8 grid grid-cols-2 gap-4 border-t-2 border-[var(--ink)]/10 pt-6 sm:grid-cols-4">
+          <Meta label="VERSION" value="v0.2.0 (PyPI)" /><Meta label="LANGUAGE" value="Python" /><Meta label="FOCUS" value="Tabular EDA + preprocessing" /><Meta label="INTERFACE" value="Profiler / AutomatedEDA" />
+        </div>
+      </header>
+
+      {/* Architecture & Leakage Prevention Pipeline Flow */}
+      <div className="box relative bg-[var(--card)] p-6 sm:p-8 mb-8">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-[var(--ink)]/15 pb-4 mb-6">
+          <div>
+            <span className="font-mono text-xs font-black uppercase tracking-wider text-[var(--pink)]">
+              // ARCHITECTURE &amp; LEAKAGE PREVENTION PIPELINE
+            </span>
+            <h2 className="font-sans text-xl sm:text-2xl font-black text-[var(--ink)]">
+              v0.2.0 API Pipeline Architecture
+            </h2>
+          </div>
+          <span className="rounded-full border border-[var(--ink)] bg-[var(--aqua)] px-3 py-1 font-mono text-xs font-black text-[#1b1840] shadow-[1px_1px_0_var(--shadow)]">
+            🛡️ Leakage Prevention
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch font-mono text-xs">
+          <div className="rounded-2xl border-2 border-[var(--ink)]/20 bg-[var(--bg)] p-5 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-bold text-[var(--pink)] uppercase tracking-wider">Step 01</span>
+                <span className="text-xl">📊</span>
+              </div>
+              <h3 className="font-sans text-lg font-black text-[var(--ink)]">Raw Tabular Data</h3>
+              <p className="mt-2 font-sans text-xs text-[var(--mute)] leading-relaxed">
+                Input Pandas DataFrame or CSV files containing uncleaned numerical, categorical, and missing columns.
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-[var(--ink)]/10 font-mono text-xs text-[var(--ink)]">
+              <code>pd.DataFrame (train / test)</code>
+            </div>
           </div>
 
-          <div className="mt-10 border-t border-neutral-200 pt-6">
-            <div className="mb-5 font-mono text-[10px] uppercase tracking-wider text-neutral-400">
-              Package snapshot
+          <div className="rounded-2xl border-2 border-[var(--ink)]/20 bg-[var(--bg)] p-5 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-bold text-[var(--aqua)] uppercase tracking-wider">Step 02 // Core</span>
+                <span className="text-xl">⚙️</span>
+              </div>
+              <h3 className="font-sans text-lg font-black text-[var(--ink)]">AutomatedEDA</h3>
+              <p className="mt-2 font-sans text-xs text-[var(--mute)] leading-relaxed">
+                Guarantees zero data leakage by computing statistics strictly on train partition.
+              </p>
             </div>
-
-            <div className="grid grid-cols-2 gap-y-6 sm:grid-cols-3">
-              <Meta label="VERSION" value="v2" />
-              <Meta label="LANGUAGE" value="Python" />
-              <Meta
-                label="FOCUS"
-                value="Tabular EDA + preprocessing"
-              />
-              <Meta
-                label="INTERFACE"
-                value="Profiler / AutomatedEDA"
-              />
+            <div className="mt-4 pt-3 border-t border-[var(--ink)]/10 space-y-1 font-mono text-xs text-[var(--ink)]">
+              <div className="rounded bg-[var(--card)] px-2 py-1 border border-[var(--ink)]/20"><code>.prepare()</code> // split &amp; detect</div>
+              <div className="rounded bg-[var(--card)] px-2 py-1 border border-[var(--ink)]/20"><code>.fit()</code> // learn train params</div>
+              <div className="rounded bg-[var(--card)] px-2 py-1 border border-[var(--ink)]/20"><code>.transform()</code> // apply cleanly</div>
             </div>
           </div>
-        </header>
+
+          <div className="rounded-2xl border-2 border-[var(--ink)]/20 bg-[var(--bg)] p-5 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-bold text-[var(--sun)] uppercase tracking-wider">Step 03</span>
+                <span className="text-xl">📄</span>
+              </div>
+              <h3 className="font-sans text-lg font-black text-[var(--ink)]">Profiler</h3>
+              <p className="mt-2 font-sans text-xs text-[var(--mute)] leading-relaxed">
+                Generates statistical summaries, interactive distribution plots, correlation matrices, and standalone PDF reports.
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-[var(--ink)]/10 space-y-1 font-mono text-xs text-[var(--ink)]">
+              <div className="rounded bg-[var(--card)] px-2 py-1 border border-[var(--ink)]/20"><code>.overview()</code> // dimensions</div>
+              <div className="rounded bg-[var(--card)] px-2 py-1 border border-[var(--ink)]/20"><code>.plots()</code> // distributions</div>
+              <div className="rounded bg-[var(--card)] px-2 py-1 border border-[var(--ink)]/20"><code>.export_pdf()</code> // full report</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
         {/* =====================================================
             ABSTRACT
@@ -316,7 +373,7 @@ for col in categorical_cols:
         ===================================================== */}
 
         <Section number="03" title="Blind Pipeline">
-          <h3 className="font-serif text-2xl leading-tight text-neutral-950">
+          <h3 className="font-sans text-2xl font-bold leading-tight text-[var(--ink)]">
             A pipeline can be reusable and still be thoughtless.
           </h3>
 
@@ -388,7 +445,7 @@ for col in categorical_cols:
         <Section number="04" title="Run the Workflow">
           <div className="grid gap-8">
             <div>
-              <h3 className="font-serif text-2xl leading-tight text-neutral-950">
+              <h3 className="font-sans text-2xl font-bold leading-tight text-[var(--ink)]">
                 Don't just read the workflow. Run it.
               </h3>
 
@@ -525,7 +582,7 @@ X_train, X_test, y_train, y_test = eda.prepare(
 
         <Section number="06" title="Workflow">
           <div className="mb-8">
-            <h3 className="font-serif text-2xl leading-tight text-neutral-950">
+            <h3 className="font-sans text-2xl font-bold leading-tight text-[var(--ink)]">
               From behaviour to model-ready data.
             </h3>
 
@@ -565,7 +622,7 @@ Xtr, Xte, ytr, yte = eda.prepare(
         ===================================================== */}
 
         <Section number="07" title="Feature Behaviour">
-          <h3 className="mb-8 font-serif text-2xl leading-tight text-neutral-950">
+          <h3 className="mb-8 font-sans text-2xl font-bold leading-tight text-[var(--ink)]">
             Different features can require different treatment.
           </h3>
 
@@ -638,7 +695,7 @@ X_test  = eda.transform(X_test)`}
         ===================================================== */}
 
         <Section number="09" title="API Surface">
-          <h3 className="mb-8 font-serif text-2xl leading-tight text-neutral-950">
+          <h3 className="mb-8 font-sans text-2xl font-bold leading-tight text-[var(--ink)]">
             Small public surface. Focused jobs.
           </h3>
 
@@ -658,7 +715,7 @@ X_test  = eda.transform(X_test)`}
                   </span>
                 </div>
 
-                <h3 className="mt-5 font-serif text-xl text-neutral-950">
+                <h3 className="mt-5 font-sans text-xl font-bold text-[var(--ink)]">
                   {api.name}
                 </h3>
 
@@ -686,7 +743,7 @@ X_test  = eda.transform(X_test)`}
         ===================================================== */}
 
         <Section number="10" title="Why I Built It">
-          <h3 className="mb-8 font-serif text-2xl leading-tight text-neutral-950">
+          <h3 className="mb-8 font-sans text-2xl font-bold leading-tight text-[var(--ink)]">
             From transformer-first to data-first preprocessing.
           </h3>
 
@@ -746,45 +803,47 @@ X_test  = eda.transform(X_test)`}
             CLOSING
         ===================================================== */}
 
-        <footer className="px-7 py-12 sm:px-14 md:px-20">
-          <div className="font-mono text-[10px] uppercase tracking-wider text-neutral-400">
-            Lochan-EDA
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 mt-10">
+          <div className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--pink)] mb-2">
+            Next Case Study
           </div>
-
-          <h2 className="mt-4 max-w-xl font-serif text-3xl leading-tight text-neutral-950">
-            Less repetitive EDA.
-            <br />
-            More deliberate preprocessing.
-          </h2>
-
-          <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm">
-            <a
-              href="https://pypi.org/project/lochan-eda/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-4"
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--aqua)] text-2xl shadow-[3px_3px_0_var(--shadow)]">
+                🌐
+              </div>
+              <div>
+                <h3 className="font-sans text-xl font-black text-[var(--ink)]">
+                  WebLens AI
+                </h3>
+                <p className="font-sans text-sm text-[var(--mute)] max-w-md">
+                  Autonomous visual audit & code generation studio using Playwright DOM coordinate extraction and multimodal LLMs.
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/work/weblens-ai"
+              className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-1.5"
             >
-              PyPI ↗
-            </a>
-
-            <a
-              href="https://github.com/LochanJangid/lochan-eda"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-4"
-            >
-              Inspect source ↗
-            </a>
-
-            <a
-              href="/work/lochan-eda/docs"
-              className="text-blue-700 underline underline-offset-4"
-            >
-              Documentation ↗
-            </a>
+              <span>Explore Case Study</span>
+              <span>→</span>
+            </Link>
           </div>
-        </footer>
-      </article>
+        </section>
+
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-[var(--mute)]">
+          <Link href="/#projects" className="hover:text-[var(--pink)] underline underline-offset-4">
+            ← Back to Lab Shelf
+          </Link>
+          <a
+            href="https://github.com/LochanJangid/lochan_eda"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[var(--pink)] underline underline-offset-4"
+          >
+            github.com/LochanJangid/lochan_eda ↗
+          </a>
+        </div>
     </main>
   );
 }
@@ -850,11 +909,11 @@ function Principle({ number, title, text }) {
         {number}
       </div>
 
-      <h3 className="mt-5 font-serif text-lg text-neutral-950">
+      <h3 className="mt-5 font-sans font-bold text-lg text-[var(--ink)]">
         {title}
       </h3>
 
-      <p className="mt-3 text-sm leading-6 text-neutral-600">
+      <p className="mt-3 font-sans text-sm leading-6 text-[var(--mute)]">
         {text}
       </p>
     </div>

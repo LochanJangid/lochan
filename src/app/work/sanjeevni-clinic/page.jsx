@@ -56,79 +56,73 @@ export default function SanjeevniClinicPage() {
   const [activeTab, setActiveTab] = useState("admin");
 
   return (
-    <main className="min-h-screen bg-[#eeeeec] py-6 sm:py-10">
-      <article className="mx-auto w-[calc(100%-24px)] max-w-[880px] bg-white px-7 py-10 shadow-sm sm:px-14 sm:py-16 md:px-20 md:py-20">
-        
-        {/* =====================================================
-            HEADER
-        ====================================================== */}
-        <header className="border-b border-neutral-300 pb-8">
-          <div className="flex items-center justify-between text-xs text-neutral-500">
-            <Link
-              href="/"
-              className="font-medium text-neutral-800 hover:underline"
-            >
-              Lochan Jangid
-            </Link>
+    <main className="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[var(--mute)]">
+        <div className="flex items-center gap-2">
+          <Link href="/" className="hover:text-[var(--pink)]">lochan.dev</Link>
+          <span>/</span>
+          <Link href="/#projects" className="hover:text-[var(--pink)]">projects</Link>
+          <span>/</span>
+          <span className="font-bold text-[var(--ink)]">sanjeevni-clinic</span>
+        </div>
+        <span className="font-handwriting text-lg text-[var(--pink)] font-bold -rotate-1">
+          Acoustic OPD Queue Dispatch 🏥
+        </span>
+      </div>
 
-            <span>Healthcare Engineering Case Study · 2026</span>
+      <header className="box relative bg-[var(--card)] p-6 sm:p-10 mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--sun)] text-3xl shadow-[3px_3px_0_var(--shadow)]">
+            🏥
           </div>
-
-          <div className="mt-8 font-mono text-xs uppercase tracking-wider text-neutral-500">
-            06 / Enterprise Healthcare Operating System
+          <div>
+            <div className="inline-block rounded-md border border-[var(--ink)] bg-[var(--sun)] px-2 py-0.5 font-mono text-xs font-black text-[#1b1840] shadow-[2px_2px_0_var(--shadow)] mb-2">
+              06 / Distributed Healthcare Telemetry & OPD Queue
+            </div>
+            <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-black text-[var(--ink)] tracking-tight">
+              Sanjeevni Clinic: Unified Clinical Operating System & Healthcare ERP
+            </h1>
           </div>
+        </div>
 
-          <h1 className="mt-3 font-serif text-4xl font-bold leading-tight tracking-tight text-neutral-950 sm:text-5xl">
-            Sanjeevni Clinic: Unified Clinical Operating System & Healthcare ERP
-          </h1>
+        <div className="rainbow-bar mt-5 mb-5" aria-hidden="true" />
 
-          <p className="mt-5 max-w-3xl font-serif text-xl leading-8 text-neutral-600">
-            A production-grade hospital management platform engineered for
+        <p className="font-sans text-base sm:text-lg text-[var(--mute)] leading-relaxed max-w-3xl">
+          A production-grade hospital management platform engineered for
             Sanjeevni Medical Pavilion. Designed for multi-tenant clinical
             workflows with strict role isolation, real-time WebRTC
             teleconsultations, dynamic live OPD queue signage with Web Audio chimes,
             and executive hospital ERP controls.
-          </p>
+        </p>
 
-          <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            <a
-              href="https://sanjeevni-clinic.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Live application ↗
-            </a>
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          <span key="Web Audio API" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#Web Audio API</span><span key="FastAPI" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#FastAPI</span><span key="WebSockets" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#WebSockets</span><span key="React" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#React</span><span key="In Clinic Use" className="chip bg-[var(--bg)] text-[var(--ink)] font-mono text-xs">#In Clinic Use</span>
+        </div>
 
-            <a
-              href="https://github.com/LochanJangid/sanjeevni-clinic"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-700 underline underline-offset-2"
-            >
-              Source repository ↗
-            </a>
-          </div>
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          
+          <a href="https://github.com/LochanJangid/sanjeevni-clinic" target="_blank" rel="noreferrer" className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2"><span>Source repository ↗</span></a>
+          <Link href="/#projects" className="btn-pill bg-[var(--card)] text-[var(--ink)] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-2">
+            <span>← Lab Shelf</span>
+          </Link>
+        </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-4 border-t border-neutral-200 pt-6 sm:grid-cols-4">
-            <Meta label="CATEGORY" value="Clinical ERP & Telehealth" />
-            <Meta label="TELECONSULT" value="Encrypted WebRTC P2P" />
-            <Meta label="AI MODEL" value="Llama-3.3-70B (Groq)" />
-            <Meta label="PAYMENT" value="Dynamic PhonePe QR" />
-          </div>
-        </header>
+        <div className="mt-8 grid grid-cols-2 gap-4 border-t-2 border-[var(--ink)]/10 pt-6 sm:grid-cols-4">
+          <Meta label="CATEGORY" value="Clinical ERP & Telehealth" /><Meta label="TELECONSULT" value="Encrypted WebRTC P2P" /><Meta label="AI MODEL" value="Llama-3.3-70B (Groq)" /><Meta label="PAYMENT" value="Dynamic PhonePe QR" />
+        </div>
+      </header>
 
         {/* =====================================================
             01 / ABSTRACT
         ====================================================== */}
         <Section number="01" title="Abstract">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             Hospital systems frequently suffer from fragmented tools: one vendor handles
             patient registration, another manages waiting queues, a third handles video calls,
             and accounting relies on isolated spreadsheets. <strong>Sanjeevni Clinic</strong>{" "}
             unifies these critical systems into one cohesive, role-isolated operational platform.
           </p>
-          <p className="mt-4 font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="mt-4 font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             From patient symptom triage powered by an LLM clinical assistant, to automated
             outpatient queue management with browser-synthesized acoustic chimes, encrypted
             teleconsultations, and pharmaceutical inventory with daily cash drawer audits,
@@ -156,7 +150,7 @@ export default function SanjeevniClinicPage() {
             03 / SYSTEM ARCHITECTURE
         ====================================================== */}
         <Section number="03" title="Role-Isolated System Boundaries">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             A cornerstone requirement was strict role segregation. Doctors must not tamper
             with administrative financial reconciliations, patients cannot trigger doctor-side
             actions, and doctors cannot interfere with another clinician&apos;s queue.
@@ -188,7 +182,7 @@ export default function SanjeevniClinicPage() {
             04 / WEBRTC TELEMEDICINE
         ====================================================== */}
         <Section number="04" title="Peer-to-Peer Teleconsultation Engine">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             Remote consultations are conducted over native WebRTC connections without
             expensive third-party video subscription services.
           </p>
@@ -228,7 +222,7 @@ export default function SanjeevniClinicPage() {
             05 / SMART OPD QUEUE & AUDIO
         ====================================================== */}
         <Section number="05" title="Smart OPD Queue & Web Audio Dispatch">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             In busy hospitals, missed calls and disordered queues cause severe operational
             bottlenecks. Sanjeevni implements an algorithmic waiting room protocol:
           </p>
@@ -261,7 +255,7 @@ osc2.frequency.setValueAtTime(523.25, ctx.currentTime + 0.3); // C5 Note
             06 / CLINICAL AI TRIAGE
         ====================================================== */}
         <Section number="06" title="AI Symptom Triage & Red-Flag Guardrails">
-          <p className="font-serif text-[16px] leading-[1.75] text-[#292725]">
+          <p className="font-sans text-base sm:text-lg leading-relaxed text-[var(--ink)]">
             Integrated via Groq Cloud running <code>Llama-3.3-70B-Versatile</code>, the assistant
             is constrained by clinical safety guardrails:
           </p>
@@ -316,29 +310,47 @@ osc2.frequency.setValueAtTime(523.25, ctx.currentTime + 0.3); // C5 Note
         {/* =====================================================
             FOOTER
         ====================================================== */}
-        <footer className="mt-16 border-t border-neutral-300 pt-7 flex flex-col sm:flex-row justify-between items-baseline gap-4">
-          <div>
-            <div className="font-mono text-xs uppercase tracking-wider text-neutral-400">
-              Source Code & Deployment
-            </div>
-            <a
-              href="https://github.com/LochanJangid/sanjeevni-clinic"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-1 inline-block text-sm text-blue-700 underline underline-offset-4"
-            >
-              github.com/LochanJangid/sanjeevni-clinic ↗
-            </a>
+        <section className="box relative bg-[var(--card)] p-6 sm:p-8 mt-10">
+          <div className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--pink)] mb-2">
+            Next Case Study
           </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border-2 border-[var(--ink)] bg-[var(--periwinkle)] text-2xl shadow-[3px_3px_0_var(--shadow)]">
+                🏡
+              </div>
+              <div>
+                <h3 className="font-sans text-xl font-black text-[var(--ink)]">
+                  See-House
+                </h3>
+                <p className="font-sans text-sm text-[var(--mute)] max-w-md">
+                  California housing price regression engine predicting median block values with sub-second FastAPI endpoints.
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/work/see-house"
+              className="btn-pill bg-[var(--sun)] text-[#1b1840] px-5 py-2.5 font-sans text-sm font-black inline-flex items-center gap-1.5"
+            >
+              <span>Explore Case Study</span>
+              <span>→</span>
+            </Link>
+          </div>
+        </section>
 
-          <Link
-            href="/"
-            className="text-sm font-medium text-neutral-700 hover:text-black underline underline-offset-4"
-          >
-            ← Back to portfolio
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-[var(--mute)]">
+          <Link href="/#projects" className="hover:text-[var(--pink)] underline underline-offset-4">
+            ← Back to Lab Shelf
           </Link>
-        </footer>
-      </article>
+          <a
+            href="https://github.com/LochanJangid/sanjeevni-clinic"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[var(--pink)] underline underline-offset-4"
+          >
+            github.com/LochanJangid/sanjeevni-clinic ↗
+          </a>
+        </div>
     </main>
   );
 }
@@ -346,10 +358,10 @@ osc2.frequency.setValueAtTime(523.25, ctx.currentTime + 0.3); // C5 Note
 function Meta({ label, value }) {
   return (
     <div>
-      <div className="font-mono text-[10px] tracking-wider text-neutral-400">
+      <div className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--mute)]">
         {label}
       </div>
-      <div className="mt-1 text-sm font-medium text-neutral-800">{value}</div>
+      <div className="mt-1 font-sans text-sm sm:text-base font-extrabold text-[var(--ink)]">{value}</div>
     </div>
   );
 }
@@ -357,22 +369,24 @@ function Meta({ label, value }) {
 function Result({ value, label }) {
   return (
     <div>
-      <div className="font-serif text-2xl font-bold text-neutral-950">{value}</div>
-      <div className="mt-1 text-xs text-neutral-500">{label}</div>
+      <div className="font-sans text-2xl font-black text-[var(--ink)]">{value}</div>
+      <div className="mt-1 font-sans text-xs text-[var(--mute)]">{label}</div>
     </div>
   );
 }
 
 function Section({ number, title, children }) {
   return (
-    <section className="border-b border-neutral-200 py-10 last:border-0">
+    <section className="box relative bg-[var(--card)] p-6 sm:p-8 my-6">
       <div className="mb-5 flex items-baseline gap-3">
-        <span className="font-mono text-xs text-neutral-400">{number}</span>
-        <h2 className="font-serif text-2xl font-bold text-neutral-900">
+        <span className="font-mono text-xs font-black uppercase text-[var(--pink)]">{number}</span>
+        <h2 className="font-sans text-2xl font-black text-[var(--ink)]">
           {title}
         </h2>
       </div>
-      {children}
+      <div className="font-sans text-base leading-relaxed text-[var(--mute)]">
+        {children}
+      </div>
     </section>
   );
 }
