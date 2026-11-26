@@ -45,8 +45,8 @@ export default function Footer() {
     },
     {
       label: "LinkedIn",
-      url: "https://www.linkedin.com/in/lochanjangid/",
-      handle: "in/lochanjangid",
+      url: "https://www.linkedin.com/in/lochan-jangid/",
+      handle: "in/lochan-jangid",
       icon: "💼",
     },
   ];

@@ -181,7 +181,7 @@ export default function NeuralHero({ onOpenTerminal, onOpenLab }) {
               </a>
 
               <a
-                href="https://www.linkedin.com/in/lochanjangid/"
+                href="https://www.linkedin.com/in/lochan-jangid/"
                 target="_blank"
                 rel="noreferrer"
                 className="flex-1 flex items-center justify-center gap-1.5 rounded-full bg-black/25 px-3 py-2 text-white backdrop-blur-md transition hover:bg-black/40"

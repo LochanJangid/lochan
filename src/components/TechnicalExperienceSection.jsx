@@ -73,7 +73,7 @@ export default function TechnicalExperienceSection() {
           <div className="mt-6 pt-4 border-t border-[#080808]/15 flex items-center justify-between font-mono text-xs font-bold text-[#080808]">
             <span>VERIFIED TENURE: 11+ MONTHS</span>
             <a
-              href="https://www.linkedin.com/in/lochanjangid/"
+              href="https://www.linkedin.com/in/lochan-jangid/"
               target="_blank"
               rel="noreferrer"
               className="underline hover:text-white"

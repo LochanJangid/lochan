@@ -117,7 +117,7 @@ export default function NeuralTerminal({ isOpen, onClose, onToggleSpidey }) {
       case "contact":
         newLogs.push(
           "Email:    lochanjangidcoder@gmail.com",
-          "LinkedIn: https://www.linkedin.com/in/lochanjangid/",
+          "LinkedIn: https://www.linkedin.com/in/lochan-jangid/",
           "GitHub:   https://github.com/LochanJangid"
         );
         break;

@@ -83,7 +83,7 @@ export default function NeuralContactBanner() {
               GitHub ↗
             </a>
             <a
-              href="https://www.linkedin.com/in/lochanjangid/"
+              href="https://www.linkedin.com/in/lochan-jangid/"
               target="_blank"
               rel="noreferrer"
               className="text-neutral-400 hover:text-white transition"
